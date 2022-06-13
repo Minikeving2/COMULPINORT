@@ -4,7 +4,7 @@ table { vertical-align: top; }
 tr    { vertical-align: top; }
 td    { vertical-align: top; }
 .midnight-blue{
-	background:#2c3e50;
+	background: #54bf87;
 	padding: 4px 4px 4px;
 	color:white;
 	font-weight:bold;
@@ -52,19 +52,19 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     <table cellspacing="0" style="width: 100%;">
         <tr>
 
-            <td style="width: 25%; color: #444444;">
+            <td style="width: 25%; color: #444444; " >
                 <img style="width: 100%;" src="../../img/logo.jpg" alt="Logo"><br>
                 
             </td>
-			<td style="width: 50%; color: #34495e;font-size:12px;text-align:center">
-                <span style="color: #34495e;font-size:14px;font-weight:bold"><?php echo NOMBRE_EMPRESA;?></span>
+			<td style="width: 50%; color:#54bf87;font-size:12px;text-align:center">
+                <span style="color: #54bf87;font-size:14px;font-weight:bold"><?php echo NOMBRE_EMPRESA;?></span>
 				<br><?php echo DIRECCION_EMPRESA;?><br> 
 				Teléfono: <?php echo TELEFONO_EMPRESA;?><br>
 				Email: <?php echo EMAIL_EMPRESA;?>
                 
             </td>
 			<td style="width: 25%;text-align:right">
-			FACTURA Nº <?php echo $numero_factura;?>
+			FACTURA Nº <?php echo $id_factura;?>
 			</td>
 			
         </tr>
@@ -140,7 +140,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 <?php
 $nums=1;
 $sumador_total=0;
-$sql=mysqli_query($con, "select * from products, detalle_factura, facturas where products.id_producto=detalle_factura.id_producto and detalle_factura.id_factura=facturas.di_factura and facturas.id_factura='".$id_factura."'");
+$sql=mysqli_query($con, "select * from products, detalle_factura, facturas where products.id_producto=detalle_factura.id_producto and detalle_factura.id_factura=facturas.id_factura and facturas.id_factura='".$id_factura."'");
 
 while ($row=mysqli_fetch_array($sql))
 	{

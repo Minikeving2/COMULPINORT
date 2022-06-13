@@ -140,7 +140,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 <?php
 $nums=1;
 $sumador_total=0;
-$sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."'");
+$sql=mysqli_query($con, "select * from products, detalle_factura where products.id_producto=detalle_factura.id_producto and detalle_factura.id_factura='".$id_factura."'");
 while ($row=mysqli_fetch_array($sql))
 	{
 	$id_tmp=$row["id_tmp"];

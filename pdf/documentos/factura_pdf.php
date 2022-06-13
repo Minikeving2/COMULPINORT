@@ -16,6 +16,7 @@
 	include("../../config/conexion.php");
 	$session_id= session_id();
 	$sql_count=mysqli_query($con,"select * from detalle_factura where id_factura='".$_GET['id_factura']."'");
+	echo "aver";
 	$count=mysqli_num_rows($sql_count);
 	if ($count==0)
 	{
