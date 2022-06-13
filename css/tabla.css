@@ -1,0 +1,19 @@
+
+#margin_btn_nuevo_tercero{
+    padding-right: 2%;
+}
+#scroll{
+    height: 342.7px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 2px solid #d9edf7;
+}
+.search_null{
+    text-align: center;
+}
+#scroll_factura{
+    height: 342.7px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 2px solid gray;
+}
