@@ -47,9 +47,10 @@
 				<div class="form-group row" >
 				  <!--
 				  <label for="id" class="col-md-1 text-sm-left">ID Mov.</label>  -->  
-				  <label for="fecha" class="col-md-2 ">Fecha</label> 
+				  <label for="fecha" class="col-md-1 ">Fecha</label> 
 				  <label for="nit" class="col-md-2 control-label " style="text-align: left;" id="ca" >Nit / C.C.</label>
 				  <label for="nombre" class="col-md-4 text-sm-left">Tercero</label>
+				  <label for="nombre" class="col-md-1 text-sm-left"><!--avers--></label>
 				  <label for="estado" class="col-md-1  text-sm-left">Estado</label>
 				  <label for="nombre_rl" class="col-md-3  text-sm-left">Representante Legal</label>
                 </div>
@@ -57,8 +58,8 @@
 				    <!-- id cliente -->
 					<input id="id_cliente" type='hidden'>
 					<input id="id_vendedor" type='hidden' value="<?php echo $_SESSION['user_id'];?>">
-				    <div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="fecha" value="<?php echo date("d/m/Y");?>" readonly>
+				    <div class="col-md-1">
+						<input type="text" class="form-control input-sm" id="fecha_mov" value="<?php echo date("d/m/Y");?>" readonly>
 					</div>
 				    
 					<div class="col-md-2">
@@ -66,7 +67,7 @@
 					  <input id="id_cliente" type='hidden'>	
 				    </div>  
 				
-				    <div class="col-md-3">
+				    <div class="col-md-4">
 					  <input type="text" class="form-control input-sm" id="campo_nombre_cliente" placeholder="Selecciona un cliente" readonly>
 					  <input id="id_cliente" type='hidden'>
 
@@ -87,8 +88,9 @@
 			    </div> 
 				<div class="form-group row">
 				   <label for="comprobante" class="col-md-2 ">Nro. Comprobante</label>	
+				   <label for="factura" class="col-md-1 ">Fecha Com.</label>
 				   <label for="factura" class="col-md-2 ">Nro. Factura</label>
-				   <label for="fechadoc" class="col-md-2 ">Fecha Documento</label>
+				   <label for="fechadoc" class="col-md-1 ">Fecha Fac.</label>
 				   <label for="tipomov" class="col-md-3 ">Tipo Mov.</label>	
 				   <label for="proveedor" class="col-md-3 ">Proveedor</label>
 				</div>
@@ -96,15 +98,18 @@
 				    <div class="col-md-2">
 					    <input type="text" class="form-control input-sm" id="num_comprobante" placeholder="Número Comprobante" >
 					    <input id="id" type='hidden'>	
-				    </div>  
-				    
+				    </div>
+					  
+				    <div class="col-md-1">
+						<input type="date" class="form-control input-sm" id="fecha_comprobante" value="">
+					</div>
 				    <div class="col-md-2">
 					    <input type="text" class="form-control input-sm" id="num_factura" placeholder="Número Factura" >
 					    <input id="id" type='hidden'>	
 				    </div>  
-				    <div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="fechadoc" value="<?php echo date("d/m/Y");?>" readonly>
-					</div>    
+				    <div class="col-md-1">
+						<input type="date" class="form-control input-sm" id="fecha_factura" value="">
+					</div>
 				    <div class="col-md-3">
 						<select class='form-control input-sm' id="tipomov">
 							<option value="1">Equipos (Comodato)</option>
@@ -162,7 +167,7 @@
 					    <input id="total" type='hidden'>	
 				    </div> 
 									</br></br>
-				    <div class="col-md-12">
+				    <div class="col-md-12" id="separacion_btn">
 					  <div class="pull-right">
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto">
 						 <span class="glyphicon glyphicon-plus"></span> Nuevo producto

@@ -86,3 +86,18 @@ http://work.smarchal.com/twbscolor/
 #Big_modal{
   width: 90%
 }
+
+input{
+  padding: 5px !important;
+}
+#separacion_btn {
+  padding-top: 10px;
+}
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+#ca { /*correccion de padding con el label de bootstrap*/
+  padding-top: 0px;
+}

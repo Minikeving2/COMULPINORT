@@ -133,35 +133,47 @@
 
 
 		function guardar() {
+			
 			//funcion del boton guardar
 			
 			//id_factura automatico
-			var num_factura = $("#num_factura").val();
-			var fecha = $('#fecha').val();
+			var id_vendedor = $("#id_vendedor").val();
+
+			var fecha = $('#fecha_mov').val();
 			var id_cliente = $("#id_cliente").val();
-			var id_vendedor = $("#id_vendedor").val();;
+
+			var num_comprobante = $("#num_comprobante").val();
+			var fecha_com = $('#fecha_comprobante').val();
+
+			var num_factura = $("#num_factura").val();
+			var fecha_fact = $('#fecha_factura').val();
+
+			var tipo_mov = document.getElementById("tipomov").value;
+
 			var condiciones = $("#observacion").val();
 			var total_venta = $("#calculado").val();
 			var estado = 1;
-			var fecha_mov = $('#fecha').val();
-			var num_comprobante = $("#num_comprobante").val();
-			var fecha_com = $('#fecha').val();
+			
+			
+			
 		  	var id_proveedor = $("#id_provedor").val();
-			var tipo_mov = document.getElementById("tipomov").value;
-		 	
+			
+			if (id_cliente==""){
+				alert("Debes seleccionar un cliente");
+				$("#nombre_cliente").focus();
+				return false;
+			}
 			
 			$.ajax({
 				type: "POST",
 				url: "./ajax/agregar_nueva_factura.php",
-				data: "num_factura="+num_factura+"&fecha="+fecha+"&id_cliente="+id_cliente+"&id_vendedor="+id_vendedor+"&condiciones="+condiciones+"&total_venta="+total_venta+"&estado="+estado+"&fecha_mov="+fecha_mov+"&num_comp="+num_comprobante+"&fecha_com"+fecha_com+"&id_proveedor="+id_proveedor+"&tipo_mov="+tipo_mov,
+				data: "id_vendedor="+id_vendedor+"&fecha_mov="+fecha+"&id_cliente="+id_cliente+"&num_com="+num_comprobante+"&fecha_com="+fecha_com+"&num_fact="+num_factura+"&fecha_fact="+fecha_fact+"&tipo_mov="+tipo_mov+"&condiciones="+condiciones+"&total_venta="+total_venta+"&estado="+estado+"&id_proveedor="+id_proveedor,
 				beforeSend: function(objeto){
 					$("#resultados").html("Mensaje: Cargando...");
 				},
 				success: function(datos){
 					$("#resultados").html(datos);
-					
 				}
-				
 			});
 		}
 		
