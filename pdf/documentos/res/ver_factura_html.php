@@ -177,9 +177,18 @@ while ($row=mysqli_fetch_array($sql))
 	$nums++;
 	}
 	$subtotal=number_format($sumador_total,2,'.','');
-	$total_iva=($subtotal * TAX )/100;
-	$total_iva=number_format($total_iva,2,'.','');
-	$total_factura=$subtotal+$total_iva;
+	//$total_iva=($subtotal * TAX )/100;
+	//$total_iva=number_format($total_iva,2,'.','');
+	//$total_factura=$subtotal+$total_iva;
+	$total_factura=$subtotal;
+
+
+
+
+	//<tr>
+	//<td colspan="3" style="widtd: 85%; text-align: right;">IVA (<?php echo TAX; )% &#36; </td>
+	//<td style="widtd: 15%; text-align: right;"> <?php echo number_format($total_iva,2);</td>
+	//</tr>
 ?>
 	  
         <tr>
@@ -187,9 +196,6 @@ while ($row=mysqli_fetch_array($sql))
             <td style="widtd: 15%; text-align: right;"> <?php echo number_format($subtotal,2);?></td>
         </tr>
 		<tr>
-            <td colspan="3" style="widtd: 85%; text-align: right;">IVA (<?php echo TAX; ?>)% &#36; </td>
-            <td style="widtd: 15%; text-align: right;"> <?php echo number_format($total_iva,2);?></td>
-        </tr><tr>
             <td colspan="3" style="widtd: 85%; text-align: right;">TOTAL &#36; </td>
             <td style="widtd: 15%; text-align: right;"> <?php echo number_format($total_factura,2);?></td>
         </tr>

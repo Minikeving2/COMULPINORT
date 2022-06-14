@@ -69,21 +69,23 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 		<?php
 	}
 	$subtotal=number_format($sumador_total,2,'.','');
-	$total_iva=($subtotal * TAX )/100;
-	$total_iva=number_format($total_iva,2,'.','');
-	$total_factura=$subtotal+$total_iva;
+	//$total_iva=($subtotal * TAX )/100;
+	//$total_iva=number_format($total_iva,2,'.','');
+	//$total_factura=$subtotal+$total_iva;
+	$total_factura=$subtotal;
 
+	//<tr>
+	//	<td class='text-right' colspan=4>IVA (<?php echo TAX)% $</td>
+	//	<td class='text-right'><?php echo number_format($total_iva,2);</td>
+	//	<td></td>
+	//</tr>
 ?>
 <tr>
 	<td class='text-right' colspan=4>SUBTOTAL $</td>
 	<td class='text-right'><?php echo number_format($subtotal,2);?></td>
 	<td></td>
 </tr>
-<tr>
-	<td class='text-right' colspan=4>IVA (<?php echo TAX?>)% $</td>
-	<td class='text-right'><?php echo number_format($total_iva,2);?></td>
-	<td></td>
-</tr>
+
 <tr>
 	<td class='text-right' colspan=4>TOTAL $</td>
 	<td class='text-right' id="valor_total"><?php echo number_format($total_factura,2);?></td>

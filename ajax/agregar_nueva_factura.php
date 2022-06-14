@@ -88,6 +88,6 @@ $sql="SELECT * FROM tmp";
 
 $sql=mysqli_query($con,"DELETE FROM tmp");
 
-echo "<script>var opcion = confirm ('¿Desea ver las facturas?')</script>";
+echo "<script>var opcion = alert ('Factura registrada correctamente')</script>";
 
 ?>
