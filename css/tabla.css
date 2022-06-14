@@ -17,3 +17,7 @@
     overflow-y: scroll;
     border: 2px solid gray;
 }
+/*tamaño de la utlima columna */
+table td:last-child {
+    min-width:100px;
+}

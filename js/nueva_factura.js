@@ -139,7 +139,7 @@
 			var num_factura = $("#num_factura").val();
 			var fecha = $('#fecha').val();
 			var id_cliente = $("#id_cliente").val();
-			var id_vendedor = 1;
+			var id_vendedor = $("#id_vendedor").val();;
 			var condiciones = $("#observacion").val();
 			var total_venta = $("#calculado").val();
 			var estado = 1;

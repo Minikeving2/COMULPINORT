@@ -56,6 +56,7 @@
 				<div class="form-group row">
 				    <!-- id cliente -->
 					<input id="id_cliente" type='hidden'>
+					<input id="id_vendedor" type='hidden' value="<?php echo $_SESSION['user_id'];?>">
 				    <div class="col-md-2">
 						<input type="text" class="form-control input-sm" id="fecha" value="<?php echo date("d/m/Y");?>" readonly>
 					</div>

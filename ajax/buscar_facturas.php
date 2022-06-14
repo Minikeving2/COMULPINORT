@@ -13,13 +13,13 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$id_factura=intval($_GET['id']);
-		$del1="delete from facturas where numero_factura='".$id_factura."'";
-		$del2="delete from detalle_factura where id_factura='".$numero_factura."'";
+		$del1="delete from facturas where id_factura='".$id_factura."'";
+		$del2="delete from detalle_factura where id_factura='".$id_factura."'";
 		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Aviso!</strong> Datos eliminados exitosamente
+			  <strong>Aviso!</strong><?php echo $id_factura; ?> Datos eliminados exitosamente
 			</div>
 			<?php 
 		}else {
@@ -102,7 +102,7 @@
 					<td class="text-right">
 						<a href="editar_factura.php?id_factura=<?php echo $id_factura;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
 						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
-						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
+						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $id_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					</td>
 						
 					</tr>

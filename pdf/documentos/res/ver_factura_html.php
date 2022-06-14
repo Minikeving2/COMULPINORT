@@ -53,11 +53,11 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <tr>
 
             <td style="width: 25%; color: #444444; " >
-                <img style="width: 100%;" src="../../img/logo.jpg" alt="Logo"><br>
+                <img style="width: 100%;" src="../../img/largo.png" alt="Logo"><br>
                 
             </td>
-			<td style="width: 50%; color:#54bf87;font-size:12px;text-align:center">
-                <span style="color: #54bf87;font-size:14px;font-weight:bold"><?php echo NOMBRE_EMPRESA;?></span>
+			<td style="width: 50%; color: #000 ;font-size:12px;text-align:center">
+                <span style="color: #000;font-size:14px;font-weight:bold"><?php echo NOMBRE_EMPRESA;?></span>
 				<br><?php echo DIRECCION_EMPRESA;?><br> 
 				Teléfono: <?php echo TELEFONO_EMPRESA;?><br>
 				Email: <?php echo EMAIL_EMPRESA;?>
