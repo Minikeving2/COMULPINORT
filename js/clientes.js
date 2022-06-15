@@ -59,7 +59,6 @@
 })
 
 $( "#editar_cliente" ).submit(function( event ) {
-	console.log("aver editar cliente");
   $('#actualizar_datos').attr("disabled", true);
   
  var parametros = $(this).serialize();
@@ -95,12 +94,13 @@ $( "#editar_cliente" ).submit(function( event ) {
 			var tipo_tercero = $("#tipo_tercero"+id).val();
 			var date_added = $("#date_added"+id).val();
 
+			var id_municipio = $('#id_municipio'+id).val();
 			var cc_rp = $("#cc_rp"+id).val();
 			var nombre_rp = $("#nombre_rp"+id).val();
 			var tel_rp = $("#tel_rp"+id).val();
 			var email_rp = $("#email_rp"+id).val();
 			var dir_rp = $("#dir_rp"+id).val();
-			
+
 			$("#mod_id_cliente").val(id);
 			$("#mod_nombre_cliente").val(nombre_cliente);
 			$("#mod_telefono_cliente").val(telefono_cliente);
@@ -114,7 +114,7 @@ $( "#editar_cliente" ).submit(function( event ) {
 			$("#mod_cupo").val(cupo);
 			$("#mod_tipoter").val(tipo_tercero);
 			$("#mod_date_added").val(date_added);
-			
+			$('#mod_id_municipio').val(id_municipio);	
 			$("#mod_cc_rp").val(cc_rp);
 		    $("#mod_nombre_rp").val(nombre_rp);
 			$("#mod_telefono_rp").val(tel_rp);

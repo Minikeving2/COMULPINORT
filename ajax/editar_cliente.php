@@ -23,6 +23,7 @@
 		$nombre_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_cliente"],ENT_QUOTES)));
 		$codigo_sicom=intval($_POST["codigo_sicom"]);
 		$estado=intval($_POST['estado']);
+		$id_municipio=intval($_POST['id_municipio']);
 		$cupo=intval($_POST['cupo']);
 		$tipo_tercero=intval($_POST["tipo_tercero"]);
 		$telefono_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["telefono_cliente"],ENT_QUOTES)));
@@ -35,7 +36,7 @@
 		$direccion_rp=mysqli_real_escape_string($con,(strip_tags($_POST["direccion_rp"],ENT_QUOTES)));
 		
 		//echo $id_cliente."-".$nit."-".$nombre_cliente."-".$codigo_sicom."-".$estado."-".$cupo."-".$tipo_tercero."-".$telefono_cliente."-".$email_cliente."-".$direccion_cliente."-".$cc_rp."-".$nombre_rp."-".$telefono_rp."-".$email_rp."-".$direccion_rp;
-		$sql= "UPDATE clientes SET nombre_cliente='".$nombre_cliente."', telefono_cliente='".$telefono_cliente."', email_cliente='".$email_cliente."', direccion_cliente='".$direccion_cliente."', status_cliente='".$estado."', codigo_sicom='".$codigo_sicom."', nit='".$nit."', cc_rp='".$cc_rp."', nombre_rp='".$nombre_rp."', tipo_tercero='".$tipo_tercero."', tel_rp='".$telefono_rp."', email_rp='".$email_rp."', dir_rp='".$direccion_rp."', cupo='".$cupo."', fecha_act='". date('Y-m-d', time())."' where id_cliente= '".$id_cliente."';";
+		$sql= "UPDATE clientes SET nombre_cliente='".$nombre_cliente."', telefono_cliente='".$telefono_cliente."', email_cliente='".$email_cliente."', direccion_cliente='".$direccion_cliente."', status_cliente='".$estado."', codigo_sicom='".$codigo_sicom."', nit='".$nit."', cc_rp='".$cc_rp."', nombre_rp='".$nombre_rp."', tipo_tercero='".$tipo_tercero."', tel_rp='".$telefono_rp."', email_rp='".$email_rp."', dir_rp='".$direccion_rp."', id_municipio='".$id_municipio."', cupo='".$cupo."', fecha_act='". date('Y-m-d', time())."' where id_cliente= '".$id_cliente."';";
 		$query_update = mysqli_query($con,$sql);
 			if ($query_update){
 				$messages[] = "Cliente ha sido actualizado satisfactoriamente.";
