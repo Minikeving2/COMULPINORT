@@ -58,9 +58,11 @@
 })
 
 $( "#editar_cliente" ).submit(function( event ) {
+	console.log("aver editar cliente");
   $('#actualizar_datos').attr("disabled", true);
   
  var parametros = $(this).serialize();
+ console.log(parametros);
 	 $.ajax({
 			type: "POST",
 			url: "ajax/editar_cliente.php",
@@ -78,6 +80,7 @@ $( "#editar_cliente" ).submit(function( event ) {
 })
 
 	function obtener_datos(id){
+			console.log(id);
 			var nombre_cliente = $("#nombre_cliente"+id).val();
 			var telefono_cliente = $("#telefono_cliente"+id).val();
 			var email_cliente = $("#email_cliente"+id).val();
@@ -88,30 +91,32 @@ $( "#editar_cliente" ).submit(function( event ) {
 			var nit = $("#nit"+id).val();
 			var cupo = $("#cupo"+id).val();
 			var tipo_tercero = $("#tipo_tercero"+id).val();
-			var fecha_act = $("#fecha_act"+id).val();
+			var date_added = $("#date_added"+id).val();
 
+			var cc_rp = $("#cc_rp"+id).val();
 			var nombre_rp = $("#nombre_rp"+id).val();
 			var tel_rp = $("#tel_rp"+id).val();
 			var email_rp = $("#email_rp"+id).val();
 			var dir_rp = $("#dir_rp"+id).val();
 	
-			$("#mod_nombre").val(nombre_cliente);
-			$("#mod_telefono").val(telefono_cliente);
-			$("#mod_email").val(email_cliente);
-			$("#mod_direccion").val(direccion_cliente);
+			$("#mod_nombre_cliente").val(nombre_cliente);
+			$("#mod_telefono_cliente").val(telefono_cliente);
+			$("#mod_email_cliente").val(email_cliente);
+			$("#mod_direccion_cliente").val(direccion_cliente);
 			$("#mod_estado").val(status_cliente);
 			$("#mod_id").val(id);
 
-			$("#mod_codsicom").val(codigo_sicom);
+			$("#mod_codigo_sicom").val(codigo_sicom);
 			$("#mod_nit").val(nit);
 			$("#mod_cupo").val(cupo);
 			$("#mod_tipoter").val(tipo_tercero);
-			$("#mod_fecact").val(fecha_act);
+			$("#mod_date_added").val(date_added);
 			
-		    $("#mod_nombrerp").val(nombre_rp);
-			$("#mod_telefonorp").val(tel_rp);
-			$("#mod_emailrp").val(email_rp);
-			$("#mod_direccionrp").val(dir_rp);
+			$("#mod_cc_rp").val(cc_rp);
+		    $("#mod_nombre_rp").val(nombre_rp);
+			$("#mod_telefono_rp").val(tel_rp);
+			$("#mod_email_rp").val(email_rp);
+			$("#mod_direccion_rp").val(dir_rp);
 		}
 	
 		

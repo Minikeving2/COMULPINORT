@@ -57,21 +57,24 @@
 			  <div class="form-group">	
 			    <div class="col-md-3">
 						<select class="form-control input-sm" id="id">
-						<?php
-							$sql_municipio=mysqli_query($con,"select * from municipio order by nombre");
-							while ($rw=mysqli_fetch_array($sql_municipio)){
-							    $id_municipio=$rw["id"];
-								$nombre_municipio=$rw["nombre"]." ".$rw["nit"];
-								if ($id_municipio==$_SESSION['user_id']){
-								   $selected="selected";
-									} else {
-												$selected="";
+							<script>
+								var select = document.getElementById('id');
+								select.addEventListener('change',
+								function(){
+									var selectedOption = this.options[select.selectedIndex];
+									console.log(selectedOption.value);
+								});
+  							</script>
+							<?php
+								$sql_municipio=mysqli_query($con,"select * from municipios order by nombre");
+								while ($rw=mysqli_fetch_array($sql_municipio)){
+									$id_municipio=$rw["id"];
+									$nombre_municipio=$rw["nombre"];
+							?>
+								<option value="<?php echo $id_municipio?>" <?php echo $selected;?>><?php echo $nombre_municipio?></option>
+							<?php
 											}
-						?>
-						<option value="<?php echo $id_municipio?>" <?php echo $selected;?>><?php echo $nombre_municipio?></option>
-						<?php
-										}
-						?>
+							?>
 						</select>
 					</div>			 
 			 

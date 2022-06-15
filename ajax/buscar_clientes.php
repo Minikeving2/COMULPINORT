@@ -100,26 +100,55 @@
 				<?php
 				while ($row=mysqli_fetch_array($query)){
 						$id_cliente=$row['id_cliente'];
-						$cupo=$row['cupo'];
-						$codigo_sicom=$row['codigo_sicom'];
+						
 						$nombre_cliente=$row['nombre_cliente'];
 						$telefono_cliente=$row['telefono_cliente'];
 						$email_cliente=$row['email_cliente'];
 						$direccion_cliente=$row['direccion_cliente'];
 						$status_cliente=$row['status_cliente'];
+						$codigo_sicom=$row['codigo_sicom'];
+						$nit = $row["nit"];
+						$municipio=$row["id_municipio"];
+						$cupo=$row['cupo'];
+						$tipo_tercero=$row["tipo_tercero"];
+						$date_added=$row["date_added"];
+
+						$cc_rp=$row["cc_rp"];
+						$nombre_rp=$row["nombre_rp"];
+						$tel_rp=$row["tel_rp"];
+						$email_rp=$row["email_rp"];
+						$dir_rp=$row["dir_rp"];
+						
+
 						if ($status_cliente==1){$estado="Activo";}
 						else {$estado="Inactivo";}
-						$date_added= date('d/m/Y', strtotime($row['date_added']));
 						
 					?>
-					
 					<input type="hidden" value="<?php echo $codigo_sicom;?>" id="codigo_sicom<?php echo $id_cliente;?>">
+
 					<input type="hidden" value="<?php echo $nombre_cliente;?>" id="nombre_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $telefono_cliente;?>" id="telefono_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $email_cliente;?>" id="email_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $cupo;?>" id="cupo<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $status_cliente;?>" id="status_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $nit;?>" id="nit<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $estado;?>" id="estado<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $telefono_cliente;?>" id="telefono_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $tipo_tercero;?>" id="tipo_tercero<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $date_added;?>" id="date_added<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $municipio;?>" id="id_municipio<?php echo $id_cliente;?>">
 					
+					<input type="hidden" value="<?php echo $cc_rp;?>" id="cc_rp<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $nombre_rp;?>" id="nombre_rp<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $tel_rp;?>" id="tel_rp<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $email_rp;?>" id="email_rp<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $dir_rp;?>" id="dir_rp<?php echo $id_cliente;?>">
+					
+					
+					
+
+
+
 					<tr>
 					    <td><?php echo $codigo_sicom; ?></td>
 						<td><?php echo $nombre_cliente; ?></td>
