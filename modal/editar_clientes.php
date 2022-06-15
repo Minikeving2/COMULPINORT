@@ -28,10 +28,10 @@
 				<label for="estado" class="col-sm-2 ">Estado</label>
 			  </div>
 			  <div class="form-group">			
-			    <!--	
-			    <div class="col-sm-2">
-				  <input type="text" class="form-control" id="id" name="id" > </div> -->
+			    
+				  
 				<div class="col-sm-2">
+					<input type="hidden" class="form-control" id="mod_id_cliente" name="id_cliente">
 					<input type="text" class="form-control" id="mod_nit" name="nit" > </div>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="mod_nombre_cliente" name="nombre_cliente" ></div>

@@ -1,29 +1,41 @@
 <?php
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
-	if (empty($_POST['mod_id'])) {
+	
+	if (empty($_POST['id_cliente'])) {
            $errors[] = "ID vacío";
-        }else if (empty($_POST['mod_nombre'])) {
+        }else if (empty($_POST['nombre_cliente'])) {
            $errors[] = "Nombre vacío";
-        }  else if ($_POST['mod_estado']==""){
+        }  else if ($_POST['estado']==""){
 			$errors[] = "Selecciona el estado del cliente";
 		}  else if (
-			!empty($_POST['mod_id']) &&
-			!empty($_POST['mod_nombre']) &&
-			$_POST['mod_estado']!="" 
+			!empty($_POST['id_cliente']) &&
+			!empty($_POST['nombre_cliente']) &&
+			$_POST['estado']!="" 
 		){
 		/* Connect To Database*/
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
-		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["mod_nombre"],ENT_QUOTES)));
-		$telefono=mysqli_real_escape_string($con,(strip_tags($_POST["mod_telefono"],ENT_QUOTES)));
-		$email=mysqli_real_escape_string($con,(strip_tags($_POST["mod_email"],ENT_QUOTES)));
-		$direccion=mysqli_real_escape_string($con,(strip_tags($_POST["mod_direccion"],ENT_QUOTES)));
-		$estado=intval($_POST['mod_estado']);
+	
+		$id_cliente=intval($_POST['id_cliente']);
+		$nit=$_POST["nit"];
+		$nombre_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_cliente"],ENT_QUOTES)));
+		$codigo_sicom=intval($_POST["codigo_sicom"]);
+		$estado=intval($_POST['estado']);
+		$cupo=intval($_POST['cupo']);
+		$tipo_tercero=intval($_POST["tipo_tercero"]);
+		$telefono_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["telefono_cliente"],ENT_QUOTES)));
+		$email_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["email_cliente"],ENT_QUOTES)));
+		$direccion_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["direccion_cliente"],ENT_QUOTES)));
+		$cc_rp=intval($_POST["cc_rp"]);
+		$nombre_rp=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_rp"],ENT_QUOTES)));
+		$telefono_rp=mysqli_real_escape_string($con,(strip_tags($_POST["telefono_rp"],ENT_QUOTES)));
+		$email_rp=mysqli_real_escape_string($con,(strip_tags($_POST["email_rp"],ENT_QUOTES)));
+		$direccion_rp=mysqli_real_escape_string($con,(strip_tags($_POST["direccion_rp"],ENT_QUOTES)));
 		
-		$id_cliente=intval($_POST['mod_id']);
-		$sql="UPDATE clientes SET nombre_cliente='".$nombre."', telefono_cliente='".$telefono."', email_cliente='".$email."', direccion_cliente='".$direccion."', status_cliente='".$estado."' WHERE id_cliente='".$id_cliente."'";
+		//echo $id_cliente."-".$nit."-".$nombre_cliente."-".$codigo_sicom."-".$estado."-".$cupo."-".$tipo_tercero."-".$telefono_cliente."-".$email_cliente."-".$direccion_cliente."-".$cc_rp."-".$nombre_rp."-".$telefono_rp."-".$email_rp."-".$direccion_rp;
+		$sql= "UPDATE clientes SET nombre_cliente='".$nombre_cliente."', telefono_cliente='".$telefono_cliente."', email_cliente='".$email_cliente."', direccion_cliente='".$direccion_cliente."', status_cliente='".$estado."', codigo_sicom='".$codigo_sicom."', nit='".$nit."', cc_rp='".$cc_rp."', nombre_rp='".$nombre_rp."', tipo_tercero='".$tipo_tercero."', tel_rp='".$telefono_rp."', email_rp='".$email_rp."', dir_rp='".$direccion_rp."', cupo='".$cupo."', fecha_act='". date('Y-m-d', time())."' where id_cliente= '".$id_cliente."';";
 		$query_update = mysqli_query($con,$sql);
 			if ($query_update){
 				$messages[] = "Cliente ha sido actualizado satisfactoriamente.";

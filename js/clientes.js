@@ -30,6 +30,7 @@
 			    $("#resultados").html("Mensaje: Cargando...");
 		     },
             success: function(datos){
+			
 		    $("#resultados").html(datos);
 		    load(1);
 		    }
@@ -71,7 +72,8 @@ $( "#editar_cliente" ).submit(function( event ) {
 				$("#resultados_ajax2").html("Mensaje: Cargando...");
 			  },
 			success: function(datos){
-			$("#resultados_ajax2").html(datos);
+			$('#myModal2').modal('hide');
+			$("#resultados").html(datos);
 			$('#actualizar_datos').attr("disabled", false);
 			load(1);
 		  }
@@ -80,7 +82,7 @@ $( "#editar_cliente" ).submit(function( event ) {
 })
 
 	function obtener_datos(id){
-			console.log(id);
+
 			var nombre_cliente = $("#nombre_cliente"+id).val();
 			var telefono_cliente = $("#telefono_cliente"+id).val();
 			var email_cliente = $("#email_cliente"+id).val();
@@ -98,7 +100,8 @@ $( "#editar_cliente" ).submit(function( event ) {
 			var tel_rp = $("#tel_rp"+id).val();
 			var email_rp = $("#email_rp"+id).val();
 			var dir_rp = $("#dir_rp"+id).val();
-	
+			
+			$("#mod_id_cliente").val(id);
 			$("#mod_nombre_cliente").val(nombre_cliente);
 			$("#mod_telefono_cliente").val(telefono_cliente);
 			$("#mod_email_cliente").val(email_cliente);
