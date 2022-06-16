@@ -12,7 +12,7 @@
 		  </div>
 		  <div class="modal-body">
 			<form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
-				
+			<div id="resultados_ajax2"></div>
 				
 				<button id="section" type="button" data-toggle="collapse" data-target="#datoscliente" aria-expanded="false" aria-controls="collapseExample">
 					<div class="panel-body p-3 mb-2 bg-primary text-white">
@@ -20,7 +20,7 @@
 					</div>
 				</button>
 				 
-				<div id="resultados_ajax"></div>
+				
 				<div class="collapse" id="datoscliente">
 				<div class="card card-body">
 					<div class="form-group">

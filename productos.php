@@ -98,11 +98,13 @@
 $( "#guardar_producto" ).submit(function( event ) {
   $('#guardar_datos').attr("disabled", true);
   
- var parametros = $(this).serialize();
-	 $.ajax({
+ 	var parametros = $(this).serialize();
+ 	
+ 	$.ajax({
 			type: "POST",
 			url: "ajax/nuevo_producto.php",
 			data: parametros,
+			
 			 beforeSend: function(objeto){
 				$("#resultados_ajax_productos").html("Mensaje: Cargando...");
 			  },
@@ -111,7 +113,8 @@ $( "#guardar_producto" ).submit(function( event ) {
 			$('#guardar_datos').attr("disabled", false);
 			load(1);
 		  }
-	});
+	}); 
+
   event.preventDefault();
 })
 
@@ -119,6 +122,7 @@ $( "#editar_producto" ).submit(function( event ) {
   $('#actualizar_datos').attr("disabled", true);
   
  var parametros = $(this).serialize();
+ console.log(parametros);
 	 $.ajax({
 			type: "POST",
 			url: "ajax/editar_producto.php",
@@ -140,9 +144,18 @@ $( "#editar_producto" ).submit(function( event ) {
 			var nombre_producto = $("#nombre_producto"+id).val();
 			var estado = $("#estado"+id).val();
 			var precio_producto = $("#precio_producto"+id).val();
+			var descripcion1 = $("#descripcion1"+id).val();
+			var descripcion2 = $("#descripcion2"+id).val();
+			var categoria = $("#categoria"+id).val();
+			var fecha = $('#fecha_producto'+id).val();
 			$("#mod_id").val(id);
-			$("#mod_codigo").val(codigo_producto);
-			$("#mod_nombre").val(nombre_producto);
-			$("#mod_precio").val(precio_producto);
+			$("#mod_cod_producto").val(codigo_producto);
+			$("#mod_nombre_producto").val(nombre_producto);
+			$("#mod_precio_producto").val(precio_producto);
+			document.querySelector('#mod_categoria').value=categoria;	
+			$("#mod_descripcion_long").val(descripcion2);
+			$("#mod_descripcion").val(descripcion1);
+			$("#mod_fecha").val(fecha);
+
 		}
 </script>

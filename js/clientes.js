@@ -47,7 +47,7 @@
 			url: "ajax/nuevo_cliente.php",
 			data: parametros,
 			 beforeSend: function(objeto){
-				$("#resultados_ajax").html("Mensaje: Cargando...");
+				$("#resultados_ajax2").html("Mensaje: Cargando...");
 			  },
 			success: function(datos){
 			$("#resultados_ajax").html(datos);
@@ -92,7 +92,7 @@ $( "#editar_cliente" ).submit(function( event ) {
 			var cupo = $("#cupo"+id).val();
 			var tipo_tercero = $("#tipo_tercero"+id).val();
 			var date_added = $("#date_added"+id).val();
-
+			
 			var id_municipio = $('#id_municipio'+id).val();
 			var cc_rp = $("#cc_rp"+id).val();
 			var nombre_rp = $("#nombre_rp"+id).val();

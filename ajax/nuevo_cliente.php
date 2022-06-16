@@ -35,10 +35,7 @@
 		$direccionrp=mysqli_real_escape_string($con,(strip_tags($_POST["dir_rp"],ENT_QUOTES)));
 		
 		
-		$sql="INSERT INTO clientes (nombre_cliente, telefono_cliente, email_cliente, direccion_cliente, status_cliente, date_added,
-		fecha_act, nit, cupo, tipo_tercero, cc_rp, nombre_rp, tel_rp, email_rp, dir_rp  ) 
-		VALUES ('$nombre','$telefono','$email','$direccion','$estado','$date_added', '$fechaact',
-		'$nit','$cupo','$tipoter','$ccrp','$nombrerp','$telefonorp','$emailrp','$direccionrp')";
+		$sql="INSERT INTO clientes (nombre_cliente, telefono_cliente, email_cliente, direccion_cliente, status_cliente, date_added,fecha_act, nit, cupo, tipo_tercero, cc_rp, nombre_rp, tel_rp, email_rp, dir_rp  ) VALUES ('$nombre','$telefono','$email','$direccion','$estado','$date_added', '$fechaact','$nit','$cupo','$tipoter','$ccrp','$nombrerp','$telefonorp','$emailrp','$direccionrp')";
 		$query_new_insert = mysqli_query($con,$sql);
 			if ($query_new_insert){
 				$messages[] = "Tercero ha sido ingresado satisfactoriamente.";

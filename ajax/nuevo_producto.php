@@ -1,36 +1,43 @@
 <?php
 include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
-	if (empty($_POST['codigo'])) {
+	if (empty($_POST['cod_producto'])) {
            $errors[] = "Código vacío";
-        } else if (empty($_POST['nombre'])){
+        } else if (empty($_POST['nombre_producto'])){
 			$errors[] = "Nombre del producto vacío";
 		} else if ($_POST['estado']==""){
 			$errors[] = "Selecciona el estado del producto";
-		} else if (empty($_POST['precio'])){
+		} else if (empty($_POST['precio_producto'])){
 			$errors[] = "Precio de venta vacío";
 		} else if (
-			!empty($_POST['codigo']) &&
-			!empty($_POST['nombre']) &&
+			!empty($_POST['cod_producto']) &&
+			!empty($_POST['nombre_producto']) &&
 			$_POST['estado']!="" &&
-			!empty($_POST['precio'])
+			!empty($_POST['precio_producto'])
 		){
 		/* Connect To Database*/
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
-		$codigo=mysqli_real_escape_string($con,(strip_tags($_POST["codigo"],ENT_QUOTES)));
-		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));
+
+		$codigo=mysqli_real_escape_string($con,(strip_tags($_POST["cod_producto"],ENT_QUOTES)));
+		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_producto"],ENT_QUOTES)));
 		$estado=intval($_POST['estado']);
-		$precio_venta=floatval($_POST['precio']);
-		$date_added=date("Y-m-d H:i:s");
-		$sql="INSERT INTO products (codigo_producto, nombre_producto, status_producto, date_added, precio_producto) VALUES ('$codigo','$nombre','$estado','$date_added','$precio_venta')";
+		$precio_venta=floatval($_POST['precio_producto']);
+		$date_added=date("Y-m-d");
+		$tipo=$_POST["tipo"];
+		$categoria=$_POST["categoria"];
+		$descripcion1=$_POST["descripcion_producto"];
+		$descripcion2=$_POST["descripcion_long"];
+		
+		$sql= "INSERT INTO products (codigo_producto, nombre_producto, status_producto, date_added, precio_producto, descripcion, descripcion2, tipo_prod, tipo_categoria) VALUES ('$codigo','$nombre','$estado','$date_added','$precio_venta', '$descripcion1', '$descripcion2', '$tipo', '$categoria')";
 		$query_new_insert = mysqli_query($con,$sql);
 			if ($query_new_insert){
 				$messages[] = "Producto ha sido ingresado satisfactoriamente.";
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
 			}
+		
 		} else {
 			$errors []= "Error desconocido.";
 		}
@@ -48,8 +55,8 @@ include('is_logged.php');//Archivo verifica que el usario que intenta acceder a 
 						?>
 			</div>
 			<?php
-			}
-			if (isset($messages)){
+		}
+		if (isset($messages)){
 				
 				?>
 				<div class="alert alert-success" role="alert">
@@ -62,6 +69,7 @@ include('is_logged.php');//Archivo verifica que el usario que intenta acceder a 
 							?>
 				</div>
 				<?php
+				
 			}
 
 ?>
