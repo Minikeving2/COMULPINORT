@@ -62,7 +62,6 @@ $( "#editar_cliente" ).submit(function( event ) {
   $('#actualizar_datos').attr("disabled", true);
   
  var parametros = $(this).serialize();
- console.log(parametros);
 	 $.ajax({
 			type: "POST",
 			url: "ajax/editar_cliente.php",
@@ -114,7 +113,7 @@ $( "#editar_cliente" ).submit(function( event ) {
 			$("#mod_cupo").val(cupo);
 			$("#mod_tipoter").val(tipo_tercero);
 			$("#mod_date_added").val(date_added);
-			$('#mod_id_municipio').val(id_municipio);	
+			document.querySelector('#mod_id_municipio').value=id_municipio;	
 			$("#mod_cc_rp").val(cc_rp);
 		    $("#mod_nombre_rp").val(nombre_rp);
 			$("#mod_telefono_rp").val(tel_rp);

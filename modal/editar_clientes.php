@@ -59,7 +59,7 @@
 					
 					<div class="form-group">	
 						<div class="col-md-3">
-							<select class="form-control input-sm" id="id" name="id_municipio" value="<?php echo $id_municipio;?>">
+							<select class="form-control input-sm" id="mod_id_municipio" name="id_municipio" value="<?php  echo $id_municipio;?>">
 									<script>
 										var select = document.getElementById('id');
 										select.addEventListener('change',
@@ -69,12 +69,13 @@
 										});
 									</script>
 									<?php
+										
 										$sql_municipio=mysqli_query($con,"select * from municipios order by nombre");
 										while ($rw=mysqli_fetch_array($sql_municipio)){
 											$id_municipio=$rw["id"];
 											$nombre_municipio=$rw["nombre"];
 									?>
-										<option value="<?php echo $id_municipio?>" ><?php echo $nombre_municipio?></option>
+										<option value="<?php echo $id_municipio?>"><?php echo $nombre_municipio?></option>
 									<?php
 													}
 									?>
