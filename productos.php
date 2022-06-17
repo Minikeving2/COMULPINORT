@@ -148,10 +148,12 @@ $( "#editar_producto" ).submit(function( event ) {
 			var descripcion2 = $("#descripcion2"+id).val();
 			var categoria = $("#categoria"+id).val();
 			var fecha = $('#fecha_producto'+id).val();
+			var tipo = $('#tipo_producto'+id).val();
 			$("#mod_id").val(id);
 			$("#mod_cod_producto").val(codigo_producto);
 			$("#mod_nombre_producto").val(nombre_producto);
 			$("#mod_precio_producto").val(precio_producto);
+			document.querySelector('#mod_tipo_producto').value=tipo;
 			document.querySelector('#mod_categoria').value=categoria;	
 			$("#mod_descripcion_long").val(descripcion2);
 			$("#mod_descripcion").val(descripcion1);

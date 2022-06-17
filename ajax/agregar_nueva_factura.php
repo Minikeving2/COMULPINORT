@@ -55,10 +55,10 @@ $estado=$_POST['estado'];
 $id_proveedor=$_POST["id_proveedor"];
 
 
-
+$date_added=date("Y-m-d");
 	
 //inserto los datos de la tabla facturas
-$insert=mysqli_query($con,"INSERT INTO facturas (numero_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov) VALUES ($num_factura,'$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov)");
+$insert=mysqli_query($con,"INSERT INTO facturas (numero_factura,fecha_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov) VALUES ($num_factura,'$date_added','$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov)");
 	
 //busco el id de la factura creada
 $sql="SELECT MAX(id_factura) FROM facturas";
@@ -78,7 +78,8 @@ $sql="SELECT * FROM tmp";
 		$query = mysqli_query($con, $sql);
 		if ($numrows>0){
 			while ($row=mysqli_fetch_array($query)){
-				$insert=mysqli_query($con, "INSERT INTO detalle_factura (id_factura,id_producto,cantidad,precio_venta)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."')");
+				$aux=$row['cantidad_tmp']*$row['precio_tmp'];
+				$insert=mysqli_query($con, "INSERT INTO detalle_factura (id_factura,id_producto,cantidad,precio_venta,total)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."','$aux')");
 			}
 		} else {
 			echo "no hay productos";

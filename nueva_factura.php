@@ -25,6 +25,7 @@
   <head>
     <?php include("head.php");?>
 	<link rel="stylesheet" href="css/tabla.css">
+	<link rel="stylesheet" href="css/fechas.css">
   </head>
   <body>
 	<?php

@@ -24,6 +24,7 @@
 		{
 			var id_factura = getParameterByName('id_factura');
 			var precio_venta=document.getElementById('precio_venta_'+id).value;
+			console.log(precio_venta);
 			var cantidad=document.getElementById('cantidad_'+id).value;
 			//Inicia validacion
 			if (isNaN(cantidad))

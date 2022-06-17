@@ -17,7 +17,8 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	
 if (!empty($id) and !empty($cantidad) and !empty($precio_venta))
 {
-$insert_tmp=mysqli_query($con, "INSERT INTO detalle_factura (id_factura, id_producto,cantidad,precio_venta) VALUES ('$id_factura','$id','$cantidad','$precio_venta')");
+	$aux=$cantidad*$precio_venta;
+$insert_tmp=mysqli_query($con, "INSERT INTO detalle_factura (id_factura, id_producto,cantidad,precio_venta,total) VALUES ('$id_factura','$id','$cantidad','$precio_venta','$aux')");
 
 }
 if (isset($_GET['id']))//codigo elimina un elemento del array
