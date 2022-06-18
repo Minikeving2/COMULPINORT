@@ -33,7 +33,7 @@
 		<div class="panel panel-info">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
-				<a  href="" class="btn btn-info"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
+				<a  href="" class="btn btn-info" onclick="imprimir_informe()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
 			</div>
 			<h4><i class='glyphicon glyphicon-search'></i> Buscar Informes</h4>
 		</div>
