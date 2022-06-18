@@ -107,7 +107,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 		<tr>
            <td style="width:50%;">
 				
-				RESUMEN DE MOVIMIENTO
+				RESUMEN DE LOS MOVIMIENTOS
 			
 		   </td>
 		  <td style="width:25%;"><?php echo $fecha_inicio;?></td>
@@ -150,9 +150,10 @@ while ($row=mysqli_fetch_array($sql))
 
 	/*$precio_venta_f=number_format($precio_venta,2);//Formateo variables
 	$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
-	$precio_total=$precio_venta_r*$cantidad;
-	*/$precio_total_f=number_format($total_v,2);//Precio total formateado
-	$sumador_total+=$precio_total_r;//Sumador*/
+	$precio_total=$precio_venta_r*$cantidad;*/
+	$precio_total_f=number_format($total_v,2);//Precio total formateado
+	$sumador_total=$total_v+$sumador_total;
+	//Sumador
 	if ($nums%2==0){
 		$clase="clouds";
 	} else {
@@ -176,7 +177,7 @@ while ($row=mysqli_fetch_array($sql))
 	$nums++;
 	}
 	
-	//$subtotal=number_format($sumador_total,2,'.','');
+	$subtotal=number_format($sumador_total,2,'.','');
 	//$total_iva=($subtotal * TAX )/100;
 	//$total_iva=number_format($total_iva,2,'.','');
 	//$total_factura=$subtotal+$total_iva;
@@ -190,15 +191,12 @@ while ($row=mysqli_fetch_array($sql))
 	//<td style="widtd: 15%; text-align: right;"> <?php echo number_format($total_iva,2);</td>
 	//</tr>
 ?>
-	<!-- 
-        <tr>
-            <td colspan="3" style="widtd: 85%; text-align: right;">SUBTOTAL &#36; </td>
-            <td style="widtd: 15%; text-align: right;"> <?php echo number_format($subtotal,2);?></td>
-        </tr>
+	</table>
+	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
 		<tr>
-            <td colspan="3" style="widtd: 85%; text-align: right;">TOTAL &#36; </td>
-            <td style="widtd: 15%; text-align: right;"> <?php echo number_format($total_factura,2);?></td>
-        </tr>-->
+			<td style="width: 85%; text-align: right;" class='midnight-blue'>TOTAL &#36; </td>
+            <td style="width: 15%; text-align: right;"> <?php echo number_format($subtotal,2);?></td>
+        </tr>
     </table>
 	
 	

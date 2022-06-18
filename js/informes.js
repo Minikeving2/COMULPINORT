@@ -50,7 +50,12 @@ load(1);
 
 function imprimir_informe(){
     var q= $("#q").val();
-    var date_start = document.getElementById("fecha_inicio").value;
-    var date_end = document.getElementById("fecha_fin").value;
-    VentanaCentrada('./pdf/documentos/ver_informe.php?q='+q+'&date_s='+date_start+'&date_e='+date_end,'Factura','','1024','768','true');
-}
+    if (q=="") {
+       alert("Debe ingresar un cliente");
+    } else {
+        var date_start = document.getElementById("fecha_inicio").value;
+        var date_end = document.getElementById("fecha_fin").value;
+        VentanaCentrada('./pdf/documentos/ver_informe.php?q='+q+'&date_s='+date_start+'&date_e='+date_end,'Factura','','1024','768','true');
+    }
+    event.preventDefault();
+    }
