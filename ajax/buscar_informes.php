@@ -87,6 +87,7 @@
 						$nombre_producto=$row['nombre_producto'];
 						$cantidad=$row["cantidad"];
 						$total=$row['total'];
+						$precio_total_f=number_format($total,2);//Precio total formateado
 					?>
 					<tr>
 						<td><?php echo $id_factura;?></td>
@@ -95,7 +96,9 @@
 						<td><?php echo $cod_producto;?></td>
 						<td><?php echo $nombre_producto;?></td>
 						<td class='text-center'><?php echo $cantidad;?></td>
-						<td class='text-right'><?php echo $total;?></td>
+						<td class='text-right'><?php
+						echo $precio_total_f;
+						 ?></td>
 											
 					<!--<td class="text-right">
 						<a href="editar_factura.php?id_factura=<?php echo $id_factura;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 

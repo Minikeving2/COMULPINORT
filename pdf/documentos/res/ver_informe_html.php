@@ -44,7 +44,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                     P&aacute;gina [[page_cu]]/[[page_nb]]
                 </td>
                 <td style="width: 50%; text-align: right">
-                    &copy; <?php echo "obedalvarado.pw "; echo  $anio=date('Y'); ?>
+                    &copy; <?php echo  $anio=date('Y'); ?>
                 </td>
             </tr>
         </table>
@@ -106,7 +106,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         </tr>
 		<tr>
            <td style="width:50%;">
-			
+				
 				RESUMEN DE MOVIMIENTO
 			
 		   </td>
@@ -136,7 +136,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 <?php
 $nums=1;
 $sumador_total=0;
-$sql=mysqli_query($con, "SELECT facturas.fecha_factura, facturas.id_factura, clientes.nombre_cliente, products.codigo_producto, products.nombre_producto, detalle_factura.cantidad, detalle_factura.total FROM clientes, facturas, detalle_factura, products WHERE clientes.nombre_cliente like '%".$rw_cliente['nombre_cliente']."%' and clientes.id_cliente = facturas.id_cliente and facturas.id_factura = detalle_factura.id_factura and detalle_factura.id_producto = products.id_producto and facturas.fecha_factura >= '$fecha_inicio' and '$fecha_fin' >= facturas.fecha_factura");
+$sql=mysqli_query($con, "SELECT facturas.fecha_factura, facturas.id_factura, clientes.nombre_cliente, products.codigo_producto, products.nombre_producto, detalle_factura.cantidad, detalle_factura.total FROM clientes, facturas, detalle_factura, products WHERE clientes.nombre_cliente like '%$nombre_busqueda%' and clientes.id_cliente = facturas.id_cliente and facturas.id_factura = detalle_factura.id_factura and detalle_factura.id_producto = products.id_producto and facturas.fecha_factura >= '$fecha_inicio' and '$fecha_fin' >= facturas.fecha_factura");
 
 while ($row=mysqli_fetch_array($sql))
 	{
@@ -152,7 +152,6 @@ while ($row=mysqli_fetch_array($sql))
 	$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
 	$precio_total=$precio_venta_r*$cantidad;
 	*/$precio_total_f=number_format($total_v,2);//Precio total formateado
-	$precio_total_r=str_replace(",","",$precio_total_f);/*//Reemplazo las comas
 	$sumador_total+=$precio_total_r;//Sumador*/
 	if ($nums%2==0){
 		$clase="clouds";

@@ -27,6 +27,7 @@
 	$sql_informe=mysqli_query($con,"SELECT id_cliente FROM clientes WHERE nombre_cliente like '%$nombre%'");
 	$rw_factura=mysqli_fetch_array($sql_informe);
 	$id_cliente=$rw_factura['id_cliente'];
+    $nombre_busqueda=$nombre;
 	require_once(dirname(__FILE__).'/../html2pdf.class.php');
     // get the HTML
      ob_start();
