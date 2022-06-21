@@ -4,7 +4,6 @@
 
 		function load(page){
 			var q= $("#q").val();
-			console.log(q);
 			$("#loader").fadeIn('slow');
 			$.ajax({
 				url:'./ajax/buscar_productos.php?action=ajax&page='+page+'&q='+q,
