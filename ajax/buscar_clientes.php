@@ -13,7 +13,7 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$id_cliente=intval($_GET['id']);
-		$query=mysqli_query($con, "select * from clientes where id_cliente='".$id_cliente."'");
+		$query=mysqli_query($con, "select * from facturas where id_cliente='".$id_cliente."'");
 		$count=mysqli_num_rows($query);
 		if ($count==0){
 			if ($delete1=mysqli_query($con,"DELETE FROM clientes WHERE id_cliente='".$id_cliente."'")){

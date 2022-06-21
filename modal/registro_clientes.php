@@ -62,7 +62,9 @@
 								select.addEventListener('change',
 								function(){
 									var selectedOption = this.options[select.selectedIndex];
-									console.log(selectedOption.value);
+									var a =(selectedOption.value);
+									console.log(a);
+									document.querySelector('#id').value=a;
 								});
   							</script>
 							<?php
@@ -83,6 +85,7 @@
 			    <div class="col-sm-3">
 				 <select class="form-control" id="tipo_tercero" name="tipo_tercero" required>
 					<option value="">-- Selecciona Tipo Tercero --</option>
+					<option value="2" selected>P - Proveedor</option>
 					<option value="1" selected>E - EDS</option>
 					<option value="0">A - Asociado</option>
 				  </select></div>

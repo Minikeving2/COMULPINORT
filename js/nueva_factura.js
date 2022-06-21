@@ -156,7 +156,7 @@
 			
 			
 			
-		  	var id_proveedor = $("#id_provedor").val();
+		  	var id_proveedor = document.querySelector('#id_provedor').value;
 			
 			if (id_cliente==""){
 				alert("Debes seleccionar un cliente");
@@ -164,6 +164,7 @@
 				return false;
 			}
 			
+
 			$.ajax({
 				type: "POST",
 				url: "./ajax/agregar_nueva_factura.php",

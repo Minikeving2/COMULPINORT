@@ -138,10 +138,10 @@
 				    <div class="col-md-3">
 						<select class="form-control input-sm" id="id_provedor">
 						<?php
-							$sql_vendedor=mysqli_query($con,"select * from proveedor order by nombre");
+							$sql_vendedor=mysqli_query($con,"select * from clientes where tipo_tercero = 'P' order by nombre_cliente");
 							while ($rw=mysqli_fetch_array($sql_vendedor)){
-							    $id_vendedor=$rw["id"];
-								$nombre_vendedor=$rw["nombre"]." ".$rw["nit"];
+							    $id_vendedor=$rw["id_cliente"];
+								$nombre_vendedor=$rw["nombre_cliente"]." ".$rw["nit"];
 								if ($id_vendedor==$_SESSION['user_id']){
 								   $selected="selected";
 									} else {

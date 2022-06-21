@@ -132,7 +132,7 @@
 					</thead>
 				</table>
 					<div class="search_null">
-						No se encontraron movimientos  
+						No se encontraron registros de acuerdo a los datos ingresados  
 					</div>
 				  </div>
 				  <?php

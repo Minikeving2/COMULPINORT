@@ -21,9 +21,10 @@
 		$direccion=mysqli_real_escape_string($con,(strip_tags($_POST["direccion_cliente"],ENT_QUOTES)));
 		$estado=intval($_POST['estado']);
 		$date_added=date("Y-m-d H:i:s");
-		
+		$id_mun=$_POST['id_mun'];
+
 		$codsicom=mysqli_real_escape_string($con,(strip_tags($_POST["codigo_sicom"],ENT_QUOTES)));
-		$nit=mysqli_real_escape_string($con,(strip_tags($_POST["ni"],ENT_QUOTES)));
+		$nit=mysqli_real_escape_string($con,(strip_tags($_POST["nit"],ENT_QUOTES)));
 		$cupo=mysqli_real_escape_string($con,(strip_tags($_POST["cupo"],ENT_QUOTES)));
 		$tipoter=intval($_POST['tipo_tercero']);
 		$fechaact=date("Y-m-d H:i:s");
@@ -34,8 +35,16 @@
 		$emailrp=mysqli_real_escape_string($con,(strip_tags($_POST["email_rp"],ENT_QUOTES)));
 		$direccionrp=mysqli_real_escape_string($con,(strip_tags($_POST["dir_rp"],ENT_QUOTES)));
 		
-		
-		$sql="INSERT INTO clientes (nombre_cliente, telefono_cliente, email_cliente, direccion_cliente, status_cliente, date_added,fecha_act, nit, cupo, tipo_tercero, cc_rp, nombre_rp, tel_rp, email_rp, dir_rp  ) VALUES ('$nombre','$telefono','$email','$direccion','$estado','$date_added', '$fechaact','$nit','$cupo','$tipoter','$ccrp','$nombrerp','$telefonorp','$emailrp','$direccionrp')";
+		if ($tipoter==1){
+			$tipoter="E";
+		} elseif ($tipoter="2") {
+			$tipoter="P";
+		} elseif ($tipoper) {
+			$tipoter="A";
+		}
+
+
+		$sql="INSERT INTO clientes (nombre_cliente, telefono_cliente, email_cliente, direccion_cliente, status_cliente, date_added,fecha_act, nit, cupo, tipo_tercero, cc_rp, nombre_rp, tel_rp, email_rp, dir_rp , id_municipio) VALUES ('$nombre','$telefono','$email','$direccion','$estado','$date_added', '$fechaact','$nit','$cupo','$tipoter','$ccrp','$nombrerp','$telefonorp','$emailrp','$direccionrp',$id_mun)";
 		$query_new_insert = mysqli_query($con,$sql);
 			if ($query_new_insert){
 				$messages[] = "Tercero ha sido ingresado satisfactoriamente.";
