@@ -3,3 +3,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
 }
+
+
+#fecha_fin[type="date"]::-webkit-calendar-picker-indicator, #fecha_inicio[type="date"]::-webkit-calendar-picker-indicator {
+    display: inline;
+}
+input[type=checkbox]{
+    transform:scale(2);
+    margin-left: 15px;
+    margin-top: 10px;
+}

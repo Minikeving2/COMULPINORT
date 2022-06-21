@@ -24,6 +24,8 @@
 <html lang="en">
   <head>
     <?php include("head.php");?>
+	<link rel="stylesheet" href="css/tabla.css">
+	<link rel="stylesheet" href="css/fechas.css">
   </head>
   <body>
 	<?php
@@ -40,71 +42,35 @@
 			include("modal/buscar_productos.php");
 			include("modal/registro_clientes.php");
 			include("modal/registro_productos.php");
+			include("modal/buscar_cliente.php");
 		?>
 			<form class="form-horizontal" role="form" id="datos_contrato" >
-				<div class="form-group row" >
-				  <!--
-				  <label for="id" class="col-md-1 text-sm-left">ID Mov.</label>  -->  
-				  <label for="fecha" class="col-md-2 ">Fecha Crea.</label> 
-				  <label for="nit" class="col-md-2 control-label " style="text-align: left;" >Nit / C.C.</label>
-				  <label for="nombre" class="col-md-4 text-sm-left">Tercero</label>
-				  <label for="estado" class="col-md-1  text-sm-left">Estado</label>
-				  <label for="nombre_rl" class="col-md-3  text-sm-left">Representante Legal</label>
-                </div>
-				<div class="form-group row">
-				    <!--    
-				    <div class="col-md-1">
-					    <input type="text" class="form-control input-sm" id="id" placeholder="Id Mov." required>
-					    <input id="id" type='hidden'>	
-				    </div> --> 
-				    <div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="fecha" value="<?php echo date("d/m/Y");?>" readonly>
-					</div>
-				    
-					<div class="col-md-2">
-					  <input type="text" class="form-control input-sm" id="nit" placeholder="Ident. Tercero" required>
-					  <input id="nit" type='hidden'>	
-				    </div>  
 				
-				    <div class="col-md-4">
-					  <input type="text" class="form-control input-sm" id="nombre" placeholder="Selecciona un cliente" required>
-					  <input id="nombre" type='hidden'>	
-				    </div>
-				
-				    <div class="col-md-1">
-					  <input type="text" class="form-control input-sm" id="estado" placeholder="Estado" readonly>
-				    </div>
-				    <div class="col-md-3">
-					  <input type="text" class="form-control input-sm" id="nombre_rl" placeholder="Nombre RL" readonly>
-				    </div>
-			    </div> 
-				<div class="form-group row">
+			<div class="form-group row">
 				   <label for="comprobante" class="col-md-2 ">Nro. Contrato</label>	
 				   <label for="factura" class="col-md-2 ">Nro. Póliza</label>
-				   <label for="fechadoc" class="col-md-2 ">Fecha Ejecución</label>
-				   <label for="tipomov" class="col-md-3 ">Tipo Contrato</label>	
-				   <label for="proveedor" class="col-md-3 ">Realizado por</label>
+				   <label for="tipomov" class="col-md-2 ">Tipo Contrato</label>	
+				   <label for="proveedor" class="col-md-2 ">Realizado por</label>
+				   <label for="fechadoc" class="col-md-2 ">Fecha Inicio</label>
+				   <label for="fecha" class="col-md-2 ">Fecha Finalizacion</label> 
 				</div>
 				<div class="form-group row">			
 				    <div class="col-md-2">
-					    <input type="text" class="form-control input-sm" id="numcontrato" placeholder="Número Contrato" >
+					    <input type="text" class="form-control input-sm" id="num_contrato" placeholder="Número Contrato" >
 					    <input id="id" type='hidden'>	
 				    </div>  
 				    
 				    <div class="col-md-2">
-					    <input type="text" class="form-control input-sm" id="numpoliza" placeholder="Número Póliza" >
+					    <input type="text" class="form-control input-sm" id="num_poliza" placeholder="Número Póliza" >
 					    <input id="id" type='hidden'>	
-				    </div>  
+				    </div>
 				    <div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="fecha_inicio" value="<?php echo date("d/m/Y");?>" readonly>
-					</div>    
-				    <div class="col-md-3">
 						<select class='form-control input-sm' id="tipo_per">
 							<option value="1">Natural</option>
 							<option value="2">Jurídico</option>
 						</select>
 					</div>		
-				    <div class="col-md-3">
+				    <div class="col-md-2">
 						<select class="form-control input-sm" id="id">
 						<?php
 							$sql_vendedor=mysqli_query($con,"select * from users order by nombre");
@@ -122,8 +88,97 @@
 										}
 						?>
 						</select>
-					</div>			
+					</div>	
+					<div class="col-md-2">
+						<input type="date" class="form-control input-sm" id="fecha_inicio" value="">
+					</div> 
+					<div class="col-md-2">
+						<input type="date" class="form-control input-sm" id="fecha_fin" value="">
+					</div>		
 				</div>
+				<div class="form-group row" >
+				  <!--
+				  <label for="id" class="col-md-1 text-sm-left">ID Mov.</label>  -->  
+				  
+				  <label for="nit" class="col-md-2 " style="text-align: left;" >Nit / C.C.</label>
+				  <label for="nombre" class="col-md-4 ">Tercero</label>
+				  <label for="nombre" class="col-md-1 "><!--avers--></label>
+				  <label for="estado" class="col-md-1  ">Estado</label>
+				  <label for="nombre_rl" class="col-md-3  ">Representante Legal</label>
+				  <label for="estado" class="col-md-1 ">Fecha Crea.</label>
+                </div>
+				<div class="form-group row">
+				    <!--    
+				    <div class="col-md-1">
+					    <input type="text" class="form-control input-sm" id="id" placeholder="Id Mov." required>
+					    <input id="id" type='hidden'>	
+				    </div> --> 
+				   
+				    
+					<div class="col-md-2">
+					  <input id="id_cliente" type='hidden'>
+					  <input type="text" class="form-control input-sm" id="campo_nit" placeholder="Ident. Tercero" readonly required>
+					 	
+				    </div>  
+				
+				    <div class="col-md-4">
+					  <input type="text" class="form-control input-sm" id="campo_nombre_cliente" placeholder="Selecciona un cliente" readonly required>
+					  	
+				    </div>
+					<div class="col-md-1">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buscarCliente">
+							Buscar
+						</button>
+				    </div>
+				    <div class="col-md-1">
+						<input type="text" class="form-control input-sm" id="campo_estado" placeholder="Estado" readonly>
+				    </div>
+					  
+				    <div class="col-md-3">
+					  <input type="text" class="form-control input-sm" id="nombre_rl" placeholder="Nombre RL" readonly>
+				    </div>
+					<div class="col-md-1">
+						<input type="text" class="form-control input-sm" id="fecha_creacion" value="<?php echo date("d/m/Y");?>" readonly>
+					</div>
+				</div>
+				<div class="form-group row" style="margin-top: 30px;">
+						
+						
+						
+						
+						<div class="col-md-2">
+							<label for="nombre">Clausula Legal</label>
+							<input type="checkbox" class="form-check-input" id="clau_legal">
+				   		</div>
+						
+						<div class="col-md-2">
+							<label for="estado" >Clausula Penal</label>
+							<input type="checkbox" class="form-check-input" id="clau_penal">
+				    	</div>
+						<div class="col-md-1">
+							<label for="nit" style="text-align: left;" >Otrosi</label>
+							<input type="checkbox" class="form-check-input" id="otrosi" onclick="cambio()">
+						</div>
+						<div class="col-md-3">
+					 		<input type="text" class="form-control input-sm" id="num_contrato_otrosi" placeholder="Numero de contrato" >
+				   		</div>
+						<div class="col-md-4">
+							<div class="col-md-3">
+								<label id="etiqueta_correccion" style="text-align: left;" >Duracion</label>
+							</div>	
+							<div class="col-md-3">
+								<input type="number" class="form-control" id="años"  min="0">
+							</div>
+						</div>
+						
+				</div>
+				<div class="form-group row">
+					
+					
+					
+					
+				</div>
+			     
 				<div class="form-group row">
 				   <label for="observacion" class="col-md-9 ">Observación</label>	
 				   <label for="total" class="col-md-3 " readonly>Total </label>
@@ -150,7 +205,7 @@
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
 						 <span class="glyphicon glyphicon-search"></span> Agregar productos y servicios
 						</button> 
-						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#guardarcontra">
+						<button type="button" class="btn btn-success" id="#guardarcontrato" onclick="guardar()">
 						 <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
 						</button>
 						<button type="submit" class="btn btn-primary">
@@ -158,6 +213,7 @@
 						</button>
 					   </div>	
 				    </div>
+					
 			</form>	
 			
 		<div id="resultados" class='col-md-12' style="margin-top:10px"></div><!-- Carga los datos ajax -->			
