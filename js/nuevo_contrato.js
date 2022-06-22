@@ -139,6 +139,8 @@
 			var duracion = $('#duracion').val();
 
 			var observacion = $('#observacion').val();
+			var calculado = $("#calculado").val();
+
 			var num_contrato_otrosi = $("#num_contrato_otrosi").val(); 
 			if( $('#otrosi').is(':checked') ) {
 				otrosi=1;
@@ -150,21 +152,32 @@
 			if( $('#clau_legal').is(':checked') ) {
 				clau_legal=1;
 			}
-			if (otrosi==1){
-			var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"$per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&otrosi="+num_contrato_otrosi+"&duracion="+duracion+"&observacion="+observacion;
-			} else {
-				var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"$per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&duracion="+duracion+"&observacion="+observacion;
-			}
+
 			if (id_cliente==""){
 				alert("Debes seleccionar un cliente");
-				$("#nombre_cliente").focus();
+				$("#id_clientee").focus();
 				return false;
 			}
-			console.log(parametros);
+			if (fecha_inicio==""){
+				alert("Debes seleccionar una fecha inicial");
+				$("#fecha_inicio").focus();
+				return false;
+			}
+			if (fecha_fin==""){
+				alert("Debes seleccionar una fecha final");
+				$("#fecha_fin").focus();
+				return false;
+			}
+
+			if (otrosi==1){
+				var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"&per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&otrosi="+num_contrato_otrosi+"&duracion="+duracion+"&observacion="+observacion+"&calculado="+calculado;
+			} else {
+				var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"&per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&duracion="+duracion+"&observacion="+observacion+"&calculado="+calculado;
+			}
 
 			$.ajax({
 				type: "POST",
-				url: "./ajax/agregar_nueva_contrato.php",
+				url: "./ajax/nuevo_contrato.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Mensaje: Cargando...");

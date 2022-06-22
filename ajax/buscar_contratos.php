@@ -86,8 +86,8 @@
 						$email_cliente=$row['email_cliente'];
 						$nombre_vendedor=$row['firstname']." ".$row['lastname'];
 						$estado_factura=$row['estado'];
-						if ($estado_factura==1){$text_estado="Pagada";$label_class='label-success';}
-						else{$text_estado="Pendiente";$label_class='label-warning';}
+						if ($estado_factura==1){$text_estado="Finalizado";$label_class='label-warning';}
+						else{$text_estado="Vigente";$label_class='label-success';}
 						$total_venta=$row['total_venta'];
 					?>
 					<tr>

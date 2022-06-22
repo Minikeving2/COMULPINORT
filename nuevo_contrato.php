@@ -73,19 +73,19 @@
 				    <div class="col-md-2">
 						<select class="form-control input-sm" id="id">
 						<?php
-							$sql_vendedor=mysqli_query($con,"select * from users order by nombre");
+							$sql_vendedor=mysqli_query($con,"select * from users");
 							while ($rw=mysqli_fetch_array($sql_vendedor)){
-							    $id_vendedor=$rw["id"];
-								$nombre_vendedor=$rw["nombre"]." ".$rw["nit"];
+							    $id_vendedor=$rw["user_id"];
+								$nombre_vendedor=$rw["firstname"]." ".$rw["lastname"];
 								if ($id_vendedor==$_SESSION['user_id']){
 								   $selected="selected";
 									} else {
-												$selected="";
-											}
+										$selected="";
+									}
 						?>
-						<option value="<?php echo $id_vendedor?>" <?php echo $selected;?>><?php echo $nombre_vendedor?></option>
+						<option value="<?php echo $id_vendedor;?>"<?php echo $selected;?>><?php echo $nombre_vendedor;?></option>
 						<?php
-										}
+								}
 						?>
 						</select>
 					</div>	
@@ -188,7 +188,7 @@
 				      <textarea class="form-control" id="observacion" name="Observaciones"   maxlength="100" ></textarea>	    
 				    </div>
 					<div class="col-md-3">
-					    <input type="text" class="form-control input-sm" id="nit" placeholder="Total" >
+					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total" >
 					    <input id="total" type='hidden'>	
 				    </div> 
 					<div></br></div>				

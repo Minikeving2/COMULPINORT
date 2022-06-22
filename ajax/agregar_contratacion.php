@@ -91,5 +91,7 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 	<td class='text-right' id="valor_total"><?php echo number_format($total_factura,2);?></td>
 	<td></td>
 </tr>
-
+<script>
+	document.getElementById("calculado").value=document.getElementById('valor_total').innerText;
+</script>
 </table>
