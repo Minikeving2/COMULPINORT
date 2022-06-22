@@ -167,7 +167,7 @@
 								<label id="etiqueta_correccion" style="text-align: left;" >Duracion</label>
 							</div>	
 							<div class="col-md-3">
-								<input type="number" class="form-control" id="años"  min="0">
+								<input type="number" class="form-control" id="duracion"  min="0">
 							</div>
 						</div>
 						

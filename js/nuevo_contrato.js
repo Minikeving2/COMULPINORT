@@ -1,34 +1,83 @@
 
 		$(document).ready(function(){
 			$("#num_contrato_otrosi").attr('disabled', true);
-			load(1);
+			
 			load_Cliente(1);
+			load(1);
 			cambio();
+			cargar();
 			
 		});
-
+		function agregarProducto (id)
+		{
+			var precio_venta=document.getElementById('precio_venta_'+id).value;
+			var cantidad=document.getElementById('cantidad_'+id).value;
+			//Inicia validacion
+			if (isNaN(cantidad))
+			{
+			alert('Esto no es un numero');
+			document.getElementById('cantidad_'+id).focus();
+			return false;
+			}
+			if (isNaN(precio_venta))
+			{
+			alert('Esto no es un numero');
+			document.getElementById('precio_venta_'+id).focus();
+			return false;
+			}
+			//Fin validacion
+			
+			$.ajax({
+				type: "POST",
+				url: "./ajax/agregar_facturacion.php",
+				data: "id="+id+"&precio_venta="+precio_venta+"&cantidad="+cantidad,
+				beforeSend: function(objeto){
+					$("#resultados").html("Mensaje: Cargando...");
+				},
+				success: function(datos){
+					$("#resultados").html(datos);
+					
+				}
+				
+			});
+					
+		}
 		function load(page){
 			var q= $("#q").val();
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'./ajax/productos_factura.php?action=ajax&page='+page+'&q='+q,
+				url:'./ajax/productos_contrato.php?action=ajax&q='+q,
 				 beforeSend: function(objeto){
 				 $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
 			  },
 				success:function(data){
-					$(".outer_div").html(data).fadeIn('slow');
+					$("#productos").html(data).fadeIn('slow');
 					$('#loader').html('');
 					
 				}
 			})
 		}
+		function cargar ()
+		{
+			
+			$.ajax({
+				type: "POST",
+				url: "./ajax/agregar_contratacion.php",
+				beforeSend: function(objeto){
+					$("#resultados").html("Mensaje: Cargando...");
+				},
+				success: function(datos){
+					$("#resultados").html(datos);
+					
+				}
+				
+			});
+					
+		}
 		function cambio() {
-			console.log("detecto el boton");
 				if( $('#otrosi').is(':checked') ) {
-					console.log("activo");
 					$("#num_contrato_otrosi").attr('disabled', false);
 				} else {
-					console.log("no activo");
 					$("#num_contrato_otrosi").attr('disabled', true);
 				}
 				
@@ -83,31 +132,40 @@
 			var fecha_inicio = $('#fecha_inicio').val();
 			var fecha_fin = $("#fecha_fin").val();
 			var id_cliente = $('#id_cliente').val();
+			 
+			var clau_legal=0;
+			var clau_penal=0;
+			var otrosi=0;
+			var duracion = $('#duracion').val();
 
-			var fecha_creacion = $("#fecha_creacion").val();
-			
-			if( $('#clau_legal').is(':checked') ) {
-				alert('Seleccionado');
-			}
+			var observacion = $('#observacion').val();
+			var num_contrato_otrosi = $("#num_contrato_otrosi").val(); 
 			if( $('#otrosi').is(':checked') ) {
-				alert('Seleccionado');
+				otrosi=1;
 			}
+
 			if( $('#clau_penal').is(':checked') ) {
-				alert('Seleccionado');
+				clau_penal=1;
 			}
-			
-			
+			if( $('#clau_legal').is(':checked') ) {
+				clau_legal=1;
+			}
+			if (otrosi==1){
+			var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"$per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&otrosi="+num_contrato_otrosi+"&duracion="+duracion+"&observacion="+observacion;
+			} else {
+				var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"$per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&duracion="+duracion+"&observacion="+observacion;
+			}
 			if (id_cliente==""){
 				alert("Debes seleccionar un cliente");
 				$("#nombre_cliente").focus();
 				return false;
 			}
-			
+			console.log(parametros);
 
 			$.ajax({
 				type: "POST",
-				url: "./ajax/agregar_nueva_factura.php",
-				data: "id_vendedor="+id_vendedor+"&fecha_mov="+fecha+"&id_cliente="+id_cliente+"&num_com="+num_comprobante+"&fecha_com="+fecha_com+"&num_fact="+num_factura+"&fecha_fact="+fecha_fact+"&tipo_mov="+tipo_mov+"&condiciones="+condiciones+"&total_venta="+total_venta+"&estado="+estado+"&id_proveedor="+id_proveedor,
+				url: "./ajax/agregar_nueva_contrato.php",
+				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Mensaje: Cargando...");
 				},

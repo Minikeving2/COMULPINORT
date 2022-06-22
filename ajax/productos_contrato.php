@@ -46,7 +46,7 @@
 		if ($numrows>0){
 			
 			?>
-			<div class="table-responsive">
+			<div class="table-responsive" id="scroll_factura">
 			  <table class="table">
 				<tr  class="warning">
 					<th>Código</th>
@@ -78,11 +78,7 @@
 					<?php
 				}
 				?>
-				<tr>
-					<td colspan=5><span class="pull-right"><?
-					 echo paginate($reload, $page, $total_pages, $adjacents);
-					?></span></td>
-				</tr>
+				
 			  </table>
 			</div>
 			<?php

@@ -11,7 +11,7 @@ $session_id= session_id();
 require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
-$sql_count=mysqli_query($con,"select * from tmp ");
+$sql_count=mysqli_query($con,"select * from tmp_contrato ");
 $count=mysqli_num_rows($sql_count);
 if ($count==0){
 	echo "<script>alert('No hay productos agregados a la factura')</script>";
@@ -79,7 +79,7 @@ $sql="SELECT * FROM tmp";
 		if ($numrows>0){
 			while ($row=mysqli_fetch_array($query)){
 				$aux=$row['cantidad_tmp']*$row['precio_tmp'];
-				$insert=mysqli_query($con, "INSERT INTO detalle_factura (id_factura,id_producto,cantidad,precio_venta,total)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."','$aux')");
+				$insert=mysqli_query($con, "INSERT INTO detalle_contrato (id_factura,id_producto,cantidad,precio_venta,total)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."','$aux')");
 			}
 		} else {
 			echo "no hay productos";
