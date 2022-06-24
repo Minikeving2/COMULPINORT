@@ -13,8 +13,11 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$numero_contrato=$_GET['id'];
+
+		//buscar la ruta del archivo que esta guyardado de nel contrato y se busca por medio del id_contrato
 		$sql =  "SELECT ruta FROM contrato WHERE id_contrato='$numero_contrato'";
 		$datos = mysqli_fetch_array(mysqli_query($con,$sql));
+		//el unlink me elimina el fichero segun la ubicacion y su nombre
 		unlink($datos[0]);
 
 		$del1="delete from contrato where id_contrato='".$numero_contrato."'";
@@ -68,7 +71,7 @@
 		if ($numrows>0){
 			echo mysqli_error($con);
 			?>
-			<div class="table-responsive">
+			<div class="table-responsive" id="scroll">
 			  <table class="table">
 				<tr  class="info">
 					<th>Num.</th>
