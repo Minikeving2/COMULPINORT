@@ -13,6 +13,10 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$numero_contrato=$_GET['id'];
+		$sql =  "SELECT ruta FROM contrato WHERE id_contrato='$numero_contrato'";
+		$datos = mysqli_fetch_array(mysqli_query($con,$sql));
+		unlink($datos[0]);
+
 		$del1="delete from contrato where id_contrato='".$numero_contrato."'";
 		$del2="delete from detalle_contrato where id_contrato='".$numero_contrato."'";
 		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){

@@ -22,6 +22,12 @@ if ($count==0){
 	$num_contrato = $_POST["num_contrato"];
 	$num_poliza = $_POST['num_poliza'];
 
+	if ($_POST['num_poliza']==""){
+		$num_poliza="null";
+	} else {
+		$num_poliza=$_POST['num_poliza'];
+	}
+
 	$tipo_per=$_POST["tipo_per"];
 	$id_usuario = $_POST["vendedor"];
 
@@ -33,19 +39,19 @@ if ($count==0){
 	if ($_POST["clau_legal"]=="on"){
 		$clau_legal='1';
 	} else {
-		$clau_legal="null";
+		$clau_legal="0";
 	}
 
 	if ($_POST["clau_penal"]=="on"){
 		$clau_penal="1";
 	} else {
-		$clau_penal="null";
+		$clau_penal="0";
 	}
 
 	if ($_POST["otrosi"]==""){
-		$otrosi="null";
+		$otrosi='null';
 	} else {
-		$otrosi=$_POST["otrosi"];
+		$otrosi="'".$_POST["otrosi"]."'";
 	}
 
 	if ($_POST["duracion"]==""){
@@ -54,9 +60,6 @@ if ($count==0){
 		$duracion = $_POST["duracion"];
 	}
 
-	$archivo = $_FILES['archivo'];
-	$name = $archivo['name'];
-	$ruta = $archivo['tmp_name'];
 
 	$observacion = $_POST["observaciones"];
 	$calculado = str_replace(',','',$_POST["calculado"]);
@@ -88,6 +91,10 @@ if ($count==0){
 			}
 		}
 
+		$archivo = $_FILES['archivo'];
+		$name = "(".$id_factura.")".$archivo['name'];
+		$ruta = $archivo['tmp_name'];
+
 		$destino = "../archivos/" . $name;
 		if ($name != "") {
     		if (copy($ruta, $destino)) {
@@ -102,7 +109,7 @@ if ($count==0){
 		$sql=mysqli_query($con,"DELETE FROM tmp");
 		echo json_encode("<script>alert('factura registrada correctamente')</script>");
  	} else {
-		echo json_encode("<script>alert('$clau_legal')</script>");
+		echo json_encode("INSERT INTO contrato (fecha_inicio, fecha_final, fecha_crea, tipo_per, id_cliente, duracion, numcontrato, numpoliza, clausulagal, clausulapenal, descripcion, valor, id_contrato_rel, id_usuario) VALUES ('$fecha_inicio', '$fecha_fin', '$fecha_creacion', '$tipo_per', '$id_cliente', '$duracion', '$num_contrato', '$num_poliza', '$clau_legal', '$clau_penal','$observacion','$calculado','$otrosi','".$_SESSION['user_id']."')");
  	}
 }
 ?>
