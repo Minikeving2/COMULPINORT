@@ -87,6 +87,7 @@
 						$nombre_cliente=$row['nombre_cliente'];
 						$fecha_inicio=$row['fecha_inicio'];
 						$fecha_fin=$row['fecha_final'];
+						$ruta=str_replace("../", "",$row['ruta']);
 
 						if (strtotime($fecha_fin)< strtotime(date("Y-m-d"))){
 							$text_estado="Finalizado";$label_class='label-warning';
@@ -104,7 +105,7 @@
 						<td class='text-right'><?php echo number_format ($total_venta,2); ?></td>					
 					<td class="text-right">
 						<a href="editar_factura.php?id_factura=<?php echo $id_contrato;?>" class='btn btn-default' title='Editar contrato' ><i class="glyphicon glyphicon-edit"></i></a> 
-						<a href="#" class='btn btn-default' title='Descargar contrato' onclick="imprimir_factura('<?php echo $id_contrato;?>');"><i class="glyphicon glyphicon-download"></i></a> 
+						<a href="<?php echo $ruta; ?>" class='btn btn-default' title='Descargar contrato' download="contrato<?php echo $id_contrato;?>"><i class="glyphicon glyphicon-download"></i></a> 
 						<a href="#" class='btn btn-default' title='Borrar contrato' onclick="eliminar('<?php echo $id_contrato; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					</td>
 						
