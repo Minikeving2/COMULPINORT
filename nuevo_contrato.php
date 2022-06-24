@@ -56,22 +56,21 @@
 				</div>
 				<div class="form-group row">			
 				    <div class="col-md-2">
-					    <input type="text" class="form-control input-sm" id="num_contrato" placeholder="Número Contrato" >
+					    <input type="text" class="form-control input-sm" id="num_contrato" name="num_contrato" placeholder="Número Contrato" >
 					    <input id="id" type='hidden'>	
 				    </div>  
 				    
 				    <div class="col-md-2">
-					    <input type="text" class="form-control input-sm" id="num_poliza" placeholder="Número Póliza" >
-					    <input id="id" type='hidden'>	
+					    <input type="text" class="form-control input-sm" id="num_poliza" name="num_poliza" placeholder="Número Póliza" >	
 				    </div>
 				    <div class="col-md-2">
-						<select class='form-control input-sm' id="tipo_per">
+						<select class='form-control input-sm' id="tipo_per" name="tipo_per">
 							<option value="1">Natural</option>
 							<option value="2">Jurídico</option>
 						</select>
 					</div>		
 				    <div class="col-md-2">
-						<select class="form-control input-sm" id="id">
+						<select class="form-control input-sm" id="id" name="vendedor">
 						<?php
 							$sql_vendedor=mysqli_query($con,"select * from users");
 							while ($rw=mysqli_fetch_array($sql_vendedor)){
@@ -90,10 +89,10 @@
 						</select>
 					</div>	
 					<div class="col-md-2">
-						<input type="date" class="form-control input-sm" id="fecha_inicio" value="">
+						<input type="date" class="form-control input-sm" id="fecha_inicio" name="fecha_inicio">
 					</div> 
 					<div class="col-md-2">
-						<input type="date" class="form-control input-sm" id="fecha_fin" value="">
+						<input type="date" class="form-control input-sm" id="fecha_fin" name="fecha_fin">
 					</div>		
 				</div>
 				<div class="form-group row" >
@@ -116,7 +115,7 @@
 				   
 				    
 					<div class="col-md-2">
-					  <input id="id_cliente" type='hidden'>
+					  <input id="id_cliente" type='hidden' name="id_cliente">
 					  <input type="text" class="form-control input-sm" id="campo_nit" placeholder="Ident. Tercero" readonly required>
 					 	
 				    </div>  
@@ -148,26 +147,29 @@
 						
 						<div class="col-md-2">
 							<label for="nombre">Clausula Legal</label>
-							<input type="checkbox" class="form-check-input" id="clau_legal">
+							<input type="checkbox" class="form-check-input" id="clau_legal" name="clau_legal">
 				   		</div>
 						
 						<div class="col-md-2">
 							<label for="estado" >Clausula Penal</label>
-							<input type="checkbox" class="form-check-input" id="clau_penal">
+							<input type="checkbox" class="form-check-input" id="clau_penal" name="clau_penal">
 				    	</div>
 						<div class="col-md-1">
 							<label for="nit" style="text-align: left;" >Otrosi</label>
 							<input type="checkbox" class="form-check-input" id="otrosi" onclick="cambio()">
 						</div>
-						<div class="col-md-3">
-					 		<input type="text" class="form-control input-sm" id="num_contrato_otrosi" placeholder="Numero de contrato" >
+						<div class="col-md-2">
+					 		<input type="text" class="form-control input-sm" id="num_contrato_otrosi" name="otrosi" placeholder="Numero de contrato" >
 				   		</div>
-						<div class="col-md-4">
-							<div class="col-md-3">
+						<div class="col-md-5">
+							<div class="col-md-2">
 								<label id="etiqueta_correccion" style="text-align: left;" >Duracion</label>
 							</div>	
 							<div class="col-md-3">
-								<input type="number" class="form-control" id="duracion"  min="0">
+								<input type="number" class="form-control" id="duracion" name="duracion" min="0">
+							</div>
+							<div class="col-md-7">
+								<input type="file"  name="archivo" id="archivo" enctype="multipart/form-data">
 							</div>
 						</div>
 						
@@ -185,10 +187,10 @@
 				</div>
 				<div class="form-group row">
 				    <div class="col-md-9">
-				      <textarea class="form-control" id="observacion" name="Observaciones"   maxlength="100" ></textarea>	    
+				      <textarea class="form-control" id="observacion" name="observaciones"   maxlength="100" ></textarea>	    
 				    </div>
 					<div class="col-md-3">
-					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total" >
+					    <input type="text" class="form-control input-sm" id="calculado" name="calculado" placeholder="Total" >
 					    <input id="total" type='hidden'>	
 				    </div> 
 					<div></br></div>				
@@ -205,10 +207,10 @@
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
 						 <span class="glyphicon glyphicon-search"></span> Agregar productos y servicios
 						</button> 
-						<button type="button" class="btn btn-success" id="#guardarcontrato" onclick="guardar()">
+						<button type="submit" class="btn btn-success" id="#guardarcontrato" >
 						 <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
 						</button>
-						<button type="submit" class="btn btn-primary">
+						<button type="button" class="btn btn-primary">
 						  <span class="glyphicon glyphicon-print"></span> Imprimir
 						</button>
 					   </div>	

@@ -22,12 +22,12 @@
 		
 		function eliminar (id)
 		{
-			var q= $("#q").val();
+		console.log(id);
 		if (confirm("Realmente deseas eliminar el contrato")){	
 		$.ajax({
-        type: "GET",
+		type: "GET",
         url: "./ajax/buscar_contratos.php",
-        data: "id="+id,"q":q,
+        data: "id="+id,
 		 beforeSend: function(objeto){
 			$("#resultados").html("Mensaje: Cargando...");
 		  },

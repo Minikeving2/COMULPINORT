@@ -12,9 +12,9 @@
 	
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
-		$numero_contrato=intval($_GET['id']);
-		$del1="delete from contrato where numcontrato='".$numero_factura."'";
-		$del2="delete from detalle_contrato where numcontrato='".$numero_factura."'";
+		$numero_contrato=$_GET['id'];
+		$del1="delete from contrato where id_contrato='".$numero_contrato."'";
+		$del2="delete from detalle_contrato where id_contrato='".$numero_contrato."'";
 		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
@@ -67,10 +67,10 @@
 			<div class="table-responsive">
 			  <table class="table">
 				<tr  class="info">
-					<th>#</th>
-					<th>Fecha</th>
+					<th>Num.</th>
 					<th>Cliente</th>
-					<th>Vendedor</th>
+					<th>Fecha Inicio</th>
+					<th>Fecha Fin</th>
 					<th>Estado</th>
 					<th class='text-right'>Total</th>
 					<th class='text-right'>Acciones</th>
@@ -78,40 +78,36 @@
 				</tr>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
-						$id_factura=$row['id_contrato'];
-						$numero_factura=$row['numcontrato'];
-						$fecha=date("d/m/Y", strtotime($row['fecha_crea']));
+						$id_contrato=$row['id_contrato'];
+						$numero_contrato=$row['numcontrato'];
 						$nombre_cliente=$row['nombre_cliente'];
-						$telefono_cliente=$row['telefono_cliente'];
-						$email_cliente=$row['email_cliente'];
-						$nombre_vendedor=$row['firstname']." ".$row['lastname'];
-						$estado_factura=$row['estado'];
-						if ($estado_factura==1){$text_estado="Finalizado";$label_class='label-warning';}
-						else{$text_estado="Vigente";$label_class='label-success';}
-						$total_venta=$row['total_venta'];
+						$fecha_inicio=$row['fecha_inicio'];
+						$fecha_fin=$row['fecha_final'];
+
+						if (strtotime($fecha_fin)< strtotime(date("Y-m-d"))){
+							$text_estado="Finalizado";$label_class='label-warning';
+						} else {
+							$text_estado="Vigente";$label_class='label-success';
+						}
+						$total_venta=$row['valor'];
 					?>
 					<tr>
-						<td><?php echo $numcontrato; ?></td>
-						<td><?php echo $fecha; ?></td>
-						<td><a href="#" data-toggle="tooltip" data-placement="top" title="<i class='glyphicon glyphicon-phone'></i> <?php echo $telefono_cliente;?><br><i class='glyphicon glyphicon-envelope'></i>  <?php echo $email_cliente;?>" ><?php echo $nombre_cliente;?></a></td>
-						<td><?php echo $nombre_vendedor; ?></td>
+						<td><?php echo $numero_contrato; ?></td>
+						<td><?php echo $nombre_cliente; ?></td>
+						<td><?php echo $fecha_inicio; ?></td>
+						<td><?php echo $fecha_fin; ?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado; ?></span></td>
 						<td class='text-right'><?php echo number_format ($total_venta,2); ?></td>					
 					<td class="text-right">
 						<a href="editar_factura.php?id_factura=<?php echo $id_contrato;?>" class='btn btn-default' title='Editar contrato' ><i class="glyphicon glyphicon-edit"></i></a> 
 						<a href="#" class='btn btn-default' title='Descargar contrato' onclick="imprimir_factura('<?php echo $id_contrato;?>');"><i class="glyphicon glyphicon-download"></i></a> 
-						<a href="#" class='btn btn-default' title='Borrar contrato' onclick="eliminar('<?php echo $numcontrato; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
+						<a href="#" class='btn btn-default' title='Borrar contrato' onclick="eliminar('<?php echo $id_contrato; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					</td>
 						
 					</tr>
 					<?php
 				}
 				?>
-				<tr>
-					<td colspan=7><span class="pull-right"><?
-					 echo paginate($reload, $page, $total_pages, $adjacents);
-					?></span></td>
-				</tr>
 			  </table>
 			</div>
 			<?php

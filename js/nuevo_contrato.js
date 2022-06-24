@@ -57,8 +57,7 @@
 				}
 			})
 		}
-		function cargar ()
-		{
+		function cargar (){
 			
 			$.ajax({
 				type: "POST",
@@ -121,71 +120,7 @@
 		}
 		function guardar() {
 			
-			//funcion del boton guardar
 			
-			//id_factura automatico
-			var num_contrato = $("#num_contrato").val();
-			var num_poliza = $('#num_poliza').val();
-			var tipo_per = $("#tipo_per").val();
-			var id = $("#id").val();
-
-			var fecha_inicio = $('#fecha_inicio').val();
-			var fecha_fin = $("#fecha_fin").val();
-			var id_cliente = $('#id_cliente').val();
-			 
-			var clau_legal=0;
-			var clau_penal=0;
-			var otrosi=0;
-			var duracion = $('#duracion').val();
-
-			var observacion = $('#observacion').val();
-			var calculado = $("#calculado").val();
-
-			var num_contrato_otrosi = $("#num_contrato_otrosi").val(); 
-			if( $('#otrosi').is(':checked') ) {
-				otrosi=1;
-			}
-
-			if( $('#clau_penal').is(':checked') ) {
-				clau_penal=1;
-			}
-			if( $('#clau_legal').is(':checked') ) {
-				clau_legal=1;
-			}
-
-			if (id_cliente==""){
-				alert("Debes seleccionar un cliente");
-				$("#id_clientee").focus();
-				return false;
-			}
-			if (fecha_inicio==""){
-				alert("Debes seleccionar una fecha inicial");
-				$("#fecha_inicio").focus();
-				return false;
-			}
-			if (fecha_fin==""){
-				alert("Debes seleccionar una fecha final");
-				$("#fecha_fin").focus();
-				return false;
-			}
-
-			if (otrosi==1){
-				var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"&per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&otrosi="+num_contrato_otrosi+"&duracion="+duracion+"&observacion="+observacion+"&calculado="+calculado;
-			} else {
-				var parametros = "numero_contrato="+num_contrato+"&numero_poliza="+num_poliza+"&tipo_per="+tipo_per+"&per_realiza="+id+"&fecha_inicio="+fecha_inicio+"&fecha_fin="+fecha_fin+"&id_cliente="+id_cliente+"&clau_legal="+clau_legal+"&clau_penal="+clau_penal+"&duracion="+duracion+"&observacion="+observacion+"&calculado="+calculado;
-			}
-
-			$.ajax({
-				type: "POST",
-				url: "./ajax/nuevo_contrato.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Mensaje: Cargando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-				}
-			})
 		}
 	function agregar (id)
 		{
@@ -219,7 +154,7 @@
 			});
 		}
 		
-			function eliminar (id)
+		function eliminar (id)
 		{
 			
 			$.ajax({
@@ -236,18 +171,6 @@
 
 		}
 		
-		$("#datos_contrato").submit(function(){
-		  var id_cliente = $("#id_cliente").val();
-		  var id_vendedor = $("#id_vendedor").val();
-		  var condiciones = $("#condiciones").val();
-		  
-		  if (id_cliente==""){
-			  alert("Debes seleccionar un cliente");
-			  $("#nombre_cliente").focus();
-			  return false;
-		  }
-		 VentanaCentrada('./pdf/documentos/contrato_pdf.php?id_cliente='+id_cliente+'&id_vendedor='+id_vendedor+'&condiciones='+condiciones,'Factura','','1024','768','true');
-	 	});
 		
 		$( "#guardar_cliente" ).submit(function( event ) {
 		  $('#guardar_datos').attr("disabled", true);
@@ -267,6 +190,42 @@
 				  }
 			});
 		  event.preventDefault();
+		})
+
+		$( "#datos_contrato" ).submit(function( event ) {
+			event.preventDefault();
+			var fecha_inicio = $('#fecha_inicio').val();
+			var fecha_fin = $("#fecha_fin").val();
+			var id_cliente = $('#id_cliente').val();
+
+			if (id_cliente==""){
+				alert("Debes seleccionar un cliente");
+				$("#id_clientee").focus();
+				return false;
+			}
+			if (fecha_inicio==""){
+				alert("Debes seleccionar una fecha inicial");
+				$("#fecha_inicio").focus();
+				return false;
+			}
+			if (fecha_fin==""){
+				alert("Debes seleccionar una fecha final");
+				$("#fecha_fin").focus();
+				return false;
+			}
+			
+			var formulario = document.getElementById('datos_contrato');
+			var datos = new FormData(formulario);
+		
+			fetch('./ajax/nuevo_contrato.php',{
+				method: 'POST',
+				body: datos
+			})
+			.then( res => res.json())
+			.then( data => {
+				$("#resultados").html(data);
+			})
+			
 		})
 		
 		$( "#guardar_producto" ).submit(function( event ) {
