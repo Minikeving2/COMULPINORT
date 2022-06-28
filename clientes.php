@@ -32,14 +32,14 @@
 	include("navbar.php");
 	?>
 	
-    <div class="container">
-	<div class="panel panel-info">
+    <div class="container" id="container">
+	<div class="panel panel-info" id="borde">
 		<div class="panel-heading">
 		   <h4> <i class='glyphicon glyphicon-tint'></i> Datos de Terceros (Estaciones) </h4> 
 
 			<!--<h4><i class='glyphicon glyphicon-search'></i> Buscar Tercero</h4>-->
 		</div>
-		<div class="panel-body">
+		<div class="panel-body" id="panel_body">
 		
 			<!-- incluye los modales usados -->
 			<?php
@@ -74,7 +74,7 @@
   				</script>			
 			</form>
 			<div id="resultados"></div><!-- Carga los datos ajax -->
-			<div class='outer_div'></div><!-- Carga los datos ajax -->			
+			<div class='outer_div' id="contenido"></div><!-- Carga los datos ajax -->			
         </div>  <!-- body -->
     </div> 
 	</div>

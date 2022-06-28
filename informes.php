@@ -29,15 +29,15 @@
 	<?php
 	include("navbar.php");
 	?>  
-    <div class="container">
-		<div class="panel panel-info">
+    <div class="container" id="container">
+		<div class="panel panel-info" id="borde">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
 				<a  href="" class="btn btn-info" onclick="imprimir_informe()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
 			</div>
 			<h4><i class='glyphicon glyphicon-search'></i> Buscar Informes</h4>
 		</div>
-			<div class="panel-body">
+			<div class="panel-body" id="panel_body">
 				<form class="form-horizontal" role="form" id="informe_datos">
 				
 						<div class="form-group row">
@@ -74,7 +74,7 @@
 				
 			</form>
 				<div id="resultados"></div><!-- Carga los datos ajax -->
-				<div class='outer_div'></div><!-- Carga los datos ajax -->
+				<div class='outer_div' id="contenido"></div><!-- Carga los datos ajax -->
 			</div>
 		</div>	
 		

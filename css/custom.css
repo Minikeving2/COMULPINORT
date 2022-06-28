@@ -111,3 +111,21 @@ input{
 #etiqueta_correccion{
   padding-top: 8px;
 }
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+}
+#container{
+  height: 85%;
+}
+#borde{
+  height: 97%;
+}
+#panel_body{
+  height: 95%;
+}
+#contenido{
+  height: 93%;
+}

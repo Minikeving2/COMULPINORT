@@ -29,15 +29,15 @@
 	
 	include("navbar.php");
 	?>  
-    <div class="container">
-		<div class="panel panel-info">
+    <div class="container" id="container">
+		<div class="panel panel-info" id="borde">
 			<div class="panel-heading">
 				<div class="btn-group pull-right">
 					<a  href="nuevo_contrato.php" class="btn btn-info"><span class="glyphicon glyphicon-plus" ></span> Nuevo Contrato</a>
 				</div>
 				<h4><i class='glyphicon glyphicon-search'></i> Buscar Contratos</h4>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body" id="panel_body">
 				<form class="form-horizontal" role="form" id="datos_cotizacion">
 					<div class="form-group row">
 						<label for="q" class="col-md-2 control-label">Tercero / Nro. Contrato.</label>
@@ -52,7 +52,7 @@
 					</div>
 				</form>
 				<div id="resultados"></div><!-- Carga los datos ajax -->
-				<div class='outer_div'></div><!-- Carga los datos ajax -->
+				<div class='outer_div' id="contenido"></div><!-- Carga los datos ajax -->
 			</div>
 		</div>	
 	</div>

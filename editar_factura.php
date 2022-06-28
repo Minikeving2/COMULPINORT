@@ -23,21 +23,23 @@
 	if (isset($_GET['id_factura']))
 	{
 		$id_factura=intval($_GET['id_factura']);
-		$campos="clientes.id_cliente, clientes.nombre_cliente, clientes.telefono_cliente, clientes.email_cliente, facturas.id_vendedor, facturas.fecha_factura, facturas.condiciones, facturas.estado_factura, facturas.numero_factura";
-		$sql_factura=mysqli_query($con,"select $campos from facturas, clientes where facturas.id_cliente=clientes.id_cliente and id_factura='".$id_factura."'");
+		$sql_factura=mysqli_query($con,"select * from facturas, clientes where facturas.id_cliente=clientes.id_cliente and id_factura='".$id_factura."'");
 		$count=mysqli_num_rows($sql_factura);
 		if ($count==1)
 		{
 				$rw_factura=mysqli_fetch_array($sql_factura);
 				$id_cliente=$rw_factura['id_cliente'];
 				$nombre_cliente=$rw_factura['nombre_cliente'];
-				$telefono_cliente=$rw_factura['telefono_cliente'];
-				$email_cliente=$rw_factura['email_cliente'];
-				$id_vendedor_db=$rw_factura['id_vendedor'];
+				$nit_cliente=$rw_factura['nit'];
+				$nombre_rp=$rw_factura['nombre_rp'];
 				$fecha_factura=date("d/m/Y", strtotime($rw_factura['fecha_factura']));
 				$condiciones=$rw_factura['condiciones'];
-				$estado_factura=$rw_factura['estado_factura'];
-				$numero_factura=$rw_factura['numero_factura'];
+				$estado=$rw_factura['status_cliente'];
+				$num_comprobante=$rw_factura['nro_comprobante'];
+				$fecha_comp=$rw_factura["fecha_comprobante"];
+				$numero_factura=$rw_factura["numero_factura"];
+				$fecha_fact=$rw_factura["fecha_fact"];
+				$total_venta=$rw_factura["total_venta"];
 				$_SESSION['id_factura']=$id_factura;
 				$_SESSION['numero_factura']=$numero_factura;
 		}	
@@ -73,66 +75,133 @@
 			include("modal/buscar_productos.php");
 			include("modal/registro_clientes.php");
 			include("modal/registro_productos.php");
+			include("modal/buscar_cliente.php");	
 		?>
 			<form class="form-horizontal" role="form" id="datos_factura">
+				<div class="form-group row" >
+				  <!--
+				  <label for="id" class="col-md-1 text-sm-left">ID Mov.</label>  -->  
+				  <label for="fecha" class="col-md-1 ">Fecha Crea.	</label> 
+				  <label for="nit" class="col-md-2 control-label " style="text-align: left;" id="ca" >Nit / C.C.</label>
+				  <label for="nombre" class="col-md-4 text-sm-left">Tercero</label>
+				  <label for="nombre" class="col-md-1 text-sm-left"><!--avers--></label>
+				  <label for="estado" class="col-md-1  text-sm-left">Estado</label>
+				  <label for="nombre_rl" class="col-md-3  text-sm-left">Representante Legal</label>
+                </div>
 				<div class="form-group row">
-				  <label for="nombre_cliente" class="col-md-1 control-label">Cliente</label>
-				  <div class="col-md-3">
-					  <input type="text" class="form-control input-sm" id="nombre_cliente" placeholder="Selecciona un cliente" required value="<?php echo $nombre_cliente;?>">
-					  <input id="id_cliente" name="id_cliente" type='hidden' value="<?php echo $id_cliente;?>">	
-				  </div>
-				  <label for="tel1" class="col-md-1 control-label">Teléfono</label>
-							<div class="col-md-2">
-								<input type="text" class="form-control input-sm" id="tel1" placeholder="Teléfono" value="<?php echo $telefono_cliente;?>" readonly>
-							</div>
-					<label for="mail" class="col-md-1 control-label">Email</label>
-							<div class="col-md-3">
-								<input type="text" class="form-control input-sm" id="mail" placeholder="Email" readonly value="<?php echo $email_cliente;?>">
-							</div>
-				 </div>
-						<div class="form-group row">
-							<label for="empresa" class="col-md-1 control-label">Registrado por</label>
-							<div class="col-md-3">
-								<select class="form-control input-sm" id="id_vendedor" name="id_vendedor">
-									<?php
-										$sql_vendedor=mysqli_query($con,"select * from users order by lastname");
-										while ($rw=mysqli_fetch_array($sql_vendedor)){
-											$id_vendedor=$rw["user_id"];
-											$nombre_vendedor=$rw["firstname"]." ".$rw["lastname"];
-											if ($id_vendedor==$id_vendedor_db){
-												$selected="selected";
-											} else {
+				    <!-- id cliente -->
+					<input id="id_cliente" type='hidden'>
+					<input id="id_vendedor" type='hidden' value="<?php echo $_SESSION['user_id'];?>">
+				    <div class="col-md-1">
+						<input type="text" class="form-control input-sm" id="fecha_mov" value="<?php echo $fecha_factura;?>" readonly>
+					</div>
+				    
+					<div class="col-md-2">
+					  <input type="text" class="form-control input-sm" id="campo_nit" placeholder="Ident. Tercero" value="<?php echo $nit_cliente;?>" readonly>
+					  <input id="id_cliente" type='hidden'>	
+				    </div>  
+				
+				    <div class="col-md-4">
+					  <input type="text" class="form-control input-sm" id="campo_nombre_cliente" placeholder="Selecciona un cliente" value="<?php echo $nombre_cliente;?>"readonly>
+					  <input id="id_cliente" type='hidden'>
+
+				    </div>
+
+					<div class="col-md-1">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buscarCliente">
+							Buscar
+						</button>
+				    </div>
+				
+				    <div class="col-md-1">
+					  <input type="text" class="form-control input-sm" id="campo_estado" placeholder="Estado" value="<?php if ($estado==1){echo "Activo";}else{echo "Inactivo";}?>"readonly>
+				    </div>
+				    <div class="col-md-3">
+					  <input type="text" class="form-control input-sm" id="nombre_rl" placeholder="Nombre RL" value="<?php echo $nombre_rp;?>" readonly>
+				    </div>
+			    </div> 
+				<div class="form-group row">
+				   <label for="comprobante" class="col-md-2 ">Nro. Comprobante</label>	
+				   <label for="factura" class="col-md-1 ">Fecha Com.</label>
+				   <label for="factura" class="col-md-2 ">Nro. Factura</label>
+				   <label for="fechadoc" class="col-md-1 ">Fecha Fac.</label>
+				   <label for="tipomov" class="col-md-3 ">Tipo Mov.</label>	
+				   <label for="proveedor" class="col-md-3 ">Proveedor</label>
+				</div>
+				<div class="form-group row">			
+				    <div class="col-md-2">
+					    <input type="text" class="form-control input-sm" id="num_comprobante" placeholder="Número Comprobante" value="<?php echo $num_comprobante;?>">
+					    <input id="id" type='hidden'>	
+				    </div>
+					  
+				    <div class="col-md-1">
+						<input type="date" class="form-control input-sm" id="fecha_comprobante" value="<?php echo $fecha_comp?>">
+					</div>
+				    <div class="col-md-2">
+					    <input type="text" class="form-control input-sm" id="num_factura" placeholder="Número Factura" value="<?php echo $numero_factura;?>">
+					    <input id="id" type='hidden'>	
+				    </div>  
+				    <div class="col-md-1">
+						<input type="date" class="form-control input-sm" id="fecha_factura" value="<?php echo $fecha_fact;?>">
+					</div>
+				    <div class="col-md-3">
+						<select class='form-control input-sm' id="tipomov">
+							<option value="1">Equipos (Comodato)</option>
+							<option value="2">Publicidad Canopy </option>
+						    <option value="3">Letrero de precios</option>
+							<option value="4">Apoyo arreglos locativos</option>
+							<option value="5">Apoyo Económico/Transacción</option>
+							<option value="6">Apoyo Económico/Efectivo</option>
+							<option value="7">Apoyo Económico/Cruce Cart.</option>
+							<option value="8">Cupo Crédito Estaciones</option>
+							<option value="9">Préstamos</option>
+							<option value="10">Pólizas SURA</option>
+							<option value="11">Descuentos Gasolina Nacional</option>
+							<!--
+							<option value="4">Crédito Asociados/Aportes</option>
+							<option value="4">Crédito Asociados/Lib. Inv.</option>
+							<option value="4">Crédito Asociados/Proyectos</option>
+							<option value="4">Bono Alimentario</option>
+							<option value="4">Bono Estudiantil</option>
+							<option value="4">Apoyo Estudiantil</option>
+							<option value="4">Apoyo Solidaridad</option>
+							<option value="4">Apoyo Bienestarsocial</option> -->
+						</select>
+						<script> </script>
+					</div>		
+				    <div class="col-md-3">
+						<select class="form-control input-sm" id="id_provedor">
+						<?php
+							$sql_vendedor=mysqli_query($con,"select * from clientes where tipo_tercero = 'P' order by nombre_cliente");
+							while ($rw=mysqli_fetch_array($sql_vendedor)){
+							    $id_vendedor=$rw["id_cliente"];
+								$nombre_vendedor=$rw["nombre_cliente"]." ".$rw["nit"];
+								if ($id_vendedor==$_SESSION['user_id']){
+								   $selected="selected";
+									} else {
 												$selected="";
 											}
-											?>
-											<option value="<?php echo $id_vendedor?>" <?php echo $selected;?>><?php echo $nombre_vendedor?></option>
-											<?php
+						?>
+						<option value="<?php echo $id_vendedor?>" <?php echo $selected;?>><?php echo $nombre_vendedor?></option>
+						<?php
 										}
-									?>
-								</select>
-							</div>
-							<label for="tel2" class="col-md-1 control-label">Fecha</label>
-							<div class="col-md-2">
-								<input type="text" class="form-control input-sm" id="fecha" value="<?php echo $fecha_factura;?>" readonly>
-							</div>
-							<label for="email" class="col-md-1 control-label">Pago</label>
-							<div class="col-md-2">
-								<select class='form-control input-sm ' id="condiciones" name="condiciones">
-									<option value="1" <?php if ($condiciones==1){echo "selected";}?>>Efectivo</option>
-									<option value="2" <?php if ($condiciones==2){echo "selected";}?>>Cheque</option>
-									<option value="3" <?php if ($condiciones==3){echo "selected";}?>>Transferencia bancaria</option>
-									<option value="4" <?php if ($condiciones==4){echo "selected";}?>>Crédito</option>
-								</select>
-							</div>
-							<div class="col-md-2">
-								<select class='form-control input-sm ' id="estado_factura" name="estado_factura">
-									<option value="1" <?php if ($estado_factura==1){echo "selected";}?>>Pagado</option>
-									<option value="2" <?php if ($estado_factura==2){echo "selected";}?>>Pendiente</option>
-								</select>
-							</div>
-						</div>
-				
-				
+						?>
+						</select>
+					</div>			
+				</div>
+				<div class="form-group row">
+				   <label for="observacion" class="col-md-9 ">Observación</label>	
+				   <label for="total" class="col-md-3 ">Total </label>
+				</div>
+				<div class="form-group row">
+				    <div class="col-md-9">
+				      <textarea class="form-control" id="observacion" name="Observaciones"   maxlength="100" ><?php echo $condiciones; ?></textarea>	    
+				    </div>
+					<div class="col-md-3">
+					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total" value="<?php echo $total_venta;?>">
+					    <input id="total" type='hidden'>	
+				    </div> 	
+			
 				<div class="col-md-12">
 					<div class="pull-right">
 						<button type="submit" class="btn btn-default">

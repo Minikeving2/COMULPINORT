@@ -1,6 +1,7 @@
 
 		$(document).ready(function(){
 			load(1);
+			load_Cliente();
 			$( "#resultados" ).load( "ajax/editar_facturacion.php" );
 		});
 
@@ -19,7 +20,21 @@
 				}
 			})
 		}
-
+		function load_Cliente(page){
+			var a= $("#a").val();
+			$("#loader").fadeIn('slow');
+			$.ajax({
+				url:'./ajax/clientes_factura.php?action=ajax&page='+page+'&q='+a,
+				 beforeSend: function(objeto){
+				 $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
+			  },
+				success:function(data){
+					$("#clientes").html(data).fadeIn('slow');
+					$('#loader').html('');
+					
+				}
+			})
+		}
 	function agregarProducto (id)
 		{
 			var id_factura = getParameterByName('id_factura');
