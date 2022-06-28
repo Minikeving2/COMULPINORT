@@ -5,8 +5,8 @@
 	Mail: info@obedalvarado.pw
 	---------------------------*/
 include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
-$id_factura= $_SESSION['id_factura'];
-$numero_factura= $_SESSION['numero_factura'];
+$id_contrato= $_SESSION['id_contrato'];
+$numero_contrato= $_SESSION['numero_contrato'];
 if (isset($_POST['id'])){$id=intval($_POST['id']);}
 if (isset($_POST['cantidad'])){$cantidad=intval($_POST['cantidad']);}
 if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']);}
@@ -17,7 +17,7 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	
 if (!empty($id) and !empty($cantidad) and !empty($precio_venta))
 {
-$insert_tmp=mysqli_query($con, "INSERT INTO detalle_factura (numero_factura, id_producto,cantidad,precio_venta) VALUES ('$numero_factura','$id','$cantidad','$precio_venta')");
+$insert_tmp=mysqli_query($con, "INSERT INTO detalle_contrato (numero_factura, id_producto,cantidad,precio_venta) VALUES ('$numero_factura','$id','$cantidad','$precio_venta')");
 
 }
 if (isset($_GET['id']))//codigo elimina un elemento del array
@@ -38,7 +38,8 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 </tr>
 <?php
 	$sumador_total=0;
-	$sql=mysqli_query($con, "select * from products, facturas, detalle_factura where facturas.numero_factura=detalle_factura.numero_factura and  facturas.id_factura='$id_factura' and products.id_producto=detalle_factura.id_producto");
+	$sql=mysqli_query($con, "select * from products, contrato, detalle_contrato where contrato.id_contrato=detalle_contrato.id_contrato and  contrato.id_contrato='$id_contrato' and products.id_producto=detalle_contrato.id_producto");
+	
 	while ($row=mysqli_fetch_array($sql))
 	{
 	$id_detalle=$row["id_detalle"];
@@ -47,7 +48,7 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 	$nombre_producto=$row['nombre_producto'];
 	
 	
-	$precio_venta=$row['precio_venta'];
+	$precio_venta=$row['precio_costo'];
 	$precio_venta_f=number_format($precio_venta,2);//Formateo variables
 	$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
 	$precio_total=$precio_venta_r*$cantidad;
@@ -67,19 +68,13 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 		<?php
 	}
 	$subtotal=number_format($sumador_total,2,'.','');
-	$total_iva=($subtotal * TAX )/100;
-	$total_iva=number_format($total_iva,2,'.','');
-	$total_factura=$subtotal+$total_iva;
+	
+	$total_factura=$subtotal;
 	$update=mysqli_query($con,"update facturas set total_venta='$total_factura' where id_factura='$id_factura'");
 ?>
 <tr>
 	<td class='text-right' colspan=4>SUBTOTAL $</td>
 	<td class='text-right'><?php echo number_format($subtotal,2);?></td>
-	<td></td>
-</tr>
-<tr>
-	<td class='text-right' colspan=4>IVA (<?php echo TAX?>)% $</td>
-	<td class='text-right'><?php echo number_format($total_iva,2);?></td>
 	<td></td>
 </tr>
 <tr>

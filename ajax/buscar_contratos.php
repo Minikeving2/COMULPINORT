@@ -107,7 +107,7 @@
 						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado; ?></span></td>
 						<td class='text-right'><?php echo number_format ($total_venta,2); ?></td>					
 					<td class="text-right">
-						<a href="editar_factura.php?id_factura=<?php echo $id_contrato;?>" class='btn btn-default' title='Editar contrato' ><i class="glyphicon glyphicon-edit"></i></a> 
+						<a href="editar_contrato.php?id_contrato=<?php echo $id_contrato;?>" class='btn btn-default' title='Editar contrato' ><i class="glyphicon glyphicon-edit"></i></a> 
 						<a href="<?php echo $ruta; ?>" class='btn btn-default' title='Descargar contrato' download="contrato<?php echo $id_contrato;?>"><i class="glyphicon glyphicon-download"></i></a> 
 						<a href="#" class='btn btn-default' title='Borrar contrato' onclick="eliminar('<?php echo $id_contrato; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					</td>

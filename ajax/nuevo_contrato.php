@@ -60,7 +60,13 @@ if ($count==0){
 		$duracion = $_POST["duracion"];
 	}
 
+	$archivo = $_FILES['archivo'];
 
+
+	if ($archivo['name']==""){
+		echo json_encode("<script>alert('No hay ninguno archivo cargado')</script>");
+		exit;
+	}
 	$observacion = $_POST["observaciones"];
 	$calculado = str_replace(',','',$_POST["calculado"]);
 
@@ -90,19 +96,16 @@ if ($count==0){
 				mysqli_query($con, "INSERT INTO detalle_contrato (id_contrato,id_producto,cantidad,precio_costo,total)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."','$aux')");
 			}
 		}
+		
+		if ($archivo['name'] != "") {
+			
+			$name = "(".$id_factura.")".$archivo['name'];
+			$ruta = $archivo['tmp_name'];
 
-		$archivo = $_FILES['archivo'];
-		$name = "(".$id_factura.")".$archivo['name'];
-		$ruta = $archivo['tmp_name'];
-
-		$destino = "../archivos/" . $name;
-		if ($name != "") {
+			$destino = "../archivos/" . $name;
     		if (copy($ruta, $destino)) {
        			mysqli_query($con, "UPDATE contrato SET ruta = '$destino', archivo = '$name' WHERE id_contrato = $id_factura");
-			} else {
-        		echo json_encode("<script>alert('no guarda correctamente el archivo')</script>");
-				exit;
-    		}
+			}
 		}
 	//tras realizar la importacion de tmp a detalle_factura toca vacia la tabla tmp
 	

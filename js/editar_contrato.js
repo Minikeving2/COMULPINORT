@@ -1,6 +1,8 @@
 
 		$(document).ready(function(){
 			load(1);
+			load_Cliente(1);
+			cambio();
 			$( "#resultados" ).load( "ajax/editar_contratacion.php" );
 		});
 
@@ -20,6 +22,43 @@
 			})
 		}
 
+		function load_Cliente(page){
+			var a= $("#a").val();
+			$("#loader").fadeIn('slow');
+			$.ajax({
+				url:'./ajax/clientes_factura.php?action=ajax&page='+page+'&q='+a,
+				 beforeSend: function(objeto){
+				 $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
+			  },
+				success:function(data){
+					$("#clientes").html(data).fadeIn('slow');
+					$('#loader').html('');
+					
+				}
+			})
+		}
+		function agregarCliente (id)
+		{
+			
+			var nombre_cliente=document.getElementById('nombre_cliente'+id).value;
+			var nombre_rp=document.getElementById('nombre_rp'+id).value;
+			var nit=document.getElementById('nit_'+id).value;
+			var status_cliente = document.getElementById('status_cliente'+id).value;
+
+			//Inicia validacion
+			
+			//Fin validacion
+			document.getElementById("id_cliente").value=id;
+			document.getElementById("campo_nit").value=nit;
+			document.getElementById("campo_nombre_cliente").value=nombre_cliente;
+			document.getElementById("nombre_rl").value=nombre_rp;
+			if (status_cliente==1){
+				document.getElementById("campo_estado").value="Activo";
+			} else {
+				document.getElementById("campo_estado").value="No activo";
+			}
+			
+		}
 	function agregar (id)
 		{
 			var precio_venta=document.getElementById('precio_venta_'+id).value;
@@ -70,30 +109,46 @@
 	}
 		
 	$("#datos_contrato").submit(function(event){
-		  var id_cliente = $("#id_cliente").val();
-	  
-		  if (id_cliente==""){
-			  alert("Debes seleccionar un cliente");
-			  $("#nombre_cliente").focus();
-			  return false;
-		  }
-		  
-		  var parametros = $(this).serialize();
-			 $.ajax({
-					type: "POST",
-					url: "ajax/editar_contrato.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$(".editar_contrato").html("Mensaje: Cargando...");
-					  },
-					success: function(datos){
-						$(".editar_contrato").html(datos);
-					}
-			});
+		event.preventDefault();
+		var fecha_inicio = $('#fecha_inicio').val();
+		var fecha_fin = $("#fecha_fin").val();
+		var id_cliente = $('#id_cliente').val();
+		if (id_cliente==""){
+			alert("Debes seleccionar un cliente");
+			$("#id_clientee").focus();
+			return false;
+		}
+		if (fecha_inicio==""){
+			alert("Debes seleccionar una fecha inicial");
+			$("#fecha_inicio").focus();
+			return false;
+		}
+		if (fecha_fin==""){
+			alert("Debes seleccionar una fecha final");
+			$("#fecha_fin").focus();
+			return false;
+		}
 			
-			 event.preventDefault();
-	});
+		var formulario = document.getElementById('datos_contrato');
+		var datos = new FormData(formulario);
 		
+		fetch('./ajax/editar_contrato.php',{
+			method: 'POST',
+			body: datos
+		})
+		.then( res => res.json())
+		.then( data => {
+			$("#resultados").html(data);
+		})
+	});
+	
+	function cambio() {
+		if( $('#otrosi').is(':checked') ) {
+			$("#num_contrato_otrosi").attr('disabled', false);
+		} else {
+			$("#num_contrato_otrosi").attr('disabled', true);
+		}
+	}
 	$( "#guardar_cliente" ).submit(function( event ) {
 		  $('#guardar_datos').attr("disabled", true);
 		  
@@ -133,7 +188,3 @@
 			});
 		  event.preventDefault();
 		})
-
-		function imprimir_contrato(id_factura){
-			VentanaCentrada('./pdf/documentos/ver_contrato.php?id_contrato='+id_contrato,'Contrato','','1024','768','true');
-		}

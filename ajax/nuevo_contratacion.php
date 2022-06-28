@@ -5,8 +5,7 @@
 	Mail: info@obedalvarado.pw
 	---------------------------*/
 include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
-$id_factura= $_SESSION['id_factura'];
-$numero_factura= $_SESSION['numero_factura'];
+$id_factura= $_SESSION['id_contrato'];
 if (isset($_POST['id'])){$id=intval($_POST['id']);}
 if (isset($_POST['cantidad'])){$cantidad=intval($_POST['cantidad']);}
 if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']);}

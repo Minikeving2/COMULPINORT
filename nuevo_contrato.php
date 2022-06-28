@@ -44,7 +44,7 @@
 			include("modal/registro_productos.php");
 			include("modal/buscar_cliente.php");
 		?>
-			<form class="form-horizontal" role="form" id="datos_contrato" >
+			<form class="form-horizontal" role="form" id="datos_contrato">
 				
 			<div class="form-group row">
 				   <label for="comprobante" class="col-md-2 ">Nro. Contrato</label>	
