@@ -6,15 +6,9 @@
            $errors[] = "ID vacío";
         }else if (empty($_POST['id_vendedor'])) {
            $errors[] = "Selecciona el vendedor";
-        } else if (empty($_POST['condiciones'])){
-			$errors[] = "Selecciona forma de pago";
-		} else if ($_POST['estado_factura']==""){
-			$errors[] = "Selecciona el estado de la factura";
 		} else if (
 			!empty($_POST['id_cliente']) &&
-			!empty($_POST['id_vendedor']) &&
-			!empty($_POST['condiciones']) &&
-			$_POST['estado_factura']!="" 
+			!empty($_POST['id_vendedor'])
 		){
 		/* Connect To Database*/
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -22,13 +16,34 @@
 		// escaping, additionally removing everything that could be (html/javascript-) code
 		$id_cliente=intval($_POST['id_cliente']);
 		$id_vendedor=intval($_POST['id_vendedor']);
-		$condiciones=intval($_POST['condiciones']);
 
-		$estado_factura=intval($_POST['estado_factura']);
+		$num_fact=$_POST['num_fact'];
+		$fecha_fact=$_POST['fecha_fact'];
+
+		$num_comp=$_POST['num_comp'];
+		$fecha_comp=$_POST['fecha_comp'];
+
+		$tipo_mov=$_POST['tipo_mov'];
+		$proveedor=$_POST['proveedor'];
+
+		$condiciones=$_POST['observacion'];
+		$total=str_replace(',','',$_POST['total']);
+
+		$sql="UPDATE facturas SET id_cliente='".$id_cliente."', id_vendedor='".$id_vendedor."', condiciones='".$condiciones."', tipo_mov='".$tipo_mov."', id_proveedor='".$proveedor."',";
 		
-		$sql="UPDATE facturas SET id_cliente='".$id_cliente."', id_vendedor='".$id_vendedor."', condiciones='".$condiciones."', estado_factura='".$estado_factura."' WHERE id_factura='".$id_factura."'";
+		if ($fecha_comp!="" && $num_comp!=""){
+			$sql .= " fecha_comprobante='".$fecha_comp."', nro_comprobante='".$num_comp."',";
+		}//datos del comprobante
+
+		if ($fecha_fact!="" && $num_fact!=""){
+			$sql .= " fecha_fact='".$fecha_fact."', numero_factura='".$num_fact."',";
+		}//datos de la factura de compra
+
+		$sql .= " total_venta='".$total."' WHERE id_factura='".$id_factura."'";
+		
 		$query_update = mysqli_query($con,$sql);
-			if ($query_update){
+		
+		if ($query_update){
 				$messages[] = "Factura ha sido actualizada satisfactoriamente.";
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);

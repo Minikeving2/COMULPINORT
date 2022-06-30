@@ -15,17 +15,15 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	
-if (!empty($id) and !empty($cantidad) and !empty($precio_venta))
+if ($id!="" and $cantidad!="" and $precio_venta!="")
 {
-$insert_tmp=mysqli_query($con, "INSERT INTO detalle_contrato (numero_factura, id_producto,cantidad,precio_venta) VALUES ('$numero_factura','$id','$cantidad','$precio_venta')");
-
+$insert_tmp=mysqli_query($con, "INSERT INTO detalle_contrato (id_contrato, id_producto,cantidad,precio_costo) VALUES ('$id_contrato','$id','$cantidad','$precio_venta')");
 }
 if (isset($_GET['id']))//codigo elimina un elemento del array
 {
 $id_detalle=intval($_GET['id']);	
-$delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_detalle."'");
+mysqli_query($con, "DELETE FROM detalle_contrato WHERE id_detalle='".$id_detalle."'");
 }
-
 ?>
 <table class="table">
 <tr>
@@ -70,7 +68,7 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 	$subtotal=number_format($sumador_total,2,'.','');
 	
 	$total_factura=$subtotal;
-	$update=mysqli_query($con,"update facturas set total_venta='$total_factura' where id_factura='$id_factura'");
+	$update=mysqli_query($con,"update contrato set valor='$total_factura' where id_factura='$id_factura'");
 ?>
 <tr>
 	<td class='text-right' colspan=4>SUBTOTAL $</td>
@@ -84,3 +82,6 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 </tr>
 
 </table>
+<script>
+	document.getElementById("calculado").value='<?php echo number_format($total_factura,2);?>';
+</script>

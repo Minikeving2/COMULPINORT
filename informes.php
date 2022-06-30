@@ -41,7 +41,7 @@
 				<form class="form-horizontal" role="form" id="informe_datos">
 				
 						<div class="form-group row">
-							<label for="q" class="col-md-2 control-label">EDS. / Tercero</label>
+							<label for="q" class="col-md-1 control-label">EDS./Tercero</label>
 							<div class="col-md-4">
 								<input type="text" class="form-control" id="q" placeholder="Nombre de la EDS o nombre del cliente">
 							</div>
@@ -58,6 +58,12 @@
                             <label class="col-md-1 control-label">Hasta:</label>
                             <div class="col-md-1" id="fecha_inf">
                                 <input type="date" class="form-control input" id="fecha_fin" max="<?php echo str_replace('/','-',date("Y/m/d"));?>" value="<?php echo str_replace('/','-',date("Y/m/d"));?>">
+                            </div>
+							<div class="col-md-1" id="facturas" style="display: flex;">
+								<label class="radio-inline"><input type="radio" value="1" name="tipo_informe">Factura</label>
+                            </div>
+							<div class="col-md-1" id="contratos" style="display: flex;">
+								<label class="radio-inline"><input type="radio" value="2" name="tipo_informe">Contrato</label>
                             </div>
 						</div>
 						<script> 

@@ -68,7 +68,27 @@
 		     }
 			});
 		}
-		
+		function agregarCliente (id)
+		{
+			
+			var nombre_cliente=document.getElementById('nombre_cliente'+id).value;
+			var nombre_rp=document.getElementById('nombre_rp'+id).value;
+			var nit=document.getElementById('nit_'+id).value;
+			var status_cliente = document.getElementById('status_cliente'+id).value;
+			//Inicia validacion
+			
+			//Fin validacion
+			document.getElementById("id_cliente").value=id;
+			document.getElementById("campo_nit").value=nit;
+			document.getElementById("campo_nombre_cliente").value=nombre_cliente;
+			document.getElementById("nombre_rl").value=nombre_rp;
+			if (status_cliente==1){
+				document.getElementById("campo_estado").value="Activo";
+			} else {
+				document.getElementById("campo_estado").value="No activo";
+			}
+			
+		}
 	function eliminar (id)
 	{
 			
@@ -94,15 +114,24 @@
 	}
 
 	$("#datos_factura").submit(function(event){
-		  var id_cliente = $("#id_cliente").val();
-	  
-		  if (id_cliente==""){
-			  alert("Debes seleccionar un cliente");
-			  $("#nombre_cliente").focus();
-			  return false;
-		  }
-		  
-		  var parametros = $(this).serialize();
+		var id_cliente = $("#id_cliente").val();
+		var num_fact=$("#num_factura").val();
+		var fecha_factura=$("#fecha_factura").val();
+		var num_comp=$("#num_comprobante").val();
+		var fecha_comp=$("#fecha_comprobante").val();
+		var tipo_mov=document.getElementById("tipomov").value;
+		var proveedor=document.getElementById("id_proveedor").value;
+		var observacion=$("#observacion").val();
+		var total=$("#calculado").val();
+		var id_vendedor=$("#id_vendedor").val();
+
+		var parametros = "id_cliente="+id_cliente+"&num_fact="+num_fact+"&fecha_fact="+fecha_factura+"&num_comp="+num_comp+"&fecha_comp="+fecha_comp+"&tipo_mov="+tipo_mov+"&proveedor="+proveedor+"&observacion="+observacion+"&total="+total+"&id_vendedor="+id_vendedor;
+		if (id_cliente==""){
+		  alert("Debes seleccionar un cliente");
+		  $("#nombre_cliente").focus();
+		  return false;
+		}
+		  console.log(parametros); 
 			 $.ajax({
 					type: "POST",
 					url: "ajax/editar_factura.php",

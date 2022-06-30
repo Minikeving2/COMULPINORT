@@ -167,23 +167,23 @@
 					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total">
 					    <input id="total" type='hidden'>	
 				    </div> 
-									</br></br>
+				</div>				
 				    <div class="col-md-12" id="separacion_btn">
 					  <div class="pull-right">
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto">
-						 <span class="glyphicon glyphicon-plus"></span> Nuevo producto
+						 	<span class="glyphicon glyphicon-plus"></span> Nuevo producto
 						</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoCliente">
-						 <span class="glyphicon glyphicon-user"></span> Nuevo cliente
+						 	<span class="glyphicon glyphicon-user"></span> Nuevo cliente
 						</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-						 <span class="glyphicon glyphicon-search"></span> Agregar productos y servicios
+						 	<span class="glyphicon glyphicon-search"></span> Agregar productos y servicios
 						</button>
 						<button type="button" class="btn btn-success" id="#guardarfact" onclick="guardar()">
-						 <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
+						 	<span class="glyphicon glyphicon-floppy-disk"></span> Guardar
 						</button>
 						<button type="submit" class="btn btn-primary">
-						  <span class="glyphicon glyphicon-print"></span> Imprimir
+						  	<span class="glyphicon glyphicon-print"></span> Imprimir
 						</button>
 					   </div>	
 				    </div>

@@ -182,19 +182,17 @@
 				</div>
 			     
 				<div class="form-group row">
-				   <label for="observacion" class="col-md-9 ">Observación</label>	
-				   <label for="total" class="col-md-3 " readonly>Total </label>
-				</div>
-				<div class="form-group row">
-				    <div class="col-md-9">
+				   <label for="observacion" class="col-md-1 ">Observación</label>
+				   <div class="col-md-8">
 				      <textarea class="form-control" id="observacion" name="observaciones"   maxlength="100" ></textarea>	    
 				    </div>
-					<div class="col-md-3">
+				   <label for="total" class="col-md-1 " style="text-align: end;" readonly>Total </label>
+				   <div class="col-md-2">
 					    <input type="text" class="form-control input-sm" id="calculado" name="calculado" placeholder="Total" >
 					    <input id="total" type='hidden'>	
-				    </div> 
-					<div></br></div>				
-				    <div class="col-md-12">
+				    </div>
+				</div>
+					<div class="col-md-12">
 					  <div class="pull-right">
 					   	
 					  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto">

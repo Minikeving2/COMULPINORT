@@ -50,7 +50,7 @@
 		//$adjacents  = 4; //gap between pages after number of adjacents
 		//$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
-
+	if($_REQUEST['tipo_informe']==1){
 		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM clientes, facturas, detalle_factura, products WHERE clientes.nombre_cliente like '%$q%' and clientes.id_cliente = facturas.id_cliente and facturas.id_factura = detalle_factura.id_factura and detalle_factura.id_producto = products.id_producto and facturas.fecha_factura >= $fecha_start and facturas.fecha_factura <= $fecha_end");
 		$row= mysqli_fetch_array($count_query);
 		$numrows = $row['numrows'];
@@ -140,5 +140,94 @@
 	
 		}
 		
+	} elseif ($_REQUEST['tipo_informe']==2) {
+		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM clientes, contrato WHERE clientes.nombre_cliente like '%$q%' and clientes.id_cliente = contrato.id_cliente and contrato.fecha_crea >= $fecha_start and contrato.fecha_crea <= $fecha_end");
+		$row= mysqli_fetch_array($count_query);
+		$numrows = $row['numrows'];
+		//$total_pages = ceil($numrows/$per_page);
+		$reload = './facturas.php';
+		//main query to fetch the data
+		$sql="SELECT * FROM clientes, contrato WHERE clientes.nombre_cliente like '%$q%' and clientes.id_cliente = contrato.id_cliente and contrato.fecha_crea >= $fecha_start and contrato.fecha_crea <= $fecha_end ORDER BY contrato.fecha_crea ASC";
+		$query = mysqli_query($con, $sql);
+		//loop through fetched data
+		if ($numrows>0){
+			echo mysqli_error($con);
+			?>
+			<div class="table-responsive" id="scroll">
+			  <table class="table">
+				<thead>
+				<tr  class="info">
+					<th>#</th>
+					<th>Cliente</th>
+					<th>Fecha inicio</th>
+					<th>Fecha fin</th>
+					<th>Nombre producto</th>
+					<th>Cantidad</th>
+					<th class='text-right'>Total</th>
+					<!--<th class='text-right'>Acciones</th>-->	
+				</tr>
+				</thead>
+				<tbody>
+				<?php
+				while ($row=mysqli_fetch_array($query)){
+						$num_contrato=$row['numcontrato'];
+						$nombre_cliente=$row['nombre_cliente'];
+						$fecha_inicio=$row['fecha_inicio'];
+						$fecha_fin=$row['fecha_final'];
+						/*$nombre_producto=$row['nombre_producto'];
+						$cantidad=$row["cantidad"];
+						$total=$row['total'];
+						$precio_total_f=number_format($total,2);//Precio total formateado*/
+					?>
+					<tr>
+						<td><?php echo $num_contrato;?></td>
+						<td><?php echo $nombre_cliente;?></td>
+						<td><?php echo $fecha_inicio;?></td>
+						<td><?php echo $fecha_fin;?></td>
+						<td></td>
+						<td class='text-center'></td>
+						<td class='text-right'></td>
+											
+					<!--<td class="text-right">
+						<a href="editar_factura.php?id_factura=<?php echo $id_contrato;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
+						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
+						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $id_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
+					</td>-->
+						
+					</tr>
+					<?php
+				}
+				?>
+				</tbody>
+			  </table>
+			</div>
+			<?php
+		} else {
+			
+				?>
+				<div class="table-responsive" id="scroll">
+				<table class="table">
+					<thead>
+						<tr  class="info">
+							<th>#</th>
+							<th>Cliente</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
+							<th></th>
+							<th></th>
+							<th class='text-right'></th>
+								
+						</tr>
+					</thead>
+				</table>
+					<div class="search_null">
+						No se encontraron registros de acuerdo a los datos ingresados  
+					</div>
+				  </div>
+				  <?php
+				
+	
+		}
 	}
+}
 ?>

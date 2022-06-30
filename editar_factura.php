@@ -39,7 +39,9 @@
 				$fecha_comp=$rw_factura["fecha_comprobante"];
 				$numero_factura=$rw_factura["numero_factura"];
 				$fecha_fact=$rw_factura["fecha_fact"];
+				$tipo_mov=$rw_factura["tipo_mov"];
 				$total_venta=$rw_factura["total_venta"];
+				$id_proveedor=$rw_factura["id_proveedor"];
 				$_SESSION['id_factura']=$id_factura;
 				$_SESSION['numero_factura']=$numero_factura;
 		}	
@@ -90,7 +92,7 @@
                 </div>
 				<div class="form-group row">
 				    <!-- id cliente -->
-					<input id="id_cliente" type='hidden'>
+					<input id="id_cliente" type='hidden' value="<?php echo $id_cliente;?>">
 					<input id="id_vendedor" type='hidden' value="<?php echo $_SESSION['user_id'];?>">
 				    <div class="col-md-1">
 						<input type="text" class="form-control input-sm" id="fecha_mov" value="<?php echo $fecha_factura;?>" readonly>
@@ -131,7 +133,7 @@
 				<div class="form-group row">			
 				    <div class="col-md-2">
 					    <input type="text" class="form-control input-sm" id="num_comprobante" placeholder="Número Comprobante" value="<?php echo $num_comprobante;?>">
-					    <input id="id" type='hidden'>	
+					    <input id="id_cliente" type='hidden'>	
 				    </div>
 					  
 				    <div class="col-md-1">
@@ -139,7 +141,6 @@
 					</div>
 				    <div class="col-md-2">
 					    <input type="text" class="form-control input-sm" id="num_factura" placeholder="Número Factura" value="<?php echo $numero_factura;?>">
-					    <input id="id" type='hidden'>	
 				    </div>  
 				    <div class="col-md-1">
 						<input type="date" class="form-control input-sm" id="fecha_factura" value="<?php echo $fecha_fact;?>">
@@ -167,10 +168,12 @@
 							<option value="4">Apoyo Solidaridad</option>
 							<option value="4">Apoyo Bienestarsocial</option> -->
 						</select>
-						<script> </script>
+						<script>
+							document.querySelector('#tipomov').value=<?php echo $tipo_mov; ?>;
+						</script>
 					</div>		
 				    <div class="col-md-3">
-						<select class="form-control input-sm" id="id_provedor">
+						<select class="form-control input-sm" id="id_proveedor">
 						<?php
 							$sql_vendedor=mysqli_query($con,"select * from clientes where tipo_tercero = 'P' order by nombre_cliente");
 							while ($rw=mysqli_fetch_array($sql_vendedor)){
@@ -187,6 +190,9 @@
 										}
 						?>
 						</select>
+						<script>
+							document.querySelector('#id_proveedor').value=<?php echo $id_proveedor; ?>;
+						</script>
 					</div>			
 				</div>
 				<div class="form-group row">
@@ -198,10 +204,10 @@
 				      <textarea class="form-control" id="observacion" name="Observaciones"   maxlength="100" ><?php echo $condiciones; ?></textarea>	    
 				    </div>
 					<div class="col-md-3">
-					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total" value="<?php echo $total_venta;?>">
+					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total" value="<?php echo number_format($total_venta,2);?>">
 					    <input id="total" type='hidden'>	
 				    </div> 	
-			
+				</div> 	
 				<div class="col-md-12">
 					<div class="pull-right">
 						<button type="submit" class="btn btn-default">

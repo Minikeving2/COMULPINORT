@@ -1,17 +1,17 @@
 $(document).ready(function(){
-    load(1);
+   
     
 });
 
 function load(page){
     var q= $("#q").val();
-
+    var tipo = $("input[name=tipo_informe]:checked").val();
     var fechainicial = document.getElementById("fecha_inicio").value;
     var fechafinal = document.getElementById("fecha_fin").value;
     if(Date.parse(fechafinal) >= Date.parse(fechainicial)) {
          //$("#loader").fadeIn('slow');
         $.ajax({
-            url:'./ajax/buscar_informes.php?action=ajax&q='+q+'&fecha_start='+fechainicial+'&fecha_end='+fechafinal,
+            url:'./ajax/buscar_informes.php?action=ajax&q='+q+'&fecha_start='+fechainicial+'&fecha_end='+fechafinal+"&tipo_informe="+tipo,
             beforeSend: function(objeto){
             //$('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
         },

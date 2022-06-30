@@ -15,7 +15,7 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	
-if (!empty($id) and !empty($cantidad) and !empty($precio_venta))
+if ($id!="" and $cantidad!="" and $precio_venta!="")
 {
 	$aux=$cantidad*$precio_venta;
 $insert_tmp=mysqli_query($con, "INSERT INTO detalle_factura (id_factura, id_producto,cantidad,precio_venta,total) VALUES ('$id_factura','$id','$cantidad','$precio_venta','$aux')");
@@ -91,8 +91,11 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 
 <tr>
 	<td class='text-right' colspan=4>TOTAL $</td>
-	<td class='text-right'><?php echo number_format($total_factura,2);?></td>
+	<td class='text-right' ><?php echo number_format($total_factura,2);?></td>
 	<td></td>
 </tr>
 
 </table>
+<script>
+	document.getElementById("calculado").value='<?php echo number_format($total_factura,2);?>';
+</script>
