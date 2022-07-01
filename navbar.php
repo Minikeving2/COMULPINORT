@@ -27,6 +27,7 @@
 		
        <li class="<?php echo $active_productos;?>"><a href="productos.php"><i class='glyphicon glyphicon-barcode'></i> Productos</a></li>
 		<li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
+    <li class="<?php echo $active_clientes;?>"><a href="mapa.php"><i class='glyphicon glyphicon-user'></i> Mapa</a></li>
        </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.coomulpinort.com" target='_blank'><i class='glyphicon glyphicon-envelope'></i> Soporte</a></li>
