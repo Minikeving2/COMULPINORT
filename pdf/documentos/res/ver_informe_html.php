@@ -20,7 +20,6 @@ td    { vertical-align: top; }
 }
 .border-top{
 	border-top: solid 1px #bdc3c7;
-	
 }
 .border-left{
 	border-left: solid 1px #bdc3c7;
@@ -58,9 +57,10 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             </td>
 			<td style="width: 50%; color: #000 ;font-size:12px;text-align:center">
                 <span style="color: #000;font-size:14px;font-weight:bold"><?php echo NOMBRE_EMPRESA;?></span>
+				<br>Nit: <?php echo "900.297.348-7";?>
 				<br><?php echo DIRECCION_EMPRESA;?><br> 
-				Teléfono: <?php echo TELEFONO_EMPRESA;?><br>
-				Email: <?php echo EMAIL_EMPRESA;?>
+				Teléfono: <?php echo "(607) 5720321 - Cel: 3183730242";?><br>
+				
                 
             </td>
 			<td style="width: 25%;text-align:right">
@@ -73,42 +73,22 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     
 
 	
-    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
-        <tr>
-           <td style="width:50%;" class='midnight-blue'>DATOS DEL CLIENTE </td>
-        </tr>
-		<tr>
-           <td style="width:50%;" >
-			<?php 
-				$sql_cliente=mysqli_query($con,"select * from clientes where id_cliente='$id_cliente'");
-				$rw_cliente=mysqli_fetch_array($sql_cliente);
-				echo $rw_cliente['nombre_cliente'];
-				echo "<br>";
-				echo $rw_cliente['direccion_cliente'];
-				echo "<br> Teléfono: ";
-				echo $rw_cliente['telefono_cliente'];
-				echo "<br> Email: ";
-				echo $rw_cliente['email_cliente'];
-			?>
-			
-		   </td>
-        </tr>
-        
    
-    </table>
     
        <br>
 		<table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
         <tr>
-           <td style="width:50%;" class='midnight-blue'>DETALLE</td>
+           <td style="width:50%;" class='midnight-blue'>INFORME</td>
 		  <td style="width:25%;" class='midnight-blue'>DESDE</td>
 		   <td style="width:25%;" class='midnight-blue'>HASTA</td>
         </tr>
 		<tr>
            <td style="width:50%;">
-				
+				<?php if ($tipo_informe==1){?>
 				RESUMEN DE LOS MOVIMIENTOS
-			
+			<?php } else if ($tipo_informe==2){ ?>
+                RESUMEN DE LOS CONTRATOS 
+				<?php } ?>
 		   </td>
 		  <td style="width:25%;"><?php echo $fecha_inicio;?></td>
 		   <td style="width:25%;" >
@@ -122,8 +102,34 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
    
     </table>
 	<br>
-  
+	
+
+	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
+        <tr>
+           <td style="width:100%;" class='midnight-blue'>DATOS DEL CLIENTE </td>
+        </tr>
+		<tr>
+           <td style="width:100%;" >
+			<?php 
+				$sql_cliente=mysqli_query($con,"select * from clientes where id_cliente='$id_cliente'");
+				$rw_cliente=mysqli_fetch_array($sql_cliente);
+				echo "Nombre: ".$rw_cliente['nombre_cliente'];
+				echo "<br> Direccion: ";
+				echo $rw_cliente['direccion_cliente'];
+				echo "<br> Teléfono: ";
+				echo $rw_cliente['telefono_cliente'];
+				echo "<br> Email: ";
+				echo $rw_cliente['email_cliente'];
+			?>
+			
+		   </td>
+        </tr>
+        
+   
+    </table>
+	<br>
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
+	<?php if ($tipo_informe==1) { ?> 
         <tr>
             <th style="width: 5%;text-align: center" class='midnight-blue'>ID</th>
 			<th style="width: 10%;text-align: center" class='midnight-blue'>FECHA</th>
@@ -132,8 +138,18 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             <th style="width: 15%;text-align: right" class='midnight-blue'>CANTIDAD</th>
 			<th style="width: 15%;text-align: right" class='midnight-blue'>TOTAL</th>
         </tr>
-
+	<?php } else if ($tipo_informe==2) { ?>
+ 		<tr>
+            <th style="width: 10%;text-align: center" class='midnight-blue'>NUM C.</th>
+			<th style="width: 40%;text-align: left" class='midnight-blue'>CLIENTE</th>
+            <th style="width: 15%;text-align: center" class='midnight-blue'>FECHA INICIO</th>
+            <th style="width: 15%;text-align: center" class='midnight-blue'>FECHA FIN</th>
+            <th style="width: 10%;text-align: left" class='midnight-blue'>ESTADO</th>
+			<th style="width: 10%;text-align: right" class='midnight-blue'></th>
+        </tr>
+		<?php } ?>
 <?php
+if($tipo_informe==1){
 $nums=1;
 $sumador_total=0;
 $sql=mysqli_query($con, "SELECT facturas.fecha_factura, facturas.id_factura, clientes.nombre_cliente, products.codigo_producto, products.nombre_producto, detalle_factura.cantidad, detalle_factura.total FROM clientes, facturas, detalle_factura, products WHERE clientes.nombre_cliente like '%$nombre_busqueda%' and clientes.id_cliente = facturas.id_cliente and facturas.id_factura = detalle_factura.id_factura and detalle_factura.id_producto = products.id_producto and facturas.fecha_factura >= '$fecha_inicio' and '$fecha_fin' >= facturas.fecha_factura");
@@ -176,8 +192,53 @@ while ($row=mysqli_fetch_array($sql))
 	
 	$nums++;
 	}
-	
 	$subtotal=number_format($sumador_total,2,'.','');
+} else if ($tipo_informe==2){ 
+		$nums=1;
+		$sumador_total=0;
+		
+		$sql=mysqli_query($con, "SELECT * FROM clientes, contrato WHERE clientes.nombre_cliente like '%$nombre_busqueda%' and clientes.id_cliente = contrato.id_cliente and contrato.fecha_crea >= '$fecha_inicio' and contrato.fecha_crea <= '$fecha_fin' ORDER BY contrato.fecha_crea ASC");
+		while ($row=mysqli_fetch_array($sql))
+			{
+			$num_contrato=$row['numcontrato'];
+			$nombre_cliente=$row['nombre_cliente'];
+			$fecha_inicio=$row['fecha_inicio'];
+			$fecha_fin=$row['fecha_final'];
+		
+			/*$precio_venta_f=number_format($precio_venta,2);//Formateo variables
+			$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
+			$precio_total=$precio_venta_r*$cantidad;*/
+			/*$precio_total_f=number_format($total_v,2);//Precio total formateado
+			$sumador_total=$total_v+$sumador_total;*/
+			//Sumador
+			if ($nums%2==0){
+				$clase="clouds";
+			} else {
+				$clase="silver";
+			}
+			?>
+		
+				<tr>
+					<td class='<?php echo $clase;?>' style="width: 10%; text-align: center"><?php echo $num_contrato;?></td>
+					<td class='<?php echo $clase;?>' style="width: 40%; text-align: left"><?php echo $nombre_cliente;?></td>
+					<td class='<?php echo $clase;?>' style="width: 15%; text-align: center"><?php echo $fecha_inicio;?></td>
+					<td class='<?php echo $clase;?>' style="width: 15%; text-align: center"><?php echo $fecha_fin;?></td>
+					<td class='<?php echo $clase;?>' style="width: 10%; text-align: left">
+					<?php if (strtotime($fecha_fin)< strtotime(date("Y-m-d"))){
+							echo "Finalizado";
+						} else {
+							echo "Vigente";
+						}?></td>
+					<td class='<?php echo $clase;?>' style="width: 10%; text-align: right"></td>
+					
+				</tr>
+		
+			<?php 
+		
+			
+			$nums++;
+			}
+}
 	//$total_iva=($subtotal * TAX )/100;
 	//$total_iva=number_format($total_iva,2,'.','');
 	//$total_factura=$subtotal+$total_iva;
@@ -192,6 +253,8 @@ while ($row=mysqli_fetch_array($sql))
 	//</tr>
 ?>
 	</table>
+
+<?php if($tipo_informe==1) {?>
 	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
 		<tr>
 			<td style="width: 85%; text-align: right;" class='midnight-blue'>TOTAL &#36; </td>
@@ -199,13 +262,14 @@ while ($row=mysqli_fetch_array($sql))
         </tr>
     </table>
 	
-	
+<?php } ?>
 	
 	<br>
-	<div style="font-size:11pt;text-align:center;font-weight:bold">Gracias por su compra!</div>
+	<div style="font-size:11pt;text-align:center;font-weight:bold">www.coomulpinort.com</div>
 	
 	
 	  
 
 </page>
 
+	

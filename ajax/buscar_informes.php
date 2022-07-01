@@ -157,13 +157,11 @@
 			  <table class="table">
 				<thead>
 				<tr  class="info">
-					<th>#</th>
-					<th>Cliente</th>
+					<th style="text-align: center">Num. contrato</th>
+					<th>Nombre Cliente</th>
 					<th>Fecha inicio</th>
 					<th>Fecha fin</th>
-					<th>Nombre producto</th>
-					<th>Cantidad</th>
-					<th class='text-right'>Total</th>
+					<th>Estado</th>
 					<!--<th class='text-right'>Acciones</th>-->	
 				</tr>
 				</thead>
@@ -174,19 +172,22 @@
 						$nombre_cliente=$row['nombre_cliente'];
 						$fecha_inicio=$row['fecha_inicio'];
 						$fecha_fin=$row['fecha_final'];
+						if (strtotime($fecha_fin)< strtotime(date("Y-m-d"))){
+							$text_estado="Finalizado";$label_class='label-warning';
+						} else {
+							$text_estado="Vigente";$label_class='label-success';
+						}
 						/*$nombre_producto=$row['nombre_producto'];
 						$cantidad=$row["cantidad"];
 						$total=$row['total'];
 						$precio_total_f=number_format($total,2);//Precio total formateado*/
 					?>
 					<tr>
-						<td><?php echo $num_contrato;?></td>
+						<td style="text-align: center"><?php echo $num_contrato;?></td>
 						<td><?php echo $nombre_cliente;?></td>
 						<td><?php echo $fecha_inicio;?></td>
 						<td><?php echo $fecha_fin;?></td>
-						<td></td>
-						<td class='text-center'></td>
-						<td class='text-right'></td>
+						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado;?></span></td>
 											
 					<!--<td class="text-right">
 						<a href="editar_factura.php?id_factura=<?php echo $id_contrato;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
@@ -213,7 +214,6 @@
 							<th>Cliente</th>
 							<th>Fecha Inicio</th>
 							<th>Fecha Fin</th>
-							<th></th>
 							<th></th>
 							<th class='text-right'></th>
 								

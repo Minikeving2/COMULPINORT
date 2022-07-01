@@ -37,6 +37,9 @@
 			</div>
 			<h4><i class='glyphicon glyphicon-search'></i> Buscar Informes</h4>
 		</div>
+		<div>
+	<iframe src="https://www.google.com/maps/d/embed?mid=1hErK5mK62dF9PmfJxHK5FdWRV5xjNEc&ehbc=2E312F" style="height: 350px; width: 100%;"></iframe>
+	</div>
 			<div class="panel-body" id="panel_body">
 				<form class="form-horizontal" role="form" id="informe_datos">
 				
@@ -79,11 +82,12 @@
 				
 				
 			</form>
+			
 				<div id="resultados"></div><!-- Carga los datos ajax -->
 				<div class='outer_div' id="contenido"></div><!-- Carga los datos ajax -->
 			</div>
 		</div>	
-		
+	
 	</div>
 	<hr>
 	<?php
