@@ -37,7 +37,7 @@
                 <h4><i class='glyphicon glyphicon-edit'></i> Mapa de las estaciones</h4>
             </div>
             <div class="panel-body" style="height: 87%;">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1hErK5mK62dF9PmfJxHK5FdWRV5xjNEc&ehbc=2E312F"style="height: 100%;  width: 100%;"></iframe>
+			<iframe src="https://www.google.com/maps/d/embed?mid=1iZnCKptJB1_2q7z4YRPqn4RoAyviTAQ&ehbc=2E312F" style="height: 100%;  width: 100%;"></iframe>
             </div> 
         </div> 
     </div> 
