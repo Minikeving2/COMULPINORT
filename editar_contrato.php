@@ -13,6 +13,7 @@
 	$active_productos="";
 	$active_clientes="";
 	$active_usuarios="";
+	$active_mapa = "";	
 	$active_contratos="active";	
 	$title="Editar Contrato | SISTCOOM V1.0";
 	

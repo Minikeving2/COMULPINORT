@@ -9,11 +9,12 @@
         header("location: login.php");
 		exit;
         }
-	$active_facturas="active";
+	$active_facturas="";
 	$active_productos="";
 	$active_clientes="";
 	$active_usuarios="";
-	$active_contratos="";	
+	$active_contratos="";
+	$active_mapa = "active";	
 	$title="Nueva Factura | SistCoom V1.0";
 	
 	/* Connect To Database*/

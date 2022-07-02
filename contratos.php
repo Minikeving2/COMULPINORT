@@ -13,7 +13,8 @@
 	$active_facturas = "";
 	$active_productos= "";
 	$active_clientes = "";
-	$active_usuarios = "";	
+	$active_usuarios = "";
+	$active_mapa = "";		
 	$active_contratos = "active";	
 	
 	$title           = "Contratos | SistCoom V1.0";
