@@ -50,12 +50,16 @@ function imprimir_informe(){
     var q= $("#q").val();
     if (q=="") {
        alert("Debe ingresar un cliente");
-    } else {
-        console.log("aver");
-        var tipo = $("input[name=tipo_informe]:checked").val();
-        var date_start = document.getElementById("fecha_inicio").value;
-        var date_end = document.getElementById("fecha_fin").value;
-        VentanaCentrada('./pdf/documentos/ver_informe.php?q='+q+'&date_s='+date_start+'&date_e='+date_end+'&tipo='+tipo,'Factura','','1024','768','true');
+       exit;
     }
+    var tipo = $("input[name=tipo_informe]:checked").val();
+    if(tipo){  }else{
+       alert("Seleccione el tipo de informe");
+        exit;
+    }
+    var tipo = $("input[name=tipo_informe]:checked").val();
+    var date_start = document.getElementById("fecha_inicio").value;
+    var date_end = document.getElementById("fecha_fin").value;
+     VentanaCentrada('./pdf/documentos/ver_informe.php?q='+q+'&date_s='+date_start+'&date_e='+date_end+'&tipo='+tipo,'Factura','','1024','768','true');
     event.preventDefault();
     }

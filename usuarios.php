@@ -31,7 +31,7 @@
  	<?php
 	include("navbar.php");
 	?> 
-    <div class="container">
+    <div class="container" id="container">
 		<div class="panel panel-info">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
