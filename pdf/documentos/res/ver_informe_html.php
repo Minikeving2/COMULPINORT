@@ -57,10 +57,9 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             </td>
 			<td style="width: 50%; color: #000 ;font-size:12px;text-align:center">
                 <span style="color: #000;font-size:14px;font-weight:bold"><?php echo NOMBRE_EMPRESA;?></span>
-				<br>Nit: <?php echo "900.297.348-7";?>
 				<br><?php echo DIRECCION_EMPRESA;?><br> 
-				Teléfono: <?php echo "(607) 5720321 - Cel: 3183730242";?><br>
-				
+				Teléfono: <?php echo "(607) 5720321";?><br>
+				Nit: <?php echo "900.297.348-7";?>
                 
             </td>
 			<td style="width: 25%;text-align:right">
@@ -265,7 +264,7 @@ while ($row=mysqli_fetch_array($sql))
 <?php } ?>
 	
 	<br>
-	<div style="font-size:11pt;text-align:center;font-weight:bold">www.coomulpinort.com</div>
+	<div style="font-size:11pt;text-align:center;font-weight:bold">Gracias por su compra!</div>
 	
 	
 	  
