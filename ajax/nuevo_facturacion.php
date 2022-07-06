@@ -15,7 +15,7 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	
 if (!empty($id) and !empty($cantidad) and !empty($precio_venta))
-{
+{ 
 $insert_tmp=mysqli_query($con, "INSERT INTO detalle_factura (numero_factura, id_producto,cantidad,precio_venta) VALUES ('$numero_factura','$id','$cantidad','$precio_venta')");
 
 }

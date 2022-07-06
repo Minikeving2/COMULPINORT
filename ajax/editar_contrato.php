@@ -51,7 +51,7 @@
 		$fecha_act=date("Y-m-d");
 		$observacion = $_POST["observaciones"];
 		$calculado = str_replace(',','',$_POST["calculado"]);
-
+ 
 
 		if($archivo['name']){
 			$sql =  "SELECT ruta FROM contrato WHERE id_contrato='$id_contrato'";

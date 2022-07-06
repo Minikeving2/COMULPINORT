@@ -66,7 +66,7 @@ mysqli_query($con, "DELETE FROM detalle_contrato WHERE id_detalle='".$id_detalle
 		<?php
 	}
 	$subtotal=number_format($sumador_total,2,'.','');
-	
+ 	
 	$total_factura=$subtotal;
 	$update=mysqli_query($con,"update contrato set valor='$total_factura' where id_factura='$id_factura'");
 ?>

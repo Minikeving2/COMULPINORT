@@ -6,4 +6,4 @@ function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) {
     features+=',left='+myLeft+',top='+myTop;
   }
   window.open(theURL,winName,features+((features!='')?',':'')+'width='+myWidth+',height='+myHeight);
-}
+}  

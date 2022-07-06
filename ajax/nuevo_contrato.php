@@ -106,7 +106,7 @@ if ($count==0){
     		if (copy($ruta, $destino)) {
        			mysqli_query($con, "UPDATE contrato SET ruta = '$destino', archivo = '$name' WHERE id_contrato = $id_factura");
 			}
-		}
+		} 
 	//tras realizar la importacion de tmp a detalle_factura toca vacia la tabla tmp
 	
 		$sql=mysqli_query($con,"DELETE FROM tmp");

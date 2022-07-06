@@ -20,7 +20,7 @@ $insert_tmp=mysqli_query($con, "INSERT INTO tmp (id_producto,cantidad_tmp,precio
 
 }
 if (isset($_GET['id']))//codigo elimina un elemento del array
-{
+{ 
 $id_tmp=intval($_GET['id']);	
 $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 }

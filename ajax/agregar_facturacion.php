@@ -55,7 +55,7 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 	$precio_total_f=number_format($precio_total,2);//Precio total formateado
 	$precio_total_r=str_replace(",","",$precio_total_f);//Reemplazo las comas
 	$sumador_total+=$precio_total_r;//Sumador
-	
+	 
 		?>
 		<tr>
 			

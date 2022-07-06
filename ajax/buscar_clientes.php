@@ -1,5 +1,5 @@
 <?php
-
+ 
 	/*-------------------------
 	Autor: Obed Alvarado
 	Web: obedalvarado.pw

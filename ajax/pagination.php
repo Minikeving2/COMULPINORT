@@ -14,7 +14,7 @@ function paginate($reload, $page, $tpages, $adjacents) {
 		$out.= "<li><span><a href='javascript:void(0);' onclick='load(".($page-1).")'>$prevlabel</a></span></li>";
 
 	}
-	
+	 
 	// first label
 	if($page>($adjacents+1)) {
 		$out.= "<li><a href='javascript:void(0);' onclick='load(1)'>1</a></li>";

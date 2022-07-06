@@ -1,6 +1,6 @@
 <?php
 		if (isset($con))
-		{
+		{ 
 	?>	
 			<!-- Modal -->
 			<div class="modal fade bs-example-modal-lg" id="buscarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

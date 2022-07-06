@@ -184,7 +184,7 @@
 		  var id_cliente = $("#campo_nit").val();
 		  var id_vendedor = $("#id_vendedor").val();
 		  var condiciones = $("#condiciones").val();
-		  
+		   
 		  if (id_cliente==""){
 			  alert("Debes seleccionar un cliente");
 			  $("#nombre_cliente").focus();

@@ -4,7 +4,7 @@ define('DB_HOST', 'localhost');//DB_HOST:  generalmente suele ser "127.0.0.1"
 define('DB_USER', 'coomulpi_root');//Usuario de tu base de datos
 define('DB_PASS', 'comulpinort');//Contraseña del usuario de la base de datos
 define('DB_NAME', 'coomulpi_sistcoom');//Nombre de la base de datos
- 
+  
 /*Datos de la empresa*/
 define('NOMBRE_EMPRESA', 'COOMULPINORT ');
 define('DIRECCION_EMPRESA', 'Av0B 21-09 Barrio Blanco');

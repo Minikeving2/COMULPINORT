@@ -4,7 +4,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
 }
 
-
+ 
 #fecha_fin[type="date"]::-webkit-calendar-picker-indicator, #fecha_inicio[type="date"]::-webkit-calendar-picker-indicator {
     display: inline;
 }

@@ -139,7 +139,7 @@
 				
 	
 		}
-		
+		 
 	} elseif ($_REQUEST['tipo_informe']==2) {
 		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM clientes, contrato WHERE clientes.nombre_cliente like '%$q%' and clientes.id_cliente = contrato.id_cliente and contrato.fecha_crea >= $fecha_start and contrato.fecha_crea <= $fecha_end");
 		$row= mysqli_fetch_array($count_query);

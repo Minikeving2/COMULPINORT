@@ -38,7 +38,7 @@ data: "id="+id,"q":q,
   },
 success: function(datos){
 $("#resultados").html(datos);
-load(1);
+load(1); 
 }
     });
 }

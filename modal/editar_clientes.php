@@ -100,7 +100,7 @@
 							<input type="text" class="form-control input-sm" id="date_act" value="<?php echo date("d/m/Y");?>" readonly>
 						</div>
 					</div>
-
+ 
 					<div class="form-group">
 						<label for="telefono_cliente" class="col-sm-3 ">Teléfono</label>
 						<label for="email_cliente" class="col-sm-4 ">Email</label>

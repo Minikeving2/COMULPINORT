@@ -98,7 +98,7 @@
 							$text_estado="Vigente";$label_class='label-success';
 						}
 						$total_venta=$row['valor'];
-					?>
+					?> 
 					<tr>
 						<td><?php echo $numero_contrato; ?></td>
 						<td><?php echo $nombre_cliente; ?></td>

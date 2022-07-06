@@ -18,7 +18,7 @@
 		 $sTable = "products";
 		 $sWhere = "";
 		if ( $_GET['q'] != "" )
-		{
+		{ 
 			$sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{

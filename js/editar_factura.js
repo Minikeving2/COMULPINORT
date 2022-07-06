@@ -76,7 +76,7 @@
 			var nit=document.getElementById('nit_'+id).value;
 			var status_cliente = document.getElementById('status_cliente'+id).value;
 			//Inicia validacion
-			
+	 		
 			//Fin validacion
 			document.getElementById("id_cliente").value=id;
 			document.getElementById("campo_nit").value=nit;

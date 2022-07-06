@@ -47,7 +47,7 @@ if (str_replace('/','-',$_POST["fecha_fact"])==""){
 } else {
 	$fecha_factura="'".str_replace('/','-',$_POST["fecha_fact"])."'";
 }
-
+ 
 $tipo_mov = $_POST["tipo_mov"];
 $condiciones=$_POST['condiciones'];
 $total_venta=str_replace(',','',$_POST['total_venta']);

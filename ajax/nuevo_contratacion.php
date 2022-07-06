@@ -39,7 +39,7 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 	$sumador_total=0;
 	$sql=mysqli_query($con, "select * from products, facturas, detalle_factura where facturas.numero_factura=detalle_factura.numero_factura and  facturas.id_factura='$id_factura' and products.id_producto=detalle_factura.id_producto");
 	while ($row=mysqli_fetch_array($sql))
-	{
+	{ 
 	$id_detalle=$row["id_detalle"];
 	$codigo_producto=$row['codigo_producto'];
 	$cantidad=$row['cantidad'];

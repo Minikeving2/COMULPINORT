@@ -58,7 +58,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<?php
+				<?php 
 				while ($row=mysqli_fetch_array($query)){
 					$id_producto=$row['id_producto'];
 					$codigo_producto=$row['codigo_producto'];

@@ -8,7 +8,7 @@
 		if (empty($_POST['nit'])) {
 			$errors[] = "Nit/C.C. de la EDS/Asociado está vacío";
 		}
-		   
+		    
         } else if (!empty($_POST['nombre_cliente'])){
 		/* Connect To Database*/
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
