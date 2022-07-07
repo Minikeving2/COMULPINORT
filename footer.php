@@ -2,7 +2,7 @@
     <div class="container">
       <p class="navbar-text pull-left">&copy <?php echo date('Y');?> - Jairo Arenas
            <a href="https://h-software.co" target="_blank" style="color: #ecf0f1">Cúcuta - Colombia</a>
-      </p> 
+      </p>
    </div>
 </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

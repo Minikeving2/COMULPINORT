@@ -1,6 +1,7 @@
 <?php
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
+	mysqli_query($con,"SET NAMES 'utf8'");
 	if (empty($_POST['nombre_cliente']) or empty($_POST['nit'])) {
 		if (empty($_POST['nombre_cliente'])) {
 			$errors[] = "Nombre de la EDS/Asociado está vacío";
@@ -8,13 +9,15 @@
 		if (empty($_POST['nit'])) {
 			$errors[] = "Nit/C.C. de la EDS/Asociado está vacío";
 		}
-		    
+		   
         } else if (!empty($_POST['nombre_cliente'])){
 		/* Connect To Database*/
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
 		//ASIGNACION DE VARIABLES PARA INSERTAR
+		
+mysqli_query($con,"SET NAMES 'utf8'");
 		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_cliente"],ENT_QUOTES)));
 		$telefono=mysqli_real_escape_string($con,(strip_tags($_POST["telefono_cliente"],ENT_QUOTES)));
 		$email=mysqli_real_escape_string($con,(strip_tags($_POST["email_cliente"],ENT_QUOTES)));

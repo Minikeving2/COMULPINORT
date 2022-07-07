@@ -1,5 +1,5 @@
 <?php
- 
+
 	/*-------------------------
 	Autor: Obed Alvarado
 	Web: obedalvarado.pw
@@ -9,6 +9,7 @@
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+	mysqli_query($con,"SET NAMES 'utf8'");
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$user_id=intval($_GET['id']);

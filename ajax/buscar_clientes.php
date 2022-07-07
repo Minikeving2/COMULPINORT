@@ -1,5 +1,5 @@
 <?php
- 
+
 	/*-------------------------
 	Autor: Obed Alvarado
 	Web: obedalvarado.pw
@@ -167,11 +167,6 @@
 					<?php
 				}
 				?>
-				<tr>
-					<td colspan=7><span class="pull-right"><?
-					 echo paginate($reload, $page, $total_pages, $adjacents);
-					?></span></td>
-				</tr>
 				</tbody>
 			  </table>
 			</div>

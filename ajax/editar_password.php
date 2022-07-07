@@ -7,7 +7,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     // if you are using PHP 5.3 or PHP 5.4 you have to include the password_api_compatibility_library.php
     // (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
     require_once("../libraries/password_compatibility_library.php");
-}	 	
+}		
 		if (empty($_POST['user_id_mod'])){
 			$errors[] = "ID vacío";
 		}  elseif (empty($_POST['user_password_new3']) || empty($_POST['user_password_repeat3'])) {

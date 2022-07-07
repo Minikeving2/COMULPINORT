@@ -9,7 +9,7 @@
         header("location: login.php");
 		exit;
         }
-	 
+	
 	$active_facturas = "active";
 	$active_productos= "";
 	$active_clientes = "";

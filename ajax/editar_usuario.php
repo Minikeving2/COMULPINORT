@@ -7,7 +7,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     // if you are using PHP 5.3 or PHP 5.4 you have to include the password_api_compatibility_library.php
     // (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
     require_once("../libraries/password_compatibility_library.php");
-}	 	
+}		
 		if (empty($_POST['firstname2'])){
 			$errors[] = "Nombres vacíos";
 		} elseif (empty($_POST['lastname2'])){
@@ -38,7 +38,8 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
          {
             require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 			require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-			
+		
+mysqli_query($con,"SET NAMES 'utf8'");	
 				// escaping, additionally removing everything that could be (html/javascript-) code
                 $firstname = mysqli_real_escape_string($con,(strip_tags($_POST["firstname2"],ENT_QUOTES)));
 				$lastname = mysqli_real_escape_string($con,(strip_tags($_POST["lastname2"],ENT_QUOTES)));

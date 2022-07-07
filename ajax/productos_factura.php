@@ -10,6 +10,7 @@
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	
+mysqli_query($con,"SET NAMES 'utf8'");
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
@@ -58,7 +59,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<?php 
+				<?php
 				while ($row=mysqli_fetch_array($query)){
 					$id_producto=$row['id_producto'];
 					$codigo_producto=$row['codigo_producto'];

@@ -5,11 +5,12 @@
 	Web: obedalvarado.pw
 	Mail: info@obedalvarado.pw
 	---------------------------*/
+	
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-	
+	mysqli_query($con,"SET NAMES 'utf8'");
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 
     
@@ -139,7 +140,7 @@
 				
 	
 		}
-		 
+		
 	} elseif ($_REQUEST['tipo_informe']==2) {
 		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM clientes, contrato WHERE clientes.nombre_cliente like '%$q%' and clientes.id_cliente = contrato.id_cliente and contrato.fecha_crea >= $fecha_start and contrato.fecha_crea <= $fecha_end");
 		$row= mysqli_fetch_array($count_query);

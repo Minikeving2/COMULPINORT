@@ -16,7 +16,7 @@
     $active_contratos="active";	
 	$active_mapa = "";	
 	$title="Nuevo Contrato | SistCoom V1.0";
-	 
+	
 	/* Connect To Database*/
 	require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
@@ -45,7 +45,7 @@
 			include("modal/registro_productos.php");
 			include("modal/buscar_cliente.php");
 		?>
-			<form class="form-horizontal" role="form" id="datos_contrato">
+			<form class="form-horizontal" role="form" id="datos_contrato" enctype="multipart/form-data">
 				
 			<div class="form-group row">
 				   <label for="comprobante" class="col-md-2 ">Nro. Contrato</label>	

@@ -1,7 +1,7 @@
 <?php
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
-	 
+	
 	
 	if ($_POST['mod_id']=="") {
            $errors[] = "ID vacio";
@@ -26,6 +26,7 @@
 		// escaping, additionally removing everything that could be (html/javascript-) code
 
 	
+mysqli_query($con,"SET NAMES 'utf8'");
 
 
 		$id_producto = $_POST["mod_id"];

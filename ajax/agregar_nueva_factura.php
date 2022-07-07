@@ -5,12 +5,13 @@
 	Mail: info@obedalvarado.pw
 	---------------------------*/
 include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+
 $session_id= session_id();
 
 /* Connect To Database*/
 require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-
+mysqli_query($con,"SET NAMES 'utf8'");
 $sql_count=mysqli_query($con,"select * from tmp ");
 $count=mysqli_num_rows($sql_count);
 if ($count==0){
@@ -47,7 +48,7 @@ if (str_replace('/','-',$_POST["fecha_fact"])==""){
 } else {
 	$fecha_factura="'".str_replace('/','-',$_POST["fecha_fact"])."'";
 }
- 
+
 $tipo_mov = $_POST["tipo_mov"];
 $condiciones=$_POST['condiciones'];
 $total_venta=str_replace(',','',$_POST['total_venta']);

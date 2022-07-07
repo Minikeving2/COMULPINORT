@@ -8,7 +8,7 @@
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: login.php");
 		exit;
-        }
+        } 
 
 	/* Connect To Database*/
 	require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -20,7 +20,7 @@
 	$active_usuarios="";
 	$active_contratos = "";	
 	$active_mapa = "";	
-	 	
+		
 	$title="Productos | SistCoom V1.0";
 ?>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
 						<div class="form-group row">
 							<label for="q" class="col-md-2 control-label">Código o nombre</label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="q" placeholder="Código o nombre del producto">
+								<input type="text" class="form-control" id="q" placeholder="código o nombre del producto">
 							</div>
 							<div class="col-md-3">
 								<button type="button" class="btn btn-default" onclick='load(1);'>

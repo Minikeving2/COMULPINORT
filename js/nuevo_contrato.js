@@ -191,7 +191,7 @@
 			});
 		  event.preventDefault();
 		})
- 
+
 		$( "#datos_contrato" ).submit(function( event ) {
 			event.preventDefault();
 			var fecha_inicio = $('#fecha_inicio').val();

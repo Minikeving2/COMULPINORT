@@ -7,6 +7,8 @@
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
+		
+mysqli_query($con,"SET NAMES 'utf8'");
 		$num_contrato = $_POST["num_contrato"];
 
 		if ($_POST['num_poliza']==""){
@@ -51,7 +53,7 @@
 		$fecha_act=date("Y-m-d");
 		$observacion = $_POST["observaciones"];
 		$calculado = str_replace(',','',$_POST["calculado"]);
- 
+
 
 		if($archivo['name']){
 			$sql =  "SELECT ruta FROM contrato WHERE id_contrato='$id_contrato'";

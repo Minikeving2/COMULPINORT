@@ -12,6 +12,7 @@ $session_id= session_id();
 require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
+mysqli_query($con,"SET NAMES 'utf8'");
 
 $sql_count=mysqli_query($con,"select * from tmp");
 $count=mysqli_num_rows($sql_count);
@@ -96,21 +97,21 @@ if ($count==0){
 				mysqli_query($con, "INSERT INTO detalle_contrato (id_contrato,id_producto,cantidad,precio_costo,total)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."','$aux')");
 			}
 		}
-		
-		if ($archivo['name'] != "") {
-			
 			$name = "(".$id_factura.")".$archivo['name'];
-			$ruta = $archivo['tmp_name'];
-
+			$ruta = $_FILES['archivo']['tmp_name'];
 			$destino = "../archivos/" . $name;
+		
     		if (copy($ruta, $destino)) {
        			mysqli_query($con, "UPDATE contrato SET ruta = '$destino', archivo = '$name' WHERE id_contrato = $id_factura");
+			} else {
+					echo json_encode('<script>alert("El tipo de archivo no es valido") </script>');
+					exit;
 			}
-		} 
+		
 	//tras realizar la importacion de tmp a detalle_factura toca vacia la tabla tmp
 	
 		$sql=mysqli_query($con,"DELETE FROM tmp");
-		echo json_encode("<script>alert('factura registrada correctamente')</script>");
+		echo json_encode("<script>alert('factura registrada correctamente $name')</script>");
  	} else {
 		echo json_encode("INSERT INTO contrato (fecha_inicio, fecha_final, fecha_crea, tipo_per, id_cliente, duracion, numcontrato, numpoliza, clausulagal, clausulapenal, descripcion, valor, id_contrato_rel, id_usuario) VALUES ('$fecha_inicio', '$fecha_fin', '$fecha_creacion', '$tipo_per', '$id_cliente', '$duracion', '$num_contrato', '$num_poliza', '$clau_legal', '$clau_penal','$observacion','$calculado','$otrosi','".$_SESSION['user_id']."')");
  	}

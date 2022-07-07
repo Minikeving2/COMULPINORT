@@ -14,7 +14,8 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-	
+
+mysqli_query($con,"SET NAMES 'utf8'");	
 if ($id!="" and $cantidad!="" and $precio_venta!="")
 {
 $insert_tmp=mysqli_query($con, "INSERT INTO detalle_contrato (id_contrato, id_producto,cantidad,precio_costo) VALUES ('$id_contrato','$id','$cantidad','$precio_venta')");
@@ -66,7 +67,7 @@ mysqli_query($con, "DELETE FROM detalle_contrato WHERE id_detalle='".$id_detalle
 		<?php
 	}
 	$subtotal=number_format($sumador_total,2,'.','');
- 	
+	
 	$total_factura=$subtotal;
 	$update=mysqli_query($con,"update contrato set valor='$total_factura' where id_factura='$id_factura'");
 ?>

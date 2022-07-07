@@ -14,6 +14,7 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	
+mysqli_query($con,"SET NAMES 'utf8'");
 if (!empty($id) and !empty($cantidad) and !empty($precio_venta))
 {
 $insert_tmp=mysqli_query($con, "INSERT INTO detalle_factura (numero_factura, id_producto,cantidad,precio_venta) VALUES ('$numero_factura','$id','$cantidad','$precio_venta')");
@@ -39,7 +40,7 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 	$sumador_total=0;
 	$sql=mysqli_query($con, "select * from products, facturas, detalle_factura where facturas.numero_factura=detalle_factura.numero_factura and  facturas.id_factura='$id_factura' and products.id_producto=detalle_factura.id_producto");
 	while ($row=mysqli_fetch_array($sql))
-	{ 
+	{
 	$id_detalle=$row["id_detalle"];
 	$codigo_producto=$row['codigo_producto'];
 	$cantidad=$row['cantidad'];

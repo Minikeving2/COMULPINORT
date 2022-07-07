@@ -14,7 +14,8 @@ if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-	
+
+mysqli_query($con,"SET NAMES 'utf8'");	
 if ($id!="" and $cantidad!="" and $precio_venta!="")
 {
 	$aux=$cantidad*$precio_venta;
@@ -47,7 +48,7 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 	$cantidad=$row['cantidad'];
 	$nombre_producto=$row['nombre_producto'];
 	
-	 
+	
 	$precio_venta=$row['precio_venta'];
 	$precio_venta_f=number_format($precio_venta,2);//Formateo variables
 	$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas

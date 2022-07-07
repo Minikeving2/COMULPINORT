@@ -1,7 +1,7 @@
 <?php
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
-	 
+	
 	if (empty($_POST['id_cliente'])) {
            $errors[] = "ID vacío";
         }else if (empty($_POST['nombre_cliente'])) {
@@ -15,6 +15,7 @@
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
 	
+mysqli_query($con,"SET NAMES 'utf8'");
 		$id_cliente=intval($_POST['id_cliente']);
 		$nit=$_POST["nit"];
 		$nombre_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_cliente"],ENT_QUOTES)));

@@ -119,6 +119,26 @@
 			  </table>
 			</div>
 			<?php
+		} else { ?>
+			<div class="table-responsive" id="scroll">
+				<table class="table">
+					<thead>
+						<tr  class="info">
+							<th>Num.</th>
+							<th>Cliente</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
+							<th>Estado</th>
+							<th class='text-right'>Total</th>
+							<th class='text-right'>Acciones</th>
+						</tr>
+					</thead>
+				</table>
+				<div class="search_null">
+					No se encontraron contratos	
+				</div>
+			</div> 
+			<?php
 		}
 	}
 ?>

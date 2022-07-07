@@ -1,7 +1,7 @@
 		$(document).ready(function(){
 			load(1);
 		});
- 
+
 		function load(page){
 			var q= $("#q").val();
 			$("#loader").fadeIn('slow');

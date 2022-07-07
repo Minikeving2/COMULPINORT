@@ -1,187 +1,34 @@
-[30-Jun-2022 18:59:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[30-Jun-2022 19:00:29 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:02:07 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:15:46 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:17:27 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:21:37 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:27:52 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:29:05 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:29:09 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:31:09 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:31:55 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:32:54 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:33:03 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:33:27 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:33:33 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[30-Jun-2022 19:33:44 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[01-Jul-2022 15:33:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 15:33:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:04:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:07:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:07:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:11:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:11:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:12:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:16:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 12
-[01-Jul-2022 16:16:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:16:48 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 12
-[01-Jul-2022 16:16:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:19:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 12
-[01-Jul-2022 16:19:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:21:08 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, string given in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 12
-[01-Jul-2022 16:21:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 16:22:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 19:24:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[01-Jul-2022 22:18:11 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[01-Jul-2022 22:18:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[05-Jul-2022 13:00:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[05-Jul-2022 13:01:26 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/productos_contrato.php on line 37
-[05-Jul-2022 13:03:00 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[05-Jul-2022 13:03:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[05-Jul-2022 22:40:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[05-Jul-2022 22:40:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[05-Jul-2022 22:45:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[05-Jul-2022 22:45:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[05-Jul-2022 22:46:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[05-Jul-2022 22:46:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[06-Jul-2022 16:09:38 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:09:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:09:44 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:09:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:10:22 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:10:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:13:13 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:13:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:14:13 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:14:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:15:23 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:15:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:15:28 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:15:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:15:33 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:15:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:16:37 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:16:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:17:20 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 16:17:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 16:39:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php:172
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_clientes.php on line 172
-[06-Jul-2022 19:55:59 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 19:55:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 20:20:39 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 20:20:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
-[06-Jul-2022 20:20:45 UTC] PHP Warning:  Division by zero in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 75
-[06-Jul-2022 20:20:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function paginate() in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php:130
-Stack trace:
-#0 {main}
-  thrown in /home/coomulpi/public_html/Erpcoom/ajax/buscar_usuarios.php on line 130
+
+[07-Jul-2022 16:17:25 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 16:23:34 UTC] PHP Warning:  unlink(): No such file or directory in /home/coomulpi/public_html/Erpcoom/ajax/buscar_contratos.php on line 21
+[07-Jul-2022 16:24:41 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 16:34:11 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 16:40:02 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 16:45:39 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 16:47:23 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 16:50:05 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 16:51:54 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 16:52:20 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 16:54:54 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 16:57:37 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 19:13:29 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 19:15:39 UTC] PHP Parse error:  syntax error, unexpected '$archivo' (T_VARIABLE), expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 19:15:49 UTC] PHP Parse error:  syntax error, unexpected '$archivo' (T_VARIABLE), expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 19:16:05 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 19:16:47 UTC] PHP Fatal error:  Cannot use [] for reading in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 19:17:03 UTC] PHP Parse error:  syntax error, unexpected '"')</script>"' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 19:17:15 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 19:17:51 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 19:24:38 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 110
+[07-Jul-2022 19:25:31 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 110
+[07-Jul-2022 19:26:48 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 110
+[07-Jul-2022 19:40:46 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 110
+[07-Jul-2022 19:42:03 UTC] PHP Warning:  copy(): Filename cannot be empty in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 106
+[07-Jul-2022 21:11:55 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 21:12:41 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 21:12:48 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 21:14:21 UTC] PHP Parse error:  syntax error, unexpected 'var_dump' (T_STRING), expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 21:14:59 UTC] PHP Parse error:  syntax error, unexpected 'var_dump' (T_STRING), expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 21:18:20 UTC] PHP Parse error:  syntax error, unexpected '"', expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 21:19:54 UTC] PHP Parse error:  syntax error, unexpected '"', expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107
+[07-Jul-2022 21:20:32 UTC] PHP Parse error:  syntax error, unexpected '"', expecting ')' in /home/coomulpi/public_html/Erpcoom/ajax/nuevo_contrato.php on line 107

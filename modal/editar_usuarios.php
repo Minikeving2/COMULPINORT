@@ -19,7 +19,7 @@
 				  <input type="text" class="form-control" id="firstname2" name="firstname2" placeholder="Nombres" required>
 				  <input type="hidden" id="mod_id" name="mod_id">
 				</div>
-			  </div> 
+			  </div>
 			  <div class="form-group">
 				<label for="lastname2" class="col-sm-3 control-label">Apellidos</label>
 				<div class="col-sm-8">
