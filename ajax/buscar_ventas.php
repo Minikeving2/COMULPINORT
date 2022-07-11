@@ -70,7 +70,7 @@
 			  <table class="table">
 				<thead>
 				<tr  class="info">
-					<th>#</th>
+					<th>Contenacion</th>
 					<th>Fecha</th>
 					<th>Cliente</th>
 					<th>Galones</th>
@@ -82,17 +82,7 @@
 				<tbody>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
-						$id_factura=$row['id_factura'];
-						$numero_factura=$row['numero_factura'];
-						$fecha=date("d/m/Y", strtotime($row['fecha_factura']));
-						$nombre_cliente=$row['nombre_cliente'];
-						$telefono_cliente=$row['telefono_cliente'];
-						$email_cliente=$row['email_cliente'];
-						$nombre_vendedor=$row['firstname']." ".$row['lastname'];
-						$estado_factura=$row['estado_factura'];
-						if ($estado_factura==1){$text_estado="Pagado";$label_class='label-success';}
-						else{$text_estado="Pendiente";$label_class='label-warning';}
-						$total_venta=$row['total_venta'];
+					
 					?>
 					<tr>
 						<td><?php echo $id_factura; ?></td>
@@ -122,13 +112,12 @@
 				<table class="table">
 					<thead>
 						<tr  class="info">
-							<th>#</th>
+							<th>Nro. venta</th>
 							<th>Fecha</th>
-							<th>Cliente</th>
+							<th>Estacion</th>
 							<th>Galones</th>
 							<th>Estado</th>
 							<th class='text-right'>Total</th>
-								
 						</tr>
 					</thead>
 				</table>
