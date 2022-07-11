@@ -22,13 +22,15 @@
       <li class="<?php echo $active_facturas;?>"><a href="facturas.php"><i class='glyphicon glyphicon glyphicon-sort'></i> Movimientos <span class="sr-only">(current)</span></a></li>
       <li class="<?php echo $active_contratos;?>"><a href="contratos.php"><i class='glyphicon glyphicon-book'></i> Contratos <span class="sr-only"></span></a></li>
       <li class="<?php echo $active_informes;?>"><a href="informes.php"><i class='glyphicon glyphicon-list-alt'></i> Informes <span class="sr-only"></span></a></li>
- 
+      <li class="<?php echo $active_ventas;?>"><a href="ventas.php"><span class="glyphicon glyphicon-map-marker"></i> Ventas</a></li>
+       
       <li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Estaciones y asociados</a></li>
 		
        <li class="<?php echo $active_productos;?>"><a href="productos.php"><i class='glyphicon glyphicon-barcode'></i> Productos</a></li>
 		<li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
     <li class="<?php echo $active_mapa;?>"><a href="mapa.php"><span class="glyphicon glyphicon-map-marker"></i> Mapa</a></li>
-       </ul>
+       
+  </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.coomulpinort.com" target='_blank'><i class='glyphicon glyphicon-envelope'></i> Soporte</a></li>
 		<li><a href="login.php?logout"><i class='glyphicon glyphicon-off'></i> Salir</a></li>
