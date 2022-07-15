@@ -33,14 +33,16 @@
 	?>  
     <div class="container" id="container">
 		<div class="panel panel-info" id="borde">
-		<div class="panel-heading">
-		    <div class="btn-group pull-right">
-				<a  href="" class="btn btn-info" onclick="imprimir_informe()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
+			<div class="panel-heading">
+				<div class="btn-group pull-right">
+					<input  type="file" class="btn btn-info" name="archivo "id="archivo" enctype="multipart/form-data">
+					<a  href="" class="btn btn-info" id="separador" onclick="subir_datos()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Subir</a>
+					
+				</div>
+				
+		    	<h4><i class='glyphicon glyphicon-search'></i> Buscar Ventas</h4>
 			</div>
-			<h4><i class='glyphicon glyphicon-search'></i> Buscar Ventas</h4>
-		</div>
-		<div>
-	</div>
+		
 			<div class="panel-body" id="panel_body">
 				<form class="form-horizontal" role="form" id="informe_datos">
 				

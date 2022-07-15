@@ -5,9 +5,11 @@ $(document).ready(function(){
 
 function load(page){
     var q= $("#q").val();
+    var date_start = document.getElementById("fecha_inicio").value;
+    var date_end = document.getElementById("fecha_fin").value;
     $("#loader").fadeIn('slow');
     $.ajax({
-        url:'./ajax/buscar_ventas.php?action=ajax&page='+page+'&q='+q,
+        url:'./ajax/buscar_ventas.php?action=ajax&page='+page+'&q='+q+'&fecha_start='+date_start+'&fecha_end='+date_end,
          beforeSend: function(objeto){
          $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
       },
@@ -18,8 +20,4 @@ function load(page){
             
         }
     })
-}
-
-function imprimir_factura(id_factura){
-    VentanaCentrada('./pdf/documentos/ver_factura.php?id_factura='+id_factura,'Factura','','1024','768','true');
 }

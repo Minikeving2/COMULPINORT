@@ -35,9 +35,11 @@
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
+		 $fecha_start="'".$_REQUEST['fecha_start']."'";
+		 $fecha_end="'".$_REQUEST['fecha_end']."'";
 		  $sTable = "ventas, clientes";
 		 $sWhere = "";
-		 $sWhere.=" WHERE ventas.id_cliente=clientes.id_cliente";
+		 $sWhere.=" WHERE ventas.NOMBRE = clientes.nombre_cliente and ventas.FECHA >= $fecha_start and ventas.FECHA <= $fecha_end";
 		if ( $_GET['q'] != "" )
 		{
 		$sWhere.= " and  (clientes.nombre_cliente like '%$q%')";
@@ -72,30 +74,36 @@
 				<tr  class="info">
 					<th>Contenacion</th>
 					<th>Fecha</th>
-					<th>Cliente</th>
-					<th>Galones</th>
-					<th>Estado</th>
-					<th class='text-right'>Total</th>
-					
+					<th>Nit</th>
+					<th>Nombre Cliente</th>
+					<th>CODMAD</th>
+					<th>CANLISTA</th>
+					<th>PARCVTA</th>
 				</tr>
 				</thead>
 				<tbody>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
 					
+					$concatenacion=$row['CONCATENATION'];
+					$fecha=$row['FECHA'];
+					$nit=$row['NIT'];
+					$nombre_cliente=$row['NOMBRE'];
+					$codmad=$row['CODMAD'];
+					$nom_combustible=$row['NOM_COMBUSTIBLE'];
+					$canlista=$row['CANLISTA'];
+					$PARCVTA=$row['PARCVTA'];
 					?>
 					<tr>
-						<td><?php echo $id_factura; ?></td>
+						<td><?php echo $concatenacion; ?></td>
 						<td><?php echo $fecha; ?></td>
-						<td><a href="#" data-toggle="tooltip" data-placement="top" title="<i class='glyphicon glyphicon-phone'></i> <?php echo $telefono_cliente;?><br><i class='glyphicon glyphicon-envelope'></i>  <?php echo $email_cliente;?>" ><?php echo $nombre_cliente;?></a></td>
-						<td><?php echo $nombre_vendedor; ?></td>
-						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado; ?></span></td>
-						<td class='text-right'><?php echo number_format ($total_venta,2); ?></td>					
-					<td class="text-right">
-						<a href="editar_factura.php?id_factura=<?php echo $id_factura;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
-						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
-						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $id_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
-					</td>
+						<td><?php echo $nit; ?></td>
+						<td><?php echo $nombre_cliente; ?></td>
+						<td><?php echo $nom_combustible; ?></td>
+						<td><?php echo $canlista; ?></td>
+						<td><?php echo $PARCVTA; ?></td>
+										
+					
 						
 					</tr>
 					<?php
@@ -112,12 +120,13 @@
 				<table class="table">
 					<thead>
 						<tr  class="info">
-							<th>Nro. venta</th>
+							<th>Contenacion</th>
 							<th>Fecha</th>
-							<th>Estacion</th>
-							<th>Galones</th>
-							<th>Estado</th>
-							<th class='text-right'>Total</th>
+							<th>Nit</th>
+							<th>Nombre Cliente</th>
+							<th>CODMAD</th>
+							<th>CANLISTA</th>
+							<th>PARCVTA</th>
 						</tr>
 					</thead>
 				</table>
