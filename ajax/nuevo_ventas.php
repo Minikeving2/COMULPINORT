@@ -15,8 +15,6 @@ require_once ("../config/conexion.php");//Contiene funcion que conecta a la base
 mysqli_query($con,"SET NAMES 'utf8'");
 
 $archivo = $_FILES['archivo'];
-
-
 if ($archivo['name']==""){
 	echo json_encode("<script>alert('No hay ninguno archivo cargado')</script>");
 	exit;
@@ -26,14 +24,12 @@ $name = "(".$id_factura.")".$archivo['name'];
 $ruta = $_FILES['archivo']['tmp_name'];
 $destino = "../tmp/" . $name;
 		
-if (copy($ruta, $destino)) {
+if (copy(utf8_decode($ruta), $destino)) {
  	
-    /*$file = fopen($destino , "r+");
+    $file = fopen($destino , "r+");
     $consultas="";
     $linea=0;
-    foreach(file("4.txt") as $line) {
-        
-      
+    foreach(file($destino) as $line) {
         if ($linea==0){
     
         } else {
@@ -83,7 +79,8 @@ if (copy($ruta, $destino)) {
             $sql=""; 
         }
         $linea=$linea+1;
-    } */
+    } 
+    
     echo json_encode('<script>alert("archivo cargado correctamente") </script>');
 } else {
 	echo json_encode('<script>alert("El tipo de archivo no es valido") </script>');

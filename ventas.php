@@ -33,15 +33,18 @@
 	?>  
     <div class="container" id="container">
 		<div class="panel panel-info" id="borde">
+		
 			<div class="panel-heading">
+			<form role="form" id="datos_ventas" enctype="multipart/form-data">
 				<div class="btn-group pull-right">
-					<input  type="file" class="btn btn-info" name="archivo "id="archivo" enctype="multipart/form-data">
-					<a  href="" class="btn btn-info" id="separador" onclick="subir_datos()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Subir</a>
-					
+						<input  type="file" class="btn btn-info" name="archivo"id="archivo" enctype="multipart/form-data">
+						<button type="submit" class="btn btn-info" id="separador"><!--<span class="glyphicon glyphicon-plus" ></span>-->Subir</button>
 				</div>
 				
 		    	<h4><i class='glyphicon glyphicon-search'></i> Buscar Ventas</h4>
+				</form>
 			</div>
+			
 		
 			<div class="panel-body" id="panel_body">
 				<form class="form-horizontal" role="form" id="informe_datos">

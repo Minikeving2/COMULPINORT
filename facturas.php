@@ -35,7 +35,7 @@
 		    <div class="btn-group pull-right">
 				<a  href="nueva_factura.php" class="btn btn-info"><span class="glyphicon glyphicon-plus" ></span> Nuevo Movimiento</a>
 			</div>
-			<h4><i class='glyphicon glyphicon-search'></i> Buscar Movimientos</h4>
+			<h4><i class='glyphicon glyphicon-search'></i>Buscar Movimientos</h4>
 		</div>
 			<div class="panel-body" id="panel_body">
 				<form class="form-horizontal" role="form" id="datos_cotizacion">
