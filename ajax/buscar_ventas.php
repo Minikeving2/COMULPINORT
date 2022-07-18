@@ -11,27 +11,7 @@
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	mysqli_query($con,"SET NAMES 'utf8'");
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
-	if (isset($_GET['id'])){
-		$id_factura=intval($_GET['id']);
-		$del1="delete from facturas where id_factura='".$id_factura."'";
-		$del2="delete from detalle_factura where id_factura='".$id_factura."'";
-		if ($delete1=mysqli_query($con,$del1)|5){
-			?>
-			<div class="alert alert-success alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Aviso!</strong><?php echo $id_factura; ?> Datos eliminados exitosamente
-			</div>
-			<?php 
-		}else {
-			?>
-			<div class="alert alert-danger alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Error!</strong> No se puedo eliminar los datos
-			</div>
-			<?php
-			
-		}
-	}
+	
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
@@ -39,7 +19,7 @@
 		 $fecha_end="'".$_REQUEST['fecha_end']."'";
 		  $sTable = "ventas, clientes";
 		 $sWhere = "";
-		 $sWhere.=" WHERE ventas.NOMBRE = clientes.nombre_cliente and ventas.FECHA >= $fecha_start and ventas.FECHA <= $fecha_end";
+		 $sWhere.=" WHERE ventas.ID_CLIENTE = clientes.id_cliente and ventas.FECHA >= $fecha_start and ventas.FECHA <= $fecha_end";
 		if ( $_GET['q'] != "" )
 		{
 		$sWhere.= " and  (clientes.nombre_cliente like '%$q%')";
@@ -88,7 +68,7 @@
 					$concatenacion=$row['CONCATENATION'];
 					$fecha=$row['FECHA'];
 					$nit=$row['NIT'];
-					$nombre_cliente=$row['NOMBRE'];
+					$nombre_cliente=$row['nombre_cliente'];
 					$codmad=$row['CODMAD'];
 					$nom_combustible=$row['NOM_COMBUSTIBLE'];
 					$canlista=$row['CANLISTA'];

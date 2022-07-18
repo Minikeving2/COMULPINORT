@@ -20,9 +20,9 @@ if ($archivo['name']==""){
 	exit;
 }
 	
-$name = "(".$id_factura.")".$archivo['name'];
+$name = $archivo['name'];
 $ruta = $_FILES['archivo']['tmp_name'];
-$destino = "../tmp/" . $name;
+$destino = "../tmp/".$name;
 		
 if (copy(utf8_decode($ruta), $destino)) {
  	
@@ -57,10 +57,14 @@ if (copy(utf8_decode($ruta), $destino)) {
                     $value=date("Y-m-d", strtotime($fecha)); 
                     
                  }
-                if ($aux==3){
+                 if ($aux==3){
                     $cod=mysqli_query($con, "SELECT id_cliente FROM clientes WHERE nit='$value'");
                     $cod_cliente=mysqli_fetch_array($cod);
-                    $value=$cod_cliente[0];
+                    if ($cod_cliente[0]==""){
+                        $value="null";
+                    } else {
+                        $value=$cod_cliente[0];
+                    }
                 }
                 if($aux==4){
                 } else {
@@ -75,13 +79,16 @@ if (copy(utf8_decode($ruta), $destino)) {
             if ($a){
             } else {
                 mysqli_query($con,$sql);
+               
             }
             $sql=""; 
         }
         $linea=$linea+1;
-    } 
-    
+    }
+    fclose($file);
+    unlink("../tmp/$name");
     echo json_encode('<script>alert("archivo cargado correctamente") </script>');
+    
 } else {
 	echo json_encode('<script>alert("El tipo de archivo no es valido") </script>');
 	exit;
