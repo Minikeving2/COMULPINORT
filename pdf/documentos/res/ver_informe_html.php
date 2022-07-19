@@ -127,9 +127,19 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
    
     </table>
 	<br>
+	
+	<?php if ($tipo_informe==1) { ?>
+		<table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
+			<tr>
+				<td style="width:100%; text-align: center" class='midnight-blue'>APOYOS A LAS ESTACIONES</td>
+			</tr>
+		</table>
+	<?php } ?>
+	
+
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
-	<?php if ($tipo_informe==1) { ?> 
-        <tr>
+	<?php if ($tipo_informe==1) { ?>
+		<tr>
             <th style="width: 5%;text-align: center" class='midnight-blue'>ID</th>
 			<th style="width: 10%;text-align: center" class='midnight-blue'>FECHA</th>
             <th style="width: 15%;text-align: center" class='midnight-blue'>COD PROD.</th>
@@ -192,6 +202,7 @@ while ($row=mysqli_fetch_array($sql))
 	$nums++;
 	}
 	$subtotal=number_format($sumador_total,2,'.','');
+
 } else if ($tipo_informe==2){ 
 		$nums=1;
 		$sumador_total=0;
@@ -254,20 +265,83 @@ while ($row=mysqli_fetch_array($sql))
 	</table>
 
 <?php if($tipo_informe==1) {?>
+	
+	
 	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
 		<tr>
 			<td style="width: 85%; text-align: right;" class='midnight-blue'>TOTAL &#36; </td>
             <td style="width: 15%; text-align: right;"> <?php echo number_format($subtotal,2);?></td>
         </tr>
     </table>
-	
-<?php } ?>
-	
 	<br>
-	<div style="font-size:11pt;text-align:center;font-weight:bold">Gracias por su compra!</div>
+	<br>
+	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
+		<tr>
+			<td style="width:100%; text-align: center" class='midnight-blue'>COMPRAS DE LAS ESTACIONES</td>
+		</tr>
+	</table>
+	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
+		<tr>
+            <th style="width: 13%;text-align: center" class='midnight-blue'>CONCATENA.</th>
+			<th style="width: 13%;text-align: center" class='midnight-blue'>FECHA</th>
+            <th style="width: 10%;text-align: center" class='midnight-blue'>CODMAT</th>
+            <th style="width: 41%;text-align: left" class='midnight-blue'>NOM. COMBUSTIBLE</th>
+			<th style="width: 10%;text-align: center" class='midnight-blue'>CANTIDAD</th>
+			<th style="width: 13%;text-align: right" class='midnight-blue'>VALOR</th>
+        </tr>
+		
+
 	
+<?php 
+$nums=1;
+$sumador_total=0;
+$sql=mysqli_query($con, "SELECT * FROM clientes, ventas WHERE ventas.ID_CLIENTE = clientes.id_cliente and clientes.nombre_cliente like '%".$rw_cliente['nombre_cliente']."%' and ventas.FECHA >= '$fecha_inicio' and '$fecha_fin' >= ventas.FECHA"); 
+
+while ($row=mysqli_fetch_array($sql)){
 	
-	  
+	$concatenacion=$row['CONCATENATION'];
+	$fecha=$row['FECHA'];
+	$codmad=$row['CODMAT'];
+	$nom_combustible=$row['NOM_COMBUSTIBLE'];
+	$canlista=$row['CANLISTA'];
+	$PARCVTA=$row['PARCVTA'];
+
+	/*$precio_venta_f=number_format($precio_venta,2);//Formateo variables
+	$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
+	$precio_total=$precio_venta_r*$cantidad;*/
+	$precio_total_f=number_format($total_v,2);//Precio total formateado
+	$sumador_total=$total_v+$sumador_total;
+	//Sumador
+	if ($nums%2==0){
+		$clase="clouds";
+	} else {
+		$clase="silver";
+	}
+	?>
+
+        <tr>
+            <td class='<?php echo $clase;?>' style="width: 13%; text-align: center"><?php echo $concatenacion;?></td>
+            <td class='<?php echo $clase;?>' style="width: 13%; text-align: center"><?php echo $fecha;?></td>
+            <td class='<?php echo $clase;?>' style="width: 10%; text-align: center"><?php echo $codmad;?></td>
+			<td class='<?php echo $clase;?>' style="width: 41%; text-align: left"><?php echo $nom_combustible;?></td>
+			<td class='<?php echo $clase;?>' style="width: 10%; text-align: right"><?php echo $canlista;?></td>
+			<td class='<?php echo $clase;?>' style="width: 13%; text-align: right"><?php echo $PARCVTA;?></td>
+            
+        </tr>
+
+	<?php 
+
+	
+	$nums++;
+	}
+
+
+
+} ?>
+	
+
+	</table>
+	
 
 </page>
 

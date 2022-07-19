@@ -69,7 +69,7 @@
 					$fecha=$row['FECHA'];
 					$nit=$row['NIT'];
 					$nombre_cliente=$row['nombre_cliente'];
-					$codmad=$row['CODMAD'];
+					$codmad=$row['CODMAT'];
 					$nom_combustible=$row['NOM_COMBUSTIBLE'];
 					$canlista=$row['CANLISTA'];
 					$PARCVTA=$row['PARCVTA'];
@@ -82,9 +82,6 @@
 						<td><?php echo $nom_combustible; ?></td>
 						<td><?php echo $canlista; ?></td>
 						<td><?php echo $PARCVTA; ?></td>
-										
-					
-						
 					</tr>
 					<?php
 				}
@@ -94,7 +91,6 @@
 			</div>
 			<?php
 		} else {
-			
 				?>
 				<div class="table-responsive" id="scroll">
 				<table class="table">
@@ -115,9 +111,6 @@
 					</div>
 				  </div>
 				  <?php
-				
-	
 		}
-		
 	}
 ?>

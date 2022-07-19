@@ -21,11 +21,7 @@ if ($tipo_informe==1){
     $sql_count=mysqli_query($con,"SELECT count(*) AS numrows FROM clientes, facturas, detalle_factura, products WHERE clientes.nombre_cliente like '%$nombre%' and clientes.id_cliente = facturas.id_cliente and facturas.id_factura = detalle_factura.id_factura and detalle_factura.id_producto = products.id_producto and facturas.fecha_factura >= '$fecha_inicio' and facturas.fecha_factura <= '$fecha_fin'");
 	$row=mysqli_fetch_array($sql_count);
     $numrows = $row['numrows'];
-	if ($numrows==0){  
-	    echo "<script>alert('Informe no encontrado')</script>";
-	    echo "<script>window.close();</script>";
-    exit;
-	}
+	
 	$sql_informe=mysqli_query($con,"SELECT id_cliente FROM clientes WHERE nombre_cliente like '%$nombre%'");
 	$rw_factura=mysqli_fetch_array($sql_informe);
 	$id_cliente=$rw_factura['id_cliente'];
