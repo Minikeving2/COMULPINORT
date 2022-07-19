@@ -70,42 +70,42 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     </table>
     <br>
     
+	<table cellspacing="0" style="width: 100%;">
+        <tr>
 
+            <td style="width: 25%; color: #444444; " >
+                <br>
+                
+            </td>
+			<td style="width: 50%; color: #000 ;font-size:12px;text-align:center">
+                <span style="color: #000;font-size:14px;font-weight:bold"><?php if ($tipo_informe==1){?>
+					RESUMEN DE LOS MOVIMIENTOS POR ESTACION
+				<?php } else if ($tipo_informe==2){ ?>
+					RESUMEN DE LOS CONTRATOS POR ESTACION
+				<?php } ?>
+				</span>
+				<br>Desde: <?php echo $fecha_inicio;?>   
+				Hasta: <?php echo $fecha_fin;?><br>
+				
+                
+            </td>
+			<td style="width: 25%;text-align:right">
+			
+			</td>
+			
+        </tr>
+    </table>
 	
    
     
-       <br>
-		<table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
-        <tr>
-           <td style="width:50%;" class='midnight-blue'>INFORME</td>
-		  <td style="width:25%;" class='midnight-blue'>DESDE</td>
-		   <td style="width:25%;" class='midnight-blue'>HASTA</td>
-        </tr>
-		<tr>
-           <td style="width:50%;">
-				<?php if ($tipo_informe==1){?>
-				RESUMEN DE LOS MOVIMIENTOS
-			<?php } else if ($tipo_informe==2){ ?>
-                RESUMEN DE LOS CONTRATOS 
-				<?php } ?>
-		   </td>
-		  <td style="width:25%;"><?php echo $fecha_inicio;?></td>
-		   <td style="width:25%;" >
-				<?php
-					echo $fecha_fin; 
-				?>
-		   </td>
-        </tr>
+       
 		
-        
-   
-    </table>
 	<br>
 	
 
 	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
         <tr>
-           <td style="width:100%;" class='midnight-blue'>DATOS DEL CLIENTE </td>
+           <td style="width:100%;" class='midnight-blue'>DATOS DEL TERCERO </td>
         </tr>
 		<tr>
            <td style="width:100%;" >
@@ -325,7 +325,7 @@ while ($row=mysqli_fetch_array($sql)){
             <td class='<?php echo $clase;?>' style="width: 10%; text-align: center"><?php echo $codmad;?></td>
 			<td class='<?php echo $clase;?>' style="width: 41%; text-align: left"><?php echo $nom_combustible;?></td>
 			<td class='<?php echo $clase;?>' style="width: 10%; text-align: right"><?php echo $canlista;?></td>
-			<td class='<?php echo $clase;?>' style="width: 13%; text-align: right"><?php echo $PARCVTA;?></td>
+			<td class='<?php echo $clase;?>' style="width: 13%; text-align: right"><?php echo number_format($PARCVTA,2);?></td>
             
         </tr>
 
@@ -335,12 +335,12 @@ while ($row=mysqli_fetch_array($sql)){
 	$nums++;
 	}
 
-
-
+	?>
+	</table>
+<?php
 } ?>
 	
 
-	</table>
 	
 
 </page>
