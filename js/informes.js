@@ -59,3 +59,67 @@ function imprimir_informe(){
     }
     event.preventDefault();
     }
+
+
+    function generar() {
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+    }
+    
+     // Callback that creates and populates a data table,
+     // instantiates the pie chart, passes in the data and
+    
+
+     // draws it.
+    function drawChart() {
+    var mes= $("#mes").val();
+	var año= "2022";
+    const nombre_mes = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+        $.ajax({
+            type: "POST",
+            url: "./ajax/grafico.php",
+            data: "mes="+mes+"&año="+año,
+            beforeSend: function(objeto){
+                $("#grafico").html("Mensaje: Cargando...");
+            },
+            success: function(datos){
+                $("#aver").html("");
+                const split = datos.split(' ') // (1) [ 'bearer', 'token' ]
+                const datos_query = [nombre_mes[parseInt(mes)-1], parseInt(split[0]),parseInt(split[1]), parseInt(split[0])+parseInt(split[1])];
+                var data = google.visualization.arrayToDataTable([
+                    ['MES', 'B2', 'GASOLINA', 'TOTAL'],
+                    datos_query
+                ]);
+
+                var view = new google.visualization.DataView(data);
+                    view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation"},
+                       2, {calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                    3, { calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation" }]);
+                // Set chart options
+                var options = {
+                    chart: {
+                        title: '',
+                        subtitle: '',
+                    },
+                    bars: 'vertical',
+                    vAxis: {format: 'decimal'},
+                    height: 400
+                };
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_material"));
+                chart.draw(view, options);
+                
+                // Create the data table.
+            }
+        });
+    }
