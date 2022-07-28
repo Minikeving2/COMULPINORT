@@ -33,14 +33,14 @@
 	include("navbar.php");
 	?>  
     <div class="container" id="container">
-		<div class="panel panel-info" id="borde">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 		    	<div class="btn-group pull-right">
 					<a  href="" class="btn btn-info" onclick="imprimir_informe()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
 				</div>
 				<h4><i class='glyphicon glyphicon-search'></i> Buscar Informes</h4>
 			</div>
-			<div class="panel-body" id="panel_body">
+			<div class="panel-body" >
 				<form class="form-horizontal" role="form" id="informe_datos">
 					<div class="form-group row">
 						<label for="q" class="col-md-1 control-label">EDS./Tercero</label>
@@ -79,14 +79,14 @@
 			</div>
 		</div>
 
-		<div class="panel panel-info" id="borde">
+		<div class="panel panel-info" >
 			<div class="panel-heading">
 				<h4><i class='glyphicon glyphicon-stats'></i> Analisis Ventas</h4>
 			</div>
-			<div class="panel-body" id="panel_body">
+			<div class="panel-body" >
 				<form class="form-horizontal" role="form" >
 					<div class="form-group row">
-						<label for="q" class="col-md-2 control-label">VENTAS REALIZADAS EN:</label>
+						<label for="q" class="col-md-1 control-label">Total Ventas</label>
 						<div class="col-md-3">
 							<select class="form-control" name="mes" id="mes">
 								<option value="01">ENERO</option>

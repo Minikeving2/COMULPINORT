@@ -120,6 +120,12 @@ body{
 #container{
   height: 85%;
 }
+#borde{
+  height: 97%;
+}
+#panel_body{
+  height: 95%;
+}
 #contenido{
   height: 93%;
 }

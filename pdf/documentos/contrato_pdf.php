@@ -24,7 +24,7 @@
 	exit;
 	}
 
-	require_once(dirname(__FILE__).'/../html2pdf.class.php');
+	 
 		
 	//Variables por GET
 	$id_cliente=intval($_GET['id_cliente']);

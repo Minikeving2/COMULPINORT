@@ -116,7 +116,13 @@ function imprimir_informe(){
                     height: 400
                 };
                 // Instantiate and draw our chart, passing in some options.
-                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_material"));
+                var chart_div = document.getElementById("columnchart_material")
+                var chart = new google.visualization.ColumnChart(chart_div);
+
+                google.visualization.events.addListener(chart, 'ready', function () {
+                chart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+                    console.log(chart_div.innerHTML);
+                });
                 chart.draw(view, options);
                 
                 // Create the data table.
