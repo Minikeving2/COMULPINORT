@@ -62,7 +62,7 @@ function imprimir_informe(){
 
 
     function generar() {
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages':['corechart', 'bar']});
         google.charts.setOnLoadCallback(drawChart);
     }
     
@@ -80,10 +80,8 @@ function imprimir_informe(){
             url: "./ajax/grafico.php",
             data: "mes="+mes+"&año="+año,
             beforeSend: function(objeto){
-                $("#grafico").html("Mensaje: Cargando...");
             },
             success: function(datos){
-                $("#aver").html("");
                 const split = datos.split(' ') // (1) [ 'bearer', 'token' ]
                 const datos_query = [nombre_mes[parseInt(mes)-1], parseInt(split[0]),parseInt(split[1]), parseInt(split[0])+parseInt(split[1])];
                 var data = google.visualization.arrayToDataTable([
@@ -92,17 +90,18 @@ function imprimir_informe(){
                 ]);
 
                 var view = new google.visualization.DataView(data);
+
                     view.setColumns([0, 1,
                        { calc: "stringify",
                          sourceColumn: 1,
                          type: "string",
                          role: "annotation"},
                        2, {calc: "stringify",
-                       sourceColumn: 1,
+                       sourceColumn: 2,
                        type: "string",
                        role: "annotation" },
-                    3, { calc: "stringify",
-                    sourceColumn: 1,
+                    3, {calc: "stringify",
+                    sourceColumn: 3,
                     type: "string",
                     role: "annotation" }]);
                 // Set chart options
@@ -113,19 +112,60 @@ function imprimir_informe(){
                     },
                     bars: 'vertical',
                     vAxis: {format: 'decimal'},
-                    height: 400
+                    height: 400,
+                    colors: ['#94D509', '#007936', '#F89C0E']
                 };
                 // Instantiate and draw our chart, passing in some options.
-                var chart_div = document.getElementById("columnchart_material")
-                var chart = new google.visualization.ColumnChart(chart_div);
+                var chart_div = document.getElementById("columnchart_material");
+                var chart = new google.charts.Bar(chart_div);
+                chart.draw(view, google.charts.Bar.convertOptions(options));
 
-                google.visualization.events.addListener(chart, 'ready', function () {
-                chart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
-                    console.log(chart_div.innerHTML);
+                var chart_divs = document.getElementById("aaa");
+                var charts = new google.visualization.ColumnChart(chart_divs);
+                
+                google.visualization.events.addListener(charts, 'ready', function () {
+                    chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico").val(chart_divs.innerHTML);
                 });
-                chart.draw(view, options);
+                charts.draw(view, options);
                 
                 // Create the data table.
             }
         });
+    }
+
+    function imprimir(){
+        var q= $("#grafico").val();
+        if (q=="") {
+           alert("Debe generar el grafico");
+        } else {
+            q = q.substring(10, q.length-2);
+            openWindowWithPost("./pdf/documentos/grafico.php", {
+                img: q
+                //:
+            });
+
+
+        }
+    }
+
+
+    function openWindowWithPost(url, data) {
+        var form = document.createElement("form");
+        form.target = "_blank";
+        form.method = "POST";
+        form.action = url;
+        form.style.display = "none";
+    
+        for (var key in data) {
+            var input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = data[key];
+            form.appendChild(input);
+        }
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
     }

@@ -104,12 +104,13 @@
 							</select>
 						</div>
 						<button type="button" class="btn btn-info" onclick="generar()">Generar Grafico</button>
-						
+						<button type="button" class="btn btn-info" onclick="imprimir()">Imprimir</button>
 					</div>
-					<div class="form-group row" id="grafico"></div>
-					<div class="form-group row" id="columnchart_material" style="width: 800 ;">
-
-					</div>
+					<br><br>
+					<input type="hidden" value="" id="grafico">
+					
+					<div class="form-group row" id="columnchart_material" style="width: 1350px; padding: 0px 0px 0px 150px;"></div>
+					<div class="form-group row" id="aaa" style="visibility:hidden;"></div>
 					<script> 
 						document.addEventListener('DOMContentLoaded', () => {
 							document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {

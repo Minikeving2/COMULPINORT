@@ -2,7 +2,7 @@
 include("../../config/db.php");
 //importacion de la libreria de html2pdf
 require_once(dirname(__FILE__).'/../html2pdf.class.php');
-$id_cliente=$_POST['img'];
+$img=$_POST['img'];
 
 ob_start();
 include(dirname('__FILE__').'/res/ver_grafico_html.php');
