@@ -6,6 +6,7 @@ $imagen1=$_POST['imagen_1'];
 $imagen2=$_POST['imagen_2'];
 $imagen3=$_POST['imagen_3'];
 $imagen4=$_POST['imagen_4'];
+$año=$_POST['year'];
 ob_start();
 include(dirname('__FILE__').'/res/ver_grafico_html.php');
 $content = ob_get_clean();

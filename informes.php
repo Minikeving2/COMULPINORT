@@ -87,7 +87,7 @@
 				<form class="form-horizontal" role="form" >
 					<div class="form-group row">
 						<label for="q" class="col-md-1 control-label">Total Ventas</label>
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<select class="form-control" name="mes" id="mes">
 								<option value="01">ENERO</option>
 								<option value="02">FEBRERO</option>
@@ -104,8 +104,17 @@
 								<option value="13">TODOS LOS MESES</option>
 							</select>
 						</div>
+						<div class="col-md-1">
+							<?php $cont = date('Y'); ?>
+							<select class="form-control" id="año" name="año">
+								<?php while ($cont >= 2009) { ?>
+									<option value="<?php echo($cont); ?>"><?php echo($cont); ?></option>
+								<?php $cont = ($cont-1); } ?>
+							</select>							
+						</div>
+						
 						<button type="button" class="btn btn-info" onclick="generar()">Generar Grafico</button>
-						<button type="button" class="btn btn-info" onclick="imprimir()">Imprimir</button>
+						<button type="button" class="btn btn-info" id="impresion" disabled="true" onclick="imprimir()">Imprimir</button>
 					</div>
 					<br><br>
 					<input type="hidden" value="" id="grafico">

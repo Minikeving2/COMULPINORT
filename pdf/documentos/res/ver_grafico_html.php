@@ -76,7 +76,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 
             </td>
 			<td style="width: 50%; color: #000 ;font-size:12px;text-align:center">
-                <span style="color: #000;font-size:14px;font-weight:bold">ANALISIS DE VENTAS EN EL MES</span>
+                <span style="color: #000;font-size:14px;font-weight:bold">ANALISIS DE VENTAS EN EL MES DEL AÑO <?php echo $año;?></span>
             </td>
         </tr>
     </table>

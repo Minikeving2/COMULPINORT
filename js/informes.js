@@ -1,4 +1,12 @@
 $(document).ready(function(){
+    $("select[name=mes]").change(function(){ 
+        document.getElementById('impresion').disabled = true;
+    })
+
+    $("select[name=año]").change(function(){ 
+        document.getElementById('impresion').disabled = true;
+    })
+    
 });
 
 function load(page){
@@ -66,6 +74,10 @@ function getValueAt(column, dataTable, row) {
 function generar() {
         google.charts.load('current', {'packages':['corechart', 'bar']});
         google.charts.setOnLoadCallback(drawChart);
+        setTimeout(function(){
+            document.getElementById('impresion').disabled = false;
+        },4000);
+        
     }
     
      // Callback that creates and populates a data table,
@@ -75,7 +87,7 @@ function generar() {
      // draws it.
 function drawChart() {
     var mes= $("#mes").val();
-	var año= "2022";
+	var año= $("#año").val();;
     const nombre_mes = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
     if (mes<=12){
         $.ajax({
@@ -355,6 +367,7 @@ function drawChart() {
 }
     function imprimir(){
         var mes = $("#mes").val();
+        var year = $("#año").val();
         if (mes<=12){
             var q= $("#grafico").val();
             if (q=="") {
@@ -362,13 +375,14 @@ function drawChart() {
             } else {
                 q = q.substring(10, q.length-2);
                 openWindowWithPost("./pdf/documentos/grafico.php", {
-                    imagen_1: q
+                    imagen_1: q, year: year
                     //:
                 });
 
 
             }
         } else {
+            var year = $("#año").val();
             var a= $("#grafico").val();
             var b= $("#grafico2").val();
             var c= $("#grafico3").val();
@@ -381,7 +395,7 @@ function drawChart() {
                 c = c.substring(10, c.length-2);
                 d = d.substring(10, d.length-2);
                 openWindowWithPost("./pdf/documentos/grafico.php", {
-                    imagen_1: a, imagen_2: b, imagen_3: c, imagen_4: d
+                    imagen_1: a, imagen_2: b, imagen_3: c, imagen_4: d, year:year
                     //:
                 });
 
