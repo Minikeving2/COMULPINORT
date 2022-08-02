@@ -115,23 +115,21 @@ function drawChart() {
                     },
                     bars: 'vertical',
                     vAxis: {format: 'decimal'},
-                    height: 400,
+                    height: 600,
                     colors: ['#94D509', '#007936', '#F89C0E']
                 };
                 // Instantiate and draw our chart, passing in some options.
-                var chart_div = document.getElementById("columnchart_material");
-                var chart = new google.charts.Bar(chart_div);
-                chart.draw(view, google.charts.Bar.convertOptions(options));
-
-                var chart_divs = document.getElementById("aaa");
+                
+                var chart_divs = document.getElementById("cap_grafico");
                 var charts = new google.visualization.ColumnChart(chart_divs);
                 
                 google.visualization.events.addListener(charts, 'ready', function () {
-                    chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
                 //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
                 $("#grafico").val(chart_divs.innerHTML);
                 });
                 charts.draw(view, options);
+                
                 
                 // Create the data table.
             }
@@ -364,7 +362,7 @@ function drawChart() {
             } else {
                 q = q.substring(10, q.length-2);
                 openWindowWithPost("./pdf/documentos/grafico.php", {
-                    img: q
+                    imagen_1: q
                     //:
                 });
 
