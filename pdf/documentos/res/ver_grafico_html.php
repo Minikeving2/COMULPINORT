@@ -68,13 +68,11 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 			
         </tr>
     </table>
-    <br>
-    <br>
     <table cellspacing="0" style="width: 100%;">
         <tr>
 
             <td style="width: 25%; color: #444444; " >
-                <br>
+                
                 
             </td>
 			<td style="width: 50%; color: #000 ;font-size:12px;text-align:center">
@@ -82,8 +80,16 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             </td>
         </tr>
     </table>
-    <br><br>
-    <img height="400" width="700" src="<?php echo $img;?>" alt="">
-    
+    <img height="400" width="700" src="<?php echo $imagen1;?>" alt="">
+    <?php if ($imagen2){  ?>
+    <img height="400" width="700" src="<?php echo $imagen2;?>" alt="">
+    <?php }?>
 
+    <?php if ($imagen3){  ?>
+    <img height="400" width="700" src="<?php echo $imagen3;?>" alt="">
+    <?php }?>
+
+    <?php if ($imagen4){  ?>
+    <img height="400" width="700" src="<?php echo $imagen4;?>" alt="">
+    <?php }?>
 	</page>

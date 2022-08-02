@@ -100,7 +100,8 @@
 								<option value="09">SEPTIEMBRE</option>
 								<option value="10">OCTUBRE</option>
 								<option value="11">NOVIEMBRE</option>
-								<option value="12">DICIEMBRE</option>
+								<option value="12">DICIEMBRE</option>}
+								<option value="13">TODOS LOS MESES</option>
 							</select>
 						</div>
 						<button type="button" class="btn btn-info" onclick="generar()">Generar Grafico</button>
@@ -108,9 +109,16 @@
 					</div>
 					<br><br>
 					<input type="hidden" value="" id="grafico">
+					<input type="hidden" value="" id="grafico2">
+					<input type="hidden" value="" id="grafico3">
+					<input type="hidden" value="" id="grafico4">
 					
-					<div class="form-group row" id="columnchart_material" style="width: 1350px; padding: 0px 0px 0px 150px;"></div>
-					<div class="form-group row" id="aaa" style="visibility:hidden;"></div>
+					
+					
+					<div class="form-group row" id="cap_grafico" style="width: 1350px; padding: 0px 0px 0px 150px;"></div>
+					<div class="form-group row" id="cap_grafico2" style="width: 1350px; padding: 0px 0px 0px 150px;"></div>
+					<div class="form-group row" id="cap_grafico3" style="width: 1350px; padding: 0px 0px 0px 150px;"></div>
+					<div class="form-group row" id="cap_grafico4" style="width: 1350px; padding: 0px 0px 0px 150px;"></div>
 					<script> 
 						document.addEventListener('DOMContentLoaded', () => {
 							document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {
