@@ -42,6 +42,7 @@
 					<option value="">-- Selecciona Estado --</option>
 					<option value="1" selected>Activo</option>
 					<option value="0">Inactivo</option>
+					<option value="2">Retirado</option>
 				  </select> 
 				</div>		
 			  </div>
@@ -68,6 +69,7 @@
 								});
   							</script>
 							<?php
+									
 								$sql_municipio=mysqli_query($con,"select * from municipios order by nombre");
 								while ($rw=mysqli_fetch_array($sql_municipio)){
 									$id_municipio=$rw["id"];

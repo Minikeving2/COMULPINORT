@@ -121,10 +121,12 @@
 							<option value="5">Apoyo Económico/Transacción</option>
 							<option value="6">Apoyo Económico/Efectivo</option>
 							<option value="7">Apoyo Económico/Cruce Cart.</option>
-							<option value="8">Cupo Crédito Estaciones</option>
-							<option value="9">Préstamos</option>
-							<option value="10">Pólizas SURA</option>
-							<option value="11">Descuentos Gasolina Nacional</option>
+							<option value="8">Crédito/Transacción</option>
+							<option value="9">Crédito/Cruce Cart.</option>
+							<option value="10">Cupo Crédito Estaciones</option>
+							<option value="11">Préstamos</option>
+							<option value="12">Pólizas SURA</option>
+							<option value="13">Descuentos Gasolina Nacional</option>
 							<!--
 							<option value="4">Crédito Asociados/Aportes</option>
 							<option value="4">Crédito Asociados/Lib. Inv.</option>

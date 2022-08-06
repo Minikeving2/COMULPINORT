@@ -10,7 +10,7 @@
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	
-mysqli_query($con,"SET NAMES 'utf8'");
+	mysqli_query($con,"SET NAMES 'utf8'");
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$id_cliente=intval($_GET['id']);
@@ -47,6 +47,7 @@ mysqli_query($con,"SET NAMES 'utf8'");
 		
 	}
 	if($action == 'ajax'){
+		mysqli_query($con,"SET NAMES 'utf8'");
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
 		 $aColumns = array('nombre_cliente','nit');//Columnas de busqueda

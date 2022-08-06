@@ -20,7 +20,7 @@
 	/* Connect To Database*/
 	require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
-	
+	mysqli_query($con,"SET NAMES 'utf8'");
 	if (isset($_GET['id_factura']))
 	{
 		$id_factura=intval($_GET['id_factura']);
