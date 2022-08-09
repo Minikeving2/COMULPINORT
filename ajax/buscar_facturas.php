@@ -79,7 +79,6 @@
 				</thead>
 				<tbody>
 				<?php
-				
 				while ($row=mysqli_fetch_array($query)){
 						$id_factura=$row['id_factura'];
 						$numero_factura=$row['numero_factura'];

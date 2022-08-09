@@ -41,6 +41,12 @@
 				$numero_factura=$rw_factura["numero_factura"];
 				$fecha_fact=$rw_factura["fecha_fact"];
 				$tipo_mov=$rw_factura["tipo_mov"];
+				$contraprestacion=$rw_factura["contraprestacion"];
+				if($contraprestacion ==""){
+				    $contraprestacion=0;
+				} else {
+				    $contraprestacion=$rw_factura["contraprestacion"];
+				}
 				$total_venta=$rw_factura["total_venta"];
 				$id_proveedor=$rw_factura["id_proveedor"];
 				$_SESSION['id_factura']=$id_factura;
@@ -155,10 +161,12 @@
 							<option value="5">Apoyo Económico/Transacción</option>
 							<option value="6">Apoyo Económico/Efectivo</option>
 							<option value="7">Apoyo Económico/Cruce Cart.</option>
-							<option value="8">Cupo Crédito Estaciones</option>
-							<option value="9">Préstamos</option>
-							<option value="10">Pólizas SURA</option>
-							<option value="11">Descuentos Gasolina Nacional</option>
+							<option value="8">Crédito/Transacción</option>
+							<option value="9">Crédito/Cruce Cart.</option>
+							<option value="10">Cupo Crédito Estaciones</option>
+							<option value="11">Préstamos</option>
+							<option value="12">Pólizas SURA</option>
+							<option value="13">Descuentos Gasolina Nacional</option>
 							<!--
 							<option value="4">Crédito Asociados/Aportes</option>
 							<option value="4">Crédito Asociados/Lib. Inv.</option>
@@ -192,19 +200,24 @@
 						?>
 						</select>
 						<script>
-							document.querySelector('#id_proveedor').value=<?php echo $id_proveedor; ?>;
+							document.querySelector('#id_proveedor').value=<?php echo $id_proveedor; ?>
 						</script>
 					</div>			
 				</div>
 				<div class="form-group row">
 				   <label for="observacion" class="col-md-9 ">Observación</label>	
-				   <label for="total" class="col-md-3 ">Total </label>
+				   <label for="total" class="col-md-1 ">Contrapres.</label>
+				   <label for="total" class="col-md-2 ">Total </label>
 				</div>
+				
 				<div class="form-group row">
 				    <div class="col-md-9">
 				      <textarea class="form-control" id="observacion" name="Observaciones"   maxlength="100" ><?php echo $condiciones; ?></textarea>	    
 				    </div>
-					<div class="col-md-3">
+				    <div class="col-md-1">
+					    <input type="number" class="form-control input-sm" id="contraprestacion" min="0" value="<?php echo $contraprestacion; ?>">
+				    </div> 
+					<div class="col-md-2">
 					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total" value="<?php echo number_format($total_venta,2);?>">
 					    <input id="total" type='hidden'>	
 				    </div> 	

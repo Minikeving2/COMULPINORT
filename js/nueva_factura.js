@@ -3,6 +3,7 @@
 			cargar();
 			load(1);
 			load_Cliente(1);
+			$("#contraprestacion").prop('disabled', true);
 		});
 
 		function load(page){
@@ -154,7 +155,7 @@
 			var total_venta = $("#calculado").val();
 			var estado = 1;
 			
-			
+			var contraprestacion = $("#contraprestacion").val();
 			
 		  	var id_proveedor = document.querySelector('#id_provedor').value;
 			
@@ -168,7 +169,7 @@
 			$.ajax({
 				type: "POST",
 				url: "./ajax/agregar_nueva_factura.php",
-				data: "id_vendedor="+id_vendedor+"&fecha_mov="+fecha+"&id_cliente="+id_cliente+"&num_com="+num_comprobante+"&fecha_com="+fecha_com+"&num_fact="+num_factura+"&fecha_fact="+fecha_fact+"&tipo_mov="+tipo_mov+"&condiciones="+condiciones+"&total_venta="+total_venta+"&estado="+estado+"&id_proveedor="+id_proveedor,
+				data: "id_vendedor="+id_vendedor+"&fecha_mov="+fecha+"&id_cliente="+id_cliente+"&num_com="+num_comprobante+"&fecha_com="+fecha_com+"&num_fact="+num_factura+"&fecha_fact="+fecha_fact+"&tipo_mov="+tipo_mov+"&condiciones="+condiciones+"&total_venta="+total_venta+"&estado="+estado+"&id_proveedor="+id_proveedor+"&contraprestacion="+contraprestacion,
 				beforeSend: function(objeto){
 					$("#resultados").html("Mensaje: Cargando...");
 				},
@@ -231,4 +232,13 @@
 				  }
 			});
 		  event.preventDefault();
+		})
+		$("#tipomov").change(function(){
+            var valor = $('#tipomov').val(); 
+			if (valor>=5 && valor<=9){
+				$("#contraprestacion").prop('disabled', false);
+			}else {
+				$("#contraprestacion").prop('disabled', true);
+				$("#contraprestacion").val(0);
+			}
 		})

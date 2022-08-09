@@ -87,7 +87,7 @@
 				<form class="form-horizontal" role="form" >
 					<div class="form-group row">
 						<label for="q" class="col-md-1 control-label">Total Ventas</label>
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<select class="form-control" name="mes" id="mes">
 								<option value="01">ENERO</option>
 								<option value="02">FEBRERO</option>

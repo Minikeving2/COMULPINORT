@@ -121,7 +121,7 @@
 							<option value="5">Apoyo Económico/Transacción</option>
 							<option value="6">Apoyo Económico/Efectivo</option>
 							<option value="7">Apoyo Económico/Cruce Cart.</option>
-							<option value="8">Crédito/Transacción</option>
+                            <option value="8">Crédito/Transacción</option>
 							<option value="9">Crédito/Cruce Cart.</option>
 							<option value="10">Cupo Crédito Estaciones</option>
 							<option value="11">Préstamos</option>
@@ -160,13 +160,17 @@
 				</div>
 				<div class="form-group row">
 				   <label for="observacion" class="col-md-9 ">Observación</label>	
-				   <label for="total" class="col-md-3 ">Total </label>
+				   <label for="total" class="col-md-1 ">Contrapres.</label>
+				   <label for="total" class="col-md-2 ">Total </label>
 				</div>
 				<div class="form-group row">
 				    <div class="col-md-9">
 				      <textarea class="form-control" id="observacion" name="Observaciones"   maxlength="100" ></textarea>	    
 				    </div>
-					<div class="col-md-3">
+				    <div class="col-md-1">
+					    <input type="number" class="form-control input-sm" id="contraprestacion" min="0" value="0">
+				    </div> 
+					<div class="col-md-2">
 					    <input type="text" class="form-control input-sm" id="calculado" placeholder="Total">
 					    <input id="total" type='hidden'>	
 				    </div> 

@@ -1,4 +1,0 @@
-cod,titulo,precio,cantidad,fecha
-1,aaaa,10000,20,
-2,bbb,12500,10,2002-10-20
-3,ccc,14000,5,2003-10-25

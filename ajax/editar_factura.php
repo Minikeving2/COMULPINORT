@@ -15,10 +15,10 @@
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
 		
-		mysqli_query($con,"SET NAMES 'utf8'");
+        mysqli_query($con,"SET NAMES 'utf8'");
 		$id_cliente=intval($_POST['id_cliente']);
 		$id_vendedor=intval($_POST['id_vendedor']);
-
+        $contraprestacion=$_POST["contraprestacion"];
 		$num_fact=$_POST['num_fact'];
 		$fecha_fact=$_POST['fecha_fact'];
 
@@ -26,12 +26,15 @@
 		$fecha_comp=$_POST['fecha_comp'];
 
 		$tipo_mov=$_POST['tipo_mov'];
-		$proveedor=$_POST['proveedor'];
-
+        if ($_POST["proveedor"]==""){
+        	$proveedor="null";
+        } else {
+        	$proveedor=$_POST["id_proveedor"];
+        }
 		$condiciones=$_POST['observacion'];
-		$total=str_replace(',','',$_POST['total']);
-
-		$sql="UPDATE facturas SET id_cliente='".$id_cliente."', id_vendedor='".$id_vendedor."', condiciones='".$condiciones."', tipo_mov='".$tipo_mov."', id_proveedor='".$proveedor."',";
+		$total = str_replace(',','',$_POST['total']);
+		
+		$sql="UPDATE facturas SET id_cliente='".$id_cliente."', id_vendedor='".$id_vendedor."', condiciones='".$condiciones."', tipo_mov='".$tipo_mov."', id_proveedor=".$proveedor.", contraprestacion='".$contraprestacion."',";
 		
 		if ($fecha_comp!="" && $num_comp!=""){
 			$sql .= " fecha_comprobante='".$fecha_comp."', nro_comprobante='".$num_comp."',";
@@ -41,8 +44,8 @@
 			$sql .= " fecha_fact='".$fecha_fact."', numero_factura='".$num_fact."',";
 		}//datos de la factura de compra
 
-		$sql .= " total_venta='".$total."' WHERE id_factura='".$id_factura."'";
-		
+		$sql .= " total_venta='".$total."' WHERE id_factura='".$id_factura."';";
+	
 		$query_update = mysqli_query($con,$sql);
 		
 		if ($query_update){

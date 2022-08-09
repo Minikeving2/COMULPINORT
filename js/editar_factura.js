@@ -3,6 +3,7 @@
 			load(1);
 			load_Cliente();
 			$( "#resultados" ).load( "ajax/editar_facturacion.php" );
+			$("#contraprestacion").prop('disabled', true);
 		});
 
 		function load(page){
@@ -124,9 +125,10 @@
 		var observacion=$("#observacion").val();
 		var total=$("#calculado").val();
 		var id_vendedor=$("#id_vendedor").val();
+		var contraprestacion = $("#contraprestacion").val();
 
-		var parametros = "id_cliente="+id_cliente+"&num_fact="+num_fact+"&fecha_fact="+fecha_factura+"&num_comp="+num_comp+"&fecha_comp="+fecha_comp+"&tipo_mov="+tipo_mov+"&proveedor="+proveedor+"&observacion="+observacion+"&total="+total+"&id_vendedor="+id_vendedor;
-		if (id_cliente==""){
+		var parametros = "id_cliente="+id_cliente+"&num_fact="+num_fact+"&fecha_fact="+fecha_factura+"&num_comp="+num_comp+"&fecha_comp="+fecha_comp+"&tipo_mov="+tipo_mov+"&proveedor="+proveedor+"&observacion="+observacion+"&total="+total+"&id_vendedor="+id_vendedor+"&contraprestacion="+contraprestacion;
+		if (id_cliente===""){
 		  alert("Debes seleccionar un cliente");
 		  $("#nombre_cliente").focus();
 		  return false;
@@ -186,7 +188,15 @@
 			});
 		  event.preventDefault();
 		})
-
+        $("#tipomov").change(function(){
+            var valor = $('#tipomov').val(); 
+			if (valor>=5 && valor<=9){
+				$("#contraprestacion").prop('disabled', false);
+			}else {
+				$("#contraprestacion").prop('disabled', true);
+				$("#contraprestacion").val(0);
+			}
+		})
 		function imprimir_factura(id_factura){
 			VentanaCentrada('./pdf/documentos/ver_factura.php?id_factura='+id_factura,'Factura','','1024','768','true');
 		}

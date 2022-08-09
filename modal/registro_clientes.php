@@ -69,7 +69,7 @@
 								});
   							</script>
 							<?php
-									
+							    mysqli_query($con,"SET NAMES 'utf8'");
 								$sql_municipio=mysqli_query($con,"select * from municipios order by nombre");
 								while ($rw=mysqli_fetch_array($sql_municipio)){
 									$id_municipio=$rw["id"];

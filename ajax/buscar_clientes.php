@@ -98,7 +98,6 @@
 				</thead>
 				<tbody>
 				<?php
-				mysqli_query($con,"SET NAMES 'utf8'");
 				while ($row=mysqli_fetch_array($query)){
 						$id_cliente=$row['id_cliente'];
 						

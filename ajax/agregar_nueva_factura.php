@@ -22,7 +22,7 @@ if ($count==0){
 
 //recibe los datos mandados por ajax
 //$fecha_mov=date('Y-m-d H:i:s');
-
+$contraprestacion = $_POST["contraprestacion"];
 $id_vendedor=$_POST["id_vendedor"];
 $fecha_mov=$_POST["fecha_mov"];
 $id_cliente=$_POST['id_cliente'];
@@ -48,19 +48,22 @@ if (str_replace('/','-',$_POST["fecha_fact"])==""){
 } else {
 	$fecha_factura="'".str_replace('/','-',$_POST["fecha_fact"])."'";
 }
-
+if ($_POST["id_proveedor"]){
+	$id_proveedor="null";
+} else {
+	$id_proveedor=$_POST["id_proveedor"];
+}
 $tipo_mov = $_POST["tipo_mov"];
 $condiciones=$_POST['condiciones'];
 $total_venta=str_replace(',','',$_POST['total_venta']);
 $estado=$_POST['estado'];
-$id_proveedor=$_POST["id_proveedor"];
 
 
 $date_added=date("Y-m-d");
 	
 //inserto los datos de la tabla facturas
-$insert=mysqli_query($con,"INSERT INTO facturas (numero_factura,fecha_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov) VALUES ($num_factura,'$date_added','$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov)");
-	
+$insert=mysqli_query($con,"INSERT INTO facturas (numero_factura,fecha_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov,contraprestacion) VALUES ($num_factura,'$date_added','$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov,$contraprestacion)");
+	echo "INSERT INTO facturas (numero_factura,fecha_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov,contraprestacion) VALUES ($num_factura,'$date_added','$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov,$contraprestacion)";
 //busco el id de la factura creada
 $sql="SELECT MAX(id_factura) FROM facturas";
 $result=mysqli_fetch_array(mysqli_query($con, $sql));

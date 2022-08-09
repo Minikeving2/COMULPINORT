@@ -6,12 +6,12 @@ $imagen1=$_POST['imagen_1'];
 $imagen2=$_POST['imagen_2'];
 $imagen3=$_POST['imagen_3'];
 $imagen4=$_POST['imagen_4'];
-$a√±o=$_POST['year'];
+$aè´–o=$_POST['year'];
 if ($imagen2=="" || $imagen3=="" || $imagen4=="") {
     
-    $titulo="ANALISIS DE VENTAS DEL MES EN EL A√ëO ".$a√±o;
+    $titulo="ANALISIS DE VENTAS DEL MES EN EL Aè™–O ".$aè´–o;
 } else {
-    $titulo="ANALISIS DE VENTAS DE TODO EL A√ëO ".$a√±o;
+    $titulo="ANALISIS DE VENTAS DE TODO EL Aè™–O ".$aè´–o;
 }
 ob_start();
 include(dirname('__FILE__').'/res/ver_grafico_html.php');

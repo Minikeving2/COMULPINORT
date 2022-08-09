@@ -17,7 +17,7 @@
 	$active_mapa = "";		
 	$active_contratos = "active";	
 	
-	$title = "Contratos | SistCoom V1.0";
+	$title           = "Contratos | SistCoom V1.0";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -34,6 +34,7 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 	<th class='text-center'>CODIGO</th>
 	<th class='text-center'>CANT.</th>
 	<th>DESCRIPCION</th>
+	<th></th>
 	<th class='text-right'>PRECIO UNIT.</th>
 	<th class='text-right'>PRECIO TOTAL</th>
 	<th></th>
@@ -63,6 +64,11 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 			<td class='text-center'><?php echo $codigo_producto;?></td>
 			<td class='text-center'><?php echo $cantidad;?></td>
 			<td><?php echo $nombre_producto;?></td>
+			<td><?php
+			if($codigo_producto=="DES001" || $codigo_producto=="DES002"){
+			    	echo "<input type='date' class='form-control input-sm' id='desembolso_".$id_tmp=$row["id_tmp"].";'>";
+			}
+			?></td>
 			<td class='text-right'><?php echo $precio_venta_f;?></td>
 			<td class='text-right'><?php echo $precio_total_f;?></td>
 			<td class='text-center'><a href="#" onclick="eliminar('<?php echo $id_tmp ?>')"><i class="glyphicon glyphicon-trash"></i></a></td>
