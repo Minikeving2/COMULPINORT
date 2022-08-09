@@ -22,6 +22,8 @@ if ($count==0){
 
 //recibe los datos mandados por ajax
 //$fecha_mov=date('Y-m-d H:i:s');
+$fechas_desembolsos=$_POST["fechas_desembolso"];
+
 $contraprestacion = $_POST["contraprestacion"];
 $id_vendedor=$_POST["id_vendedor"];
 $fecha_mov=$_POST["fecha_mov"];
@@ -63,7 +65,6 @@ $date_added=date("Y-m-d");
 	
 //inserto los datos de la tabla facturas
 $insert=mysqli_query($con,"INSERT INTO facturas (numero_factura,fecha_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov,contraprestacion) VALUES ($num_factura,'$date_added','$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov,$contraprestacion)");
-	echo "INSERT INTO facturas (numero_factura,fecha_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov,contraprestacion) VALUES ($num_factura,'$date_added','$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov,$contraprestacion)";
 //busco el id de la factura creada
 $sql="SELECT MAX(id_factura) FROM facturas";
 $result=mysqli_fetch_array(mysqli_query($con, $sql));

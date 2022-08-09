@@ -164,12 +164,24 @@
 				$("#nombre_cliente").focus();
 				return false;
 			}
-			
+			//contar cuantos inputs estan en la grilla para saber cuantos creditos y desembolson existen en la fatura
+			var cant_des = 0;
+			$(".desembolso").each(function() {
+				cant_des++;
+			})
+			const fechas = new Array(cant_des);
+			//tomo los datos de los inputs y los voy guardando en un array uno por uno
+			for (let i = 0; i < cant_des; i++) {
+				fechas[i]=$("#desembolso_"+i).val();
+			}
+
+
+
 
 			$.ajax({
 				type: "POST",
 				url: "./ajax/agregar_nueva_factura.php",
-				data: "id_vendedor="+id_vendedor+"&fecha_mov="+fecha+"&id_cliente="+id_cliente+"&num_com="+num_comprobante+"&fecha_com="+fecha_com+"&num_fact="+num_factura+"&fecha_fact="+fecha_fact+"&tipo_mov="+tipo_mov+"&condiciones="+condiciones+"&total_venta="+total_venta+"&estado="+estado+"&id_proveedor="+id_proveedor+"&contraprestacion="+contraprestacion,
+				data: "id_vendedor="+id_vendedor+"&fecha_mov="+fecha+"&id_cliente="+id_cliente+"&num_com="+num_comprobante+"&fecha_com="+fecha_com+"&num_fact="+num_factura+"&fecha_fact="+fecha_fact+"&tipo_mov="+tipo_mov+"&condiciones="+condiciones+"&total_venta="+total_venta+"&estado="+estado+"&id_proveedor="+id_proveedor+"&contraprestacion="+contraprestacion+"&fechas_desembolso="+fechas,
 				beforeSend: function(objeto){
 					$("#resultados").html("Mensaje: Cargando...");
 				},

@@ -42,6 +42,7 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 <?php
 	$sumador_total=0;
 	$sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."'");
+	$aux_desembolso=0;
 	while ($row=mysqli_fetch_array($sql))
 	{
 	$id_tmp=$row["id_tmp"];
@@ -59,14 +60,19 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 	$sumador_total+=$precio_total_r;//Sumador
 	
 		?>
-		<tr>
+		<tr <?php
+		 	if($codigo_producto=="DES001" || $codigo_producto=="DES002"){
+			    	echo "class='desembolso'";
+			}
+		?>
+		>
 			
 			<td class='text-center'><?php echo $codigo_producto;?></td>
 			<td class='text-center'><?php echo $cantidad;?></td>
 			<td><?php echo $nombre_producto;?></td>
 			<td><?php
 			if($codigo_producto=="DES001" || $codigo_producto=="DES002"){
-			    	echo "<input type='date' class='form-control input-sm' id='desembolso_".$id_tmp=$row["id_tmp"].";'>";
+			    	echo "<input type='date' class='form-control input-sm' id='desembolso_".$aux_desembolso++."'>";
 			}
 			?></td>
 			<td class='text-right'><?php echo $precio_venta_f;?></td>
