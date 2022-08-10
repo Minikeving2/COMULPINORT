@@ -23,6 +23,10 @@ if ($count==0){
 //recibe los datos mandados por ajax
 //$fecha_mov=date('Y-m-d H:i:s');
 $fechas_desembolsos=$_POST["fechas_desembolso"];
+$total_fechas = explode(",", $fechas_desembolsos);
+$cant_fechas = count($total_fechas);
+
+echo $fechas_desembolsos."------".$cant_fechas;
 
 $contraprestacion = $_POST["contraprestacion"];
 $id_vendedor=$_POST["id_vendedor"];
@@ -62,10 +66,11 @@ $estado=$_POST['estado'];
 
 
 $date_added=date("Y-m-d");
-	
+
 //inserto los datos de la tabla facturas
 $insert=mysqli_query($con,"INSERT INTO facturas (numero_factura,fecha_factura,id_cliente,id_vendedor,condiciones,total_venta,estado_factura,fecha_fact,nro_comprobante,fecha_comprobante,id_proveedor,tipo_mov,contraprestacion) VALUES ($num_factura,'$date_added','$id_cliente','$id_vendedor','$condiciones',$total_venta,$estado,$fecha_factura,$num_comprobante,$fecha_com,$id_proveedor,$tipo_mov,$contraprestacion)");
 //busco el id de la factura creada
+
 $sql="SELECT MAX(id_factura) FROM facturas";
 $result=mysqli_fetch_array(mysqli_query($con, $sql));
 if (isset($result[0])){
@@ -82,9 +87,16 @@ $sql="SELECT * FROM tmp";
 		
 		$query = mysqli_query($con, $sql);
 		if ($numrows>0){
+			$i=0;
 			while ($row=mysqli_fetch_array($query)){
 				$aux=$row['cantidad_tmp']*$row['precio_tmp'];
-				$insert=mysqli_query($con, "INSERT INTO detalle_factura (id_factura,id_producto,cantidad,precio_venta,total)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."','$aux')");
+				if ($total_fechas[$i]==""){
+					$total_fechas[$i]="null";
+				} else {
+					$total_fechas[$i]="'".$total_fechas[$i]."'";
+				}
+				$insert=mysqli_query($con, "INSERT INTO detalle_factura (id_factura,id_producto,cantidad,precio_venta,total,duracion)VALUES ('$id_factura','".$row['id_producto']."','".$row['cantidad_tmp']."','".$row['precio_tmp']."','$aux',".$total_fechas[$i].")");
+				$i++;	
 			}
 		} else {
 			echo "no hay productos";

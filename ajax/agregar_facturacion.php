@@ -41,7 +41,7 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 </tr>
 <?php
 	$sumador_total=0;
-	$sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."'");
+	$sql=mysqli_query($con, "select * from products, tmp where products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."' ORDER BY id_tmp ");
 	$aux_desembolso=0;
 	while ($row=mysqli_fetch_array($sql))
 	{
