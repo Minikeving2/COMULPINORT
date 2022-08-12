@@ -28,12 +28,32 @@ $id_detalle=intval($_GET['id']);
 $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_detalle."'");
 }
 
+if (isset($_POST["fechas_desembolso"])){
+	$fechas_desembolsos=$_POST["fechas_desembolso"];
+	$total_fechas = explode(",", $fechas_desembolsos);
+	$cant_fechas = count($total_fechas);
+
+	$sql=mysqli_query($con, "select * from detalle_factura where id_factura='$id_factura'");
+	$i=0;
+	while ($row=mysqli_fetch_array($sql)){
+		if ($total_fechas[$i]==""){
+			$total_fechas[$i]="null";
+		} else {
+			$total_fechas[$i]="'".$total_fechas[$i]."'";
+		}
+		mysqli_query($con, "UPDATE detalle_factura SET duracion=".$total_fechas[$i]." WHERE id_detalle='".$row["id_detalle"]."';");
+		$i++;	
+	}
+
+}
+
 ?>
 <table class="table">
 <tr>
 	<th class='text-center'>CODIGO</th>
 	<th class='text-center'>CANT.</th>
 	<th>DESCRIPCION</th>
+	<th></th>
 	<th class='text-right'>PRECIO UNIT.</th>
 	<th class='text-right'>PRECIO TOTAL</th>
 	<th></th>
@@ -41,14 +61,15 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 <?php
 	$sumador_total=0;
 	$sql=mysqli_query($con, "select * from products, facturas, detalle_factura where facturas.id_factura=detalle_factura.id_factura and  facturas.id_factura='$id_factura' and products.id_producto=detalle_factura.id_producto");
+	$aux_desembolso=0;
 	while ($row=mysqli_fetch_array($sql))
 	{
 	$id_detalle=$row["id_detalle"];
 	$codigo_producto=$row['codigo_producto'];
 	$cantidad=$row['cantidad'];
 	$nombre_producto=$row['nombre_producto'];
-	
-	
+	$fecha=$row["duracion"];
+
 	$precio_venta=$row['precio_venta'];
 	$precio_venta_f=number_format($precio_venta,2);//Formateo variables
 	$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
@@ -58,10 +79,20 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 	$sumador_total+=$precio_total_r;//Sumador
 	
 		?>
-		<tr>
+		<tr <?php
+		 	if($codigo_producto=="DES001" || $codigo_producto=="DES002"){
+			    	echo "class='desembolso'";
+			}
+			?>
+		>
 			<td class='text-center'><?php echo $codigo_producto;?></td>
 			<td class='text-center'><?php echo $cantidad;?></td>
 			<td><?php echo $nombre_producto;?></td>
+			<td><?php
+			if($codigo_producto=="DES001" || $codigo_producto=="DES002"){
+			    	echo "<input type='date' class='form-control input-sm' id='desembolso_".$aux_desembolso++."' value='".$fecha."'>";
+			}
+			?></td>
 			<td class='text-right'><?php echo $precio_venta_f;?></td>
 			<td class='text-right'><?php echo $precio_total_f;?></td>
 			<td class='text-center'><a href="#" onclick="eliminar('<?php echo $id_detalle ?>')"><i class="glyphicon glyphicon-trash"></i></a></td>
@@ -87,13 +118,13 @@ $delete=mysqli_query($con, "DELETE FROM detalle_factura WHERE id_detalle='".$id_
 <tr>
 	<td class='text-right' colspan=4>SUBTOTAL $</td>
 	<td class='text-right'><?php echo number_format($subtotal,2);?></td>
-	<td></td>
+	<td></td><td></td>
 </tr>
 
 <tr>
 	<td class='text-right' colspan=4>TOTAL $</td>
 	<td class='text-right' ><?php echo number_format($total_factura,2);?></td>
-	<td></td>
+	<td></td><td></td>
 </tr>
 
 </table>

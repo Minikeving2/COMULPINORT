@@ -200,7 +200,7 @@
 						?>
 						</select>
 						<script>
-							document.querySelector('#id_proveedor').value=<?php echo $id_proveedor; ?>
+							document.querySelector('#id_proveedor').value=<?php echo $id_vendedor; ?>
 						</script>
 					</div>			
 				</div>

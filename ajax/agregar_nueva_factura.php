@@ -26,7 +26,6 @@ $fechas_desembolsos=$_POST["fechas_desembolso"];
 $total_fechas = explode(",", $fechas_desembolsos);
 $cant_fechas = count($total_fechas);
 
-echo $fechas_desembolsos."------".$cant_fechas;
 
 $contraprestacion = $_POST["contraprestacion"];
 $id_vendedor=$_POST["id_vendedor"];

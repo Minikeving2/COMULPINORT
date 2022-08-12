@@ -146,7 +146,7 @@ mysqli_query($con,"SET NAMES 'utf8'");
 			<div class="table-responsive" id="scroll">
 			  <table class="table">
 					<thead>
-						<tr  class="info">
+						<tr  class="warning">
 							<th>Cod.Sicom</th>	
 							<th>Nombre</th>
 							<th>Teléfono</th>

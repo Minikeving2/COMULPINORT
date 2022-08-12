@@ -127,6 +127,17 @@
 		var id_vendedor=$("#id_vendedor").val();
 		var contraprestacion = $("#contraprestacion").val();
 
+		
+		$(".desembolso").each(function() {
+			cant_des++;
+		})
+		const fechas = new Array(cant_des);
+		//tomo los datos de los inputs y los voy guardando en un array uno por uno
+		for (let i = 0; i < cant_des; i++) {
+			fechas[i]=$("#desembolso_"+i).val();
+		}
+		
+
 		var parametros = "id_cliente="+id_cliente+"&num_fact="+num_fact+"&fecha_fact="+fecha_factura+"&num_comp="+num_comp+"&fecha_comp="+fecha_comp+"&tipo_mov="+tipo_mov+"&proveedor="+proveedor+"&observacion="+observacion+"&total="+total+"&id_vendedor="+id_vendedor+"&contraprestacion="+contraprestacion;
 		if (id_cliente===""){
 		  alert("Debes seleccionar un cliente");
@@ -145,6 +156,21 @@
 						$(".editar_factura").html(datos);
 					}
 			});
+
+		var cant_des = 0;
+		
+		
+			$.ajax({
+				type: "POST",
+				url: "ajax/editar_facturacion.php",
+				data: "fechas_desembolso="+fechas,
+				 beforeSend: function(objeto){
+					
+				},
+				success: function(datos){
+				 $("#resultados").html(datos);
+				 }
+		});
 			
 			 event.preventDefault();
 	});

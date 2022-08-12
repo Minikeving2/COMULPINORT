@@ -16,6 +16,9 @@
 		// escaping, additionally removing everything that could be (html/javascript-) code
 		
         mysqli_query($con,"SET NAMES 'utf8'");
+
+		
+
 		$id_cliente=intval($_POST['id_cliente']);
 		$id_vendedor=intval($_POST['id_vendedor']);
         $contraprestacion=$_POST["contraprestacion"];
@@ -29,7 +32,7 @@
         if ($_POST["proveedor"]==""){
         	$proveedor="null";
         } else {
-        	$proveedor=$_POST["id_proveedor"];
+        	$proveedor="'".$_POST["proveedor"]."'";
         }
 		$condiciones=$_POST['observacion'];
 		$total = str_replace(',','',$_POST['total']);
@@ -45,7 +48,6 @@
 		}//datos de la factura de compra
 
 		$sql .= " total_venta='".$total."' WHERE id_factura='".$id_factura."';";
-	
 		$query_update = mysqli_query($con,$sql);
 		
 		if ($query_update){

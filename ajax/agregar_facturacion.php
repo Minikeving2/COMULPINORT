@@ -64,7 +64,7 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 		 	if($codigo_producto=="DES001" || $codigo_producto=="DES002"){
 			    	echo "class='desembolso'";
 			}
-		?>
+			?>
 		>
 			
 			<td class='text-center'><?php echo $codigo_producto;?></td>
@@ -96,13 +96,13 @@ $delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
 <tr>
 	<td class='text-right' colspan=4>SUBTOTAL $</td>
 	<td class='text-right'><?php echo number_format($subtotal,2);?></td>
-	<td></td>
+	<td></td><td></td>
 </tr>
 
 <tr>
 	<td class='text-right' colspan=4>TOTAL $</td>
 	<td class='text-right' id="valor_total"><?php echo number_format($total_factura,2);?></td>
-	<td></td>
+	<td></td><td></td>
 </tr>
 
 </table>
