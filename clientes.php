@@ -20,7 +20,7 @@
 	$active_usuarios="";
 	$active_contratos="";
 	$active_mapa = "";		
-	$title="Clientes | SistCoom V1.0";
+	$title=" Clientes | SistCoom V1.0";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,9 +58,9 @@
 							<span class="glyphicon glyphicon-search" ></span> Buscar</button>
 							<span id="loader"></span>
 					</div>    
-			      <div class="btn-group pull-right">
-				  <button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoCliente"><span class="glyphicon glyphicon-plus" ></span> Nuevo Tercero</button>
-			      </div>
+			    	<div class="btn-group pull-right">
+					<a  href="nuevo_tercero.php" class="btn btn-info"><span class="glyphicon glyphicon-plus" ></span> Nuevo Cliente</a>
+					</div>
 				</div>
 				<!--script  para evitar la funcion de enter en el formulario de busqueda-->
 				<script> 

@@ -94,7 +94,7 @@
 				<div class="col-sm-2">
 					<input type="text" class="form-control input-sm" id="fecha_act" value="<?php echo date("d/m/Y");?>" readonly></div>
 				<div class="col-sm-2">
-				<input type="text" class="form-control input-sm" id="date_added" value="<?php echo date("d/m/Y");?>" readonly></div>
+					<input type="text" class="form-control input-sm" id="date_added" value="<?php echo date("d/m/Y");?>" readonly></div>
 			  </div>
 			  
 			  <div class="form-group">
