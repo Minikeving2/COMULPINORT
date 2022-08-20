@@ -38,7 +38,7 @@
 		   }
 		}	
 	
-    $( "#guardar_cliente" ).submit(function( event ) {
+    $("#guardar_cliente").submit(function( event ) {
        $('#guardar_datos').attr("disabled", true);
      var parametros = $(this).serialize();
 	 var aux = document.querySelector('#id').value;

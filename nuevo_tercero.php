@@ -40,12 +40,13 @@
 		</div>
 		<div class="panel-body" >
 		<?php 
-			include("modal/buscar_productos.php");
+			include("modal/doc_cliente.php");
+			/*include("modal/buscar_productos.php");
 			include("modal/registro_clientes.php");
 			include("modal/registro_productos.php");
-			include("modal/buscar_cliente.php");
+			include("modal/buscar_cliente.php");*/
 		?>
-			<form class="form-horizontal" role="form" id="datos_contrato" enctype="multipart/form-data">
+			<form class="form-horizontal" method="POST" id="nuevo_cliente" name="guardar_cliente">
 				
 				<div class="form-group row">
 				   <label for="comprobante" class="col-md-1 ">NIT/C.C.</label>	
@@ -136,10 +137,10 @@
 				    </div> --> 
 				   
 				    <div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="fecha_act" value="<?php echo date("d/m/Y");?>" readonly>
+						<input type="text" class="form-control input-sm" id="date_added" value="<?php echo date("d/m/Y");?>" name="date_added" readonly>
 				    </div>
 					<div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="date_added" value="<?php echo date("d/m/Y");?>" readonly>
+						<input type="text" class="form-control input-sm" id="fecha_act" value="<?php echo date("d/m/Y");?>" name="fecha_act" readonly>
 				    </div>
 				    <div class="col-md-2">
 						<input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" >
@@ -148,10 +149,10 @@
 						<input type="text" class="form-control" id="email_cliente" name="email_cliente" >
 				    </div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="email_cliente" name="email_cliente" >
+						<input type="text" class="form-control" id="direccion_cliente" name="direccion_cliente" >
 					</div>
 					<div class="col-md-2">
-						<input type="text" class="form-control" id="email_cliente" name="email_cliente" >
+						<input type="text" class="form-control" id="cedula_rp" name="cedula_rp" >
 					</div>
 				</div>
 
@@ -163,7 +164,6 @@
 				  	<label for="nombre" class="col-md-2 ">Teléf. RepLegal</label>
 				  	<label for="estado" class="col-md-3  ">Email RepLegal</label>
 				  	<label for="nombre_rl" class="col-md-3 ">Dir. RepLegal</label>
-				  	<label for="estado" class="col-md-1 ">...</label>
 				</div>
 				<div class="form-group row">
 				    <!--    
@@ -173,77 +173,50 @@
 				    </div> --> 
 				   
 				    <div class="col-md-3">
-						<input type="text" class="form-control input-sm" id="fecha_act">
+						<input type="text" class="form-control input-sm" id="nombre_rp" name="nombre_rp">
 				    </div>
 					<div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="date_added">
+						<input type="text" class="form-control input-sm" id="tel_rp" name="tel_rp">
 				    </div>
 				    <div class="col-md-3">
-						<input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" >
+						<input type="text" class="form-control" id="telefono_cliente" name="email_rp" >
 				    </div> 
 				    <div class="col-md-3">
-						<input type="text" class="form-control" id="email_cliente" name="email_cliente" >
+						<input type="text" class="form-control" id="email_cliente" name="direccion_rp" >
 				    </div>
-					<div class="col-md-1">
-						<input type="text" class="form-control" id="email_cliente" name="email_cliente" >
+				</div>
+
+				
+				<div class="form-group row">
+					<div class="col-md-12">
+						<div class="pull-right">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#docCliente">
+							<span class="glyphicon glyphicon-floppy-disk"></span> Añadir doc.
+							</button>
+							<button type="submit" class="btn btn-success" id="guardar_datos">
+								<span class="glyphicon glyphicon-floppy-disk"></span>Guardar datos
+							</button>
+						</div>	
 					</div>
 				</div>
-
-				
-
-				<div class="col-md-12">
-					<div class="pull-right">
-						<button type="submit" class="btn btn-success" id="#guardarcontrato" >
-						 <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
-						</button>
-					</div>	
-				</div>
-				
-			</form>	
+			</form>
+			
+			<div id="resultados_ajax2" class="col-md-12"></div>
 			
 		
 	
-	<hr>
 	<?php
 	include("footer.php");
 	?>
 
 
 	<script type="text/javascript" src="js/VentanaCentrada.js"></script>
-	<script type="text/javascript" src="js/nuevo_contrato.js"></script>
+
+	
+
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script>
-		$(function() {
-						$("#nombre_cliente").autocomplete({
-							source: "./ajax/autocomplete/clientes.php",
-							minLength: 2,
-							select: function(event, ui) {
-								event.preventDefault();
-								$('#id_cliente').val(ui.item.id_cliente);
-								$('#nombre_cliente').val(ui.item.nombre_cliente);
-								$('#tel1').val(ui.item.telefono_cliente);
-								$('#mail').val(ui.item.email_cliente);			
-							 }
-						});
-					});
-					
-	$("#nombre_cliente" ).on( "keydown", function( event ) {
-						if (event.keyCode== $.ui.keyCode.LEFT || event.keyCode== $.ui.keyCode.RIGHT || event.keyCode== $.ui.keyCode.UP || event.keyCode== $.ui.keyCode.DOWN || event.keyCode== $.ui.keyCode.DELETE || event.keyCode== $.ui.keyCode.BACKSPACE )
-						{
-							$("#id_cliente" ).val("");
-							$("#tel1" ).val("");
-							$("#mail" ).val("");
-											
-						}
-						if (event.keyCode==$.ui.keyCode.DELETE){
-							$("#nombre_cliente" ).val("");
-							$("#id_cliente" ).val("");
-							$("#tel1" ).val("");
-							$("#mail" ).val("");
-						}
-			});	
-	</script>
-
+	
+	<script type="text/javascript" src="js/nuevo_clientes.js"></script>
   </body>
 </html>
