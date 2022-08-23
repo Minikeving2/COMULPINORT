@@ -111,7 +111,7 @@ if ($count==0){
 	//tras realizar la importacion de tmp a detalle_factura toca vacia la tabla tmp
 	
 		$sql=mysqli_query($con,"DELETE FROM tmp");
-		echo json_encode("<script>alert('factura registrada correctamente $name')</script>");
+		echo json_encode("<script>alert('factura registrada correctamente')</script>");
  	} else {
 		echo json_encode("INSERT INTO contrato (fecha_inicio, fecha_final, fecha_crea, tipo_per, id_cliente, duracion, numcontrato, numpoliza, clausulagal, clausulapenal, descripcion, valor, id_contrato_rel, id_usuario) VALUES ('$fecha_inicio', '$fecha_fin', '$fecha_creacion', '$tipo_per', '$id_cliente', '$duracion', '$num_contrato', '$num_poliza', '$clau_legal', '$clau_penal','$observacion','$calculado','$otrosi','".$_SESSION['user_id']."')");
  	}

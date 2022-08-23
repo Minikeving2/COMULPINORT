@@ -20,6 +20,48 @@
 	/* Connect To Database*/
 	require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
+    mysqli_query($con,"SET NAMES 'utf8'");
+	if (isset($_GET['id_cliente'])){
+		$id_cliente=intval($_GET['id_cliente']);
+		$sql_cliente=mysqli_query($con,"select * from clientes where id_cliente='".$id_cliente."'");
+		$count=mysqli_num_rows($sql_cliente);
+		if ($count==1){
+				$rw_busqueda=mysqli_fetch_array($sql_cliente);
+				$id_cliente=$rw_busqueda['id_cliente'];
+                
+				$nombre_cliente=$rw_busqueda['nombre_cliente'];
+                
+				$nit_cliente=$rw_busqueda['nit'];
+				$nombre_rp=$rw_busqueda['nombre_rp'];
+                $estado=$rw_busqueda['status_cliente'];
+                $date_added=$rw_busqueda['date_added'];
+                $codigo_sicom=$rw_busqueda['codigo_sicom'];
+                $cc_rp=$rw_busqueda['cc_rp'];
+                $tipo_tercero=$rw_busqueda['tipo_tercero'];
+                $tel_rp=$rw_busqueda['tel_rp'];
+                $cel_eds=$rw_busqueda['cel_eds'];
+                $cel_rp=$rw_busqueda['cel_rp'];
+                $email_rp=$rw_busqueda['email_rp'];
+                $dir_rp=$rw_busqueda['dir_rp'];
+				$id_municipio=$rw_busqueda['id_municipio'];
+                $cupo=$rw_busqueda['cupo'];
+                $fecha_act=$rw_busqueda['fecha_act'];
+                $usuario=$rw_busqueda['usuario'];
+
+
+				
+		}	
+		else
+		{
+			header("location: clientes.php");
+			exit;	
+		}
+	} 
+	else 
+	{
+		header("location: clientes.php");
+		exit;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,15 +101,15 @@
 				</div>
 				<div class="form-group row">			
 				    <div class="col-md-1">
-					    <input type="text" class="form-control input-sm" id="nit" name="nit">	
+					    <input type="text" class="form-control input-sm" id="nit" name="nit" value="<?php echo $nit_cliente;?>">	
 				    </div>  
 				    
 				    <div class="col-md-4">
-					    <input type="text" class="form-control input-sm" id="nombre_tercero" name="nombre_tercero">	
+					    <input type="text" class="form-control input-sm" id="nombre_tercero" name="nombre_tercero" value="<?php echo $nombre_cliente;?>">	
 				    </div>
 
 				    <div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="sicom" name="sicom">
+						<input type="text" class="form-control input-sm" id="sicom" name="sicom" value="<?php echo $codigo_sicom;?>">
 					</div>
 
 				    <div class="col-md-1">
@@ -106,7 +148,7 @@
 					</div> 
 
 					<div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="cupo" name="cupo">
+						<input type="text" class="form-control input-sm" id="cupo" name="cupo" value="">
 					</div>	
 					
 					<div class="col-md-2">
@@ -137,22 +179,22 @@
 				    </div> --> 
 				   
 				    <div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="date_added" value="<?php echo date("d/m/Y");?>" name="date_added" readonly>
+						<input type="text" class="form-control input-sm" id="date_added" value="<?php ?>" name="date_added" readonly>
 				    </div>
 					<div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="fecha_act" value="<?php echo date("d/m/Y");?>" name="fecha_act" readonly>
+						<input type="text" class="form-control input-sm" id="fecha_act" value="<?php ?>" name="fecha_act">
 				    </div>
 				    <div class="col-md-2">
-						<input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" >
+						<input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="">
 				    </div> 
 				    <div class="col-md-3">
-						<input type="text" class="form-control" id="email_cliente" name="email_cliente" >
+						<input type="text" class="form-control" id="email_cliente" name="email_cliente"  value="">
 				    </div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="direccion_cliente" name="direccion_cliente" >
+						<input type="text" class="form-control" id="direccion_cliente" name="direccion_cliente"  value="">
 					</div>
 					<div class="col-md-2">
-						<input type="text" class="form-control" id="cedula_rp" name="cedula_rp" >
+						<input type="text" class="form-control" id="cedula_rp" name="cedula_rp" value="<?php echo $cel_rp;?>">
 					</div>
 				</div>
 
@@ -173,16 +215,16 @@
 				    </div> --> 
 				   
 				    <div class="col-md-3">
-						<input type="text" class="form-control input-sm" id="nombre_rp" name="nombre_rp">
+						<input type="text" class="form-control input-sm" id="nombre_rp" name="nombre_rp" value="<?php echo $nombre_rp;?>">
 				    </div>
 					<div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="tel_rp" name="tel_rp">
+						<input type="text" class="form-control input-sm" id="tel_rp" name="tel_rp" value="<?php echo $tel_rp;?>">
 				    </div>
 				    <div class="col-md-3">
-						<input type="text" class="form-control" id="telefono_cliente" name="email_rp" >
+						<input type="text" class="form-control" id="telefono_rp" name="email_rp" value="<?php echo $email_rp;?>">
 				    </div> 
 				    <div class="col-md-3">
-						<input type="text" class="form-control" id="email_cliente" name="direccion_rp" >
+						<input type="text" class="form-control" id="email_rp" name="direccion_rp" value="<?php echo $dir_rp;?>">
 				    </div>
 				</div>
 
@@ -218,6 +260,6 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	
-	<script type="text/javascript" src="js/nuevo_clientes.js"></script>
+	<script type="text/javascript" src="js/editar_clientes.js"></script>
   </body>
 </html>
