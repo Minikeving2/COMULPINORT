@@ -21,10 +21,29 @@
                             </div> 
                     
                             <div class="form-group">
-                            <!-- 
-                            <label for="id" class="col-sm-2 ">ID</label>-->	
-                                <label for="nombre_doc" class="col-sm-6 ">Nombre</label>
-                                <label for="archivo" class="col-sm-4 "> </label>
+                                <label class="col-sm-4 ">Tipo de doc</label>
+                                <label class="col-sm-4 ">Fecha documento</label>
+                                <label class="col-sm-4 ">Fecha vencimiento</label>
+                            </div>
+                            <div class="form-group">			
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="tipo_doc" name="tipo_doc" >
+                                        <option value="1"></option>
+                                        <option value="2"></option>
+                                        <option value="3"></option>
+                                        <option value="4"></option>
+                                        <option value="5"></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" id="fecha_inicio_doc" name="fecha_inicio_doc" ></div>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" id="fecha_final_doc" name="fecha_final_doc" > </div>
+                                    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-6 ">Nombre</label>
+                                <label class="col-sm-6 "></label>
                             </div>
                             <div class="form-group">			
                                 <!--	

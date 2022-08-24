@@ -20,7 +20,6 @@ $("#nuevo_cliente").submit(function(event) {
 
 
 $("#documento_cliente").submit(function(event) {
-	console.log("si pudo");
 	var formulario = document.getElementById('documento_cliente');
 	var datos = new FormData(formulario);
 	

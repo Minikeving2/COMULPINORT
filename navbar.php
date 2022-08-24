@@ -24,7 +24,7 @@
       <li class="<?php echo $active_informes;?>"><a href="informes.php"><i class='glyphicon glyphicon-list-alt'></i> Informes <span class="sr-only"></span></a></li>
       <li class="<?php echo $active_ventas;?>"><a href="ventas.php"><span class="	glyphicon glyphicon-usd"></i> Ventas</a></li>
        
-      <li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Estaciones y asociados</a></li>
+      <li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Estaciones</a></li>
 		
        <li class="<?php echo $active_productos;?>"><a href="productos.php"><i class='glyphicon glyphicon-barcode'></i> Productos</a></li>
 		<li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>

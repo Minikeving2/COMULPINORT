@@ -1,0 +1,41 @@
+compras
+
+tenis gym 									75 comprado
+
+Reloj plateado para salir 							84 comprado
+
+Reloj oscuro para salir 							89 comprado
+
+3 CAMISAS PARA Salir  								180 
+
+3 busos para  salir y evitar el sol  						180 
+
+1 chaqueta moto reflectiva 							50
+
+anillo 										30 
+
+zapato negro									75 comprado
+
+3 pares de medias                                                               40
+
+audifonos									70 proceso
+
+
+$id_cliente
+$nombre_cliente
+$nit_cliente
+
+$estado
+$date_added
+$codigo_sicom
+$cc_rp
+$tipo_tercero
+
+$cel_eds
+
+
+
+$id_municipio
+$cupo
+$fecha_act
+$usuario

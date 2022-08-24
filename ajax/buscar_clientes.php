@@ -13,10 +13,19 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$id_cliente=intval($_GET['id']);
-		$query=mysqli_query($con, "select * from facturas where id_cliente='".$id_cliente."'");
+		$query=mysqli_query($con, "select * from where id_cliente='".$id_cliente."'");
 		$count=mysqli_num_rows($query);
 		if ($count==0){
 			if ($delete1=mysqli_query($con,"DELETE FROM clientes WHERE id_cliente='".$id_cliente."'")){
+
+				$query = mysqli_query($con, "SELECT ruta FROM detalle_cliente WHERE cod_cliente='$id_cliente'");
+				while ($row=mysqli_fetch_array($query)){
+
+					unlink($row['ruta']);
+					
+				}
+				$delete=mysqli_query($con, "DELETE FROM detalle_cliente WHERE cod_cliente='".$id_cliente."'");
+
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

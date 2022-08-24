@@ -28,15 +28,16 @@
 		if ($count==1){
 				$rw_busqueda=mysqli_fetch_array($sql_cliente);
 				$id_cliente=$rw_busqueda['id_cliente'];
-                
 				$nombre_cliente=$rw_busqueda['nombre_cliente'];
-                
-				$nit_cliente=$rw_busqueda['nit'];
-				$nombre_rp=$rw_busqueda['nombre_rp'];
+                $tel_cliente=$rw_busqueda['telefono_cliente'];
+				$email_cliente=$rw_busqueda['email_cliente'];
+				$dir_Cliente=$rw_busqueda['direccion_cliente'];
                 $estado=$rw_busqueda['status_cliente'];
                 $date_added=$rw_busqueda['date_added'];
                 $codigo_sicom=$rw_busqueda['codigo_sicom'];
+				$nit_cliente=$rw_busqueda['nit'];
                 $cc_rp=$rw_busqueda['cc_rp'];
+				$nombre_rp=$rw_busqueda['nombre_rp'];
                 $tipo_tercero=$rw_busqueda['tipo_tercero'];
                 $tel_rp=$rw_busqueda['tel_rp'];
                 $cel_eds=$rw_busqueda['cel_eds'];
@@ -47,7 +48,6 @@
                 $cupo=$rw_busqueda['cupo'];
                 $fecha_act=$rw_busqueda['fecha_act'];
                 $usuario=$rw_busqueda['usuario'];
-
 
 				
 		}	
@@ -68,7 +68,6 @@
   <head>
     <?php include("head.php");?>
 	<link rel="stylesheet" href="css/tabla.css">
-	<link rel="stylesheet" href="css/fechas.css">
   </head>
   <body>
 	<?php
@@ -115,7 +114,7 @@
 				    <div class="col-md-1">
 						<select class="form-control" id="estado" name="estado" required>
 							<option value="">-- Selecciona Estado --</option>
-							<option value="1" selected>Activo</option>
+							<option value="1">Activo</option>
 							<option value="0">Inactivo</option>
 							<option value="2">Retirado</option>
 						</select> 
@@ -123,16 +122,7 @@
 
 					<div class="col-md-2">
 						<select class="form-control input-sm" id="mun" name="mun">
-							<script>
-								var select = document.getElementById('id');
-								select.addEventListener('change',
-								function(){
-									var selectedOption = this.options[select.selectedIndex];
-									var a =(selectedOption.value);
-									console.log(a);
-									document.querySelector('#id').value=a;
-								});
-  							</script>
+							
 							<?php
 							    mysqli_query($con,"SET NAMES 'utf8'");
 								$sql_municipio=mysqli_query($con,"select * from municipios order by nombre");
@@ -148,7 +138,7 @@
 					</div> 
 
 					<div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="cupo" name="cupo" value="">
+						<input type="text" class="form-control input-sm" id="cupo" name="cupo" value="<?php echo $cupo;?>">
 					</div>	
 					
 					<div class="col-md-2">
@@ -179,22 +169,22 @@
 				    </div> --> 
 				   
 				    <div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="date_added" value="<?php ?>" name="date_added" readonly>
+						<input type="text" class="form-control input-sm" id="date_added" value="<?php  echo $date_added;?>" name="date_added" readonly>
 				    </div>
 					<div class="col-md-1">
-						<input type="text" class="form-control input-sm" id="fecha_act" value="<?php ?>" name="fecha_act">
+						<input type="text" class="form-control input-sm" id="fecha_act" value="<?php echo date("d/m/Y");?>" name="fecha_act" readonly>
 				    </div>
 				    <div class="col-md-2">
-						<input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="">
+						<input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="<?php echo $tel_cliente;?>">
 				    </div> 
 				    <div class="col-md-3">
-						<input type="text" class="form-control" id="email_cliente" name="email_cliente"  value="">
+						<input type="text" class="form-control" id="email_cliente" name="email_cliente"  value="<?php echo $email_cliente;?>">
 				    </div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="direccion_cliente" name="direccion_cliente"  value="">
+						<input type="text" class="form-control" id="direccion_cliente" name="direccion_cliente"  value="<?php echo $dir_Cliente;?>">
 					</div>
 					<div class="col-md-2">
-						<input type="text" class="form-control" id="cedula_rp" name="cedula_rp" value="<?php echo $cel_rp;?>">
+						<input type="text" class="form-control" id="cedula_rp" name="cedula_rp" value="<?php echo $cc_rp;?>">
 					</div>
 				</div>
 

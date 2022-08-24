@@ -10,14 +10,14 @@
 			$errors[] = "Nit/C.C. de la EDS/Asociado está vacío";
 		}
 		   
-        } else if (!empty($_POST['nombre_tercero'])){
+    } else if (!empty($_POST['nombre_tercero'])){
 		/* Connect To Database*/
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
 		//ASIGNACION DE VARIABLES PARA INSERTAR
 		
-mysqli_query($con,"SET NAMES 'utf8'");
+		mysqli_query($con,"SET NAMES 'utf8'");
 		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_tercero"],ENT_QUOTES)));
 		$telefono=mysqli_real_escape_string($con,(strip_tags($_POST["telefono_cliente"],ENT_QUOTES)));
 		$email=mysqli_real_escape_string($con,(strip_tags($_POST["email_cliente"],ENT_QUOTES)));
@@ -71,8 +71,13 @@ mysqli_query($con,"SET NAMES 'utf8'");
 							while ($row=mysqli_fetch_array($query)){
 								$ruta=$row['ruta'];
 								$archivo=$row['archivo'];
-								$insert=mysqli_query($con, "INSERT INTO detalle_cliente (cod_cliente,ruta,archivo) VALUES ('$id_cliente','".$ruta."','".$archivo."')");
-								$aux .= "INSERT INTO detalle_cliente (cod_cliente,ruta,archivo) VALUES ('$id_cliente','".$ruta."','".$archivo."')";
+								$nombre_doc=$row['nombre'];
+								$tipo_doc=$row['tipo_doc'];
+								$fecha_inicio=$row['fecha_inicio'];
+								$fecha_fin=$row['fecha_final'];
+								$fecha_added=date('Y-m-d');
+								$insert=mysqli_query($con, "INSERT INTO detalle_cliente (cod_cliente,nombre,ruta,archivo,tipo_doc,fecha_documento,fecha_vencimiento,fecha_added) VALUES ('$id_cliente','".$nombre_doc."','".$ruta."','".$archivo."','".$tipo_doc."','".$fecha_inicio."','".$fecha_fin."','".$fecha_added."')");
+								$aux .= "INSERT INTO detalle_cliente (cod_cliente,nombre,ruta,archivo,tipo_doc,fecha_documento,fecha_vencimineto,fecha_added) VALUES ('$id_cliente','".$nombre_doc."','".$ruta."','".$archivo."','".$tipo_doc."','".$fecha_inicio."','".$fecha_fin."','".$fecha_added."')";
 							}
 						}
 				
