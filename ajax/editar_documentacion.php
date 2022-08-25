@@ -15,8 +15,8 @@ $id_cliente=$_GET['id_cliente'];
 if (isset($_POST['nombre_doc'])){$nombre=$_POST['nombre_doc'];}
 if (isset($_FILES['archivo'])){$archivo = $_FILES['archivo'];}
 if (isset($_POST['nombre_doc'])){$tipo_doc=$_POST['tipo_doc'];}
-if (isset($_POST['fecha_inicio_doc'])){$fecha_inicio =  $_POST['fecha_inicio_doc'];}
-if (isset($_POST['fecha_final_doc'])){$fecha_final =  $_POST['fecha_final_doc'];}
+if (isset($_POST['fecha_inicio_doc'])){$fecha_inicio =  $_POST['fecha_inicio_doc'];}else{$fecha_inicio = "null";}
+if (isset($_POST['fecha_final_doc'])){$fecha_final = $_POST['fecha_final_doc'];}else{$fecha_final = "null";}
 
 	/* Connect To Database*/
 
@@ -24,17 +24,30 @@ mysqli_query($con,"SET NAMES 'utf8'");
 
 if (!empty($nombre) and !empty($archivo['name']) and !empty($tipo_doc)){
 
-	$name = "(".$nombre.")".$archivo['name'];
+	$sql=mysqli_query($con, "select nit from clientes where id_cliente='".$id_cliente."'");
+	while ($row=mysqli_fetch_array($sql)){
+		$nit = $row["nit"];
+	}
+
+	if(!empty($_POST['fecha_inicio_doc'])){$fecha_inicio =  "'".$_POST['fecha_inicio_doc']."'";}else{$fecha_inicio = "null";}
+	if(!empty($_POST['fecha_final_doc'])){$fecha_final = "'".$_POST['fecha_final_doc']."'";}else{$fecha_final = "null";}
+	
+	//extrae la extencion del archivo ya sea txt hml js etc
+	$aux= explode('.',$archivo['name'],2);
+	//aca le añadimos el nombre justa la extencion del archivo para asi renombrar el archivo
+	$name = $nombre.".".$aux[1];
 	$ruta = $_FILES['archivo']['tmp_name'];
-	$destino = "../tercero_documentacion/" . $name;
+	$destino = "../tercero_documentacion/".$nit."_".$name;
 	$fecha_added=date('Y-m-d');
 
 	if (copy($ruta, $destino)) {
-		$sql_doc_nuevo="INSERT INTO detalle_cliente (cod_cliente,nombre,ruta,archivo,tipo_doc,fecha_documento,fecha_vencimiento,fecha_added) VALUES ('$id_cliente','$nombre','$destino','$name','$tipo_doc','$fecha_inicio','$fecha_final','$fecha_added')";
+		$sql_doc_nuevo="INSERT INTO detalle_cliente (cod_cliente,nombre,ruta,archivo,tipo_doc,fecha_documento,fecha_vencimiento,fecha_added) VALUES ('$id_cliente','$nombre','$destino','$name','$tipo_doc',$fecha_inicio,$fecha_final,'$fecha_added')";
 		$insert_tmp=mysqli_query($con,$sql_doc_nuevo);
+		echo json_encode($resultado);
+		exit;
 	} else {
 		$resultado.='<script>alert("El tipo de archivo no es valido") </script>';
-		echo $resultado;
+		echo json_encode($resultado);
 		exit;
 	}
 }
@@ -98,10 +111,10 @@ while ($row=mysqli_fetch_array($sql)){
 		case 3:
 			$tipo_doc = "informacion legal 3";
 			break;
-		case 3:
+		case 4:
 			$tipo_doc = "informacion legal 4";
 			break;
-		case 3:
+		case 5:
 			$tipo_doc = "informacion legal 5";
 			break;
 		}
@@ -113,8 +126,14 @@ while ($row=mysqli_fetch_array($sql)){
 			<td class="text-center">'.$tipo_doc.'</td>
 			<td class="text-center">'.$fecha_inicio.'</td>
 			<td class="text-center">'.$fecha_final.'</td>
-			<td class="text-center">'.$ruta.'</td>
-			<td class="text-center"><a href="#" onclick="eliminar('.$id_detalle.')"><i class="glyphicon glyphicon-trash"></i></a></td>
+			<td class="text-center">'.$ruta.'</td>';
+
+	$ruta=str_replace("../", "",$row['ruta']);
+	$resultado.='
+			<td class="text-center">
+				<a href="'.$ruta.'" class="btn btn-default" title="Descargar contrato" download="doc'.$id_detalle.'"><i class="glyphicon glyphicon-download"></i></a> 
+				<a href="#" class="btn btn-default" onclick="eliminar('.$id_detalle.')"><i class="glyphicon glyphicon-trash"></i></a>
+			</td>
 		</tr>';	
 }
 $resultado.='</table>';

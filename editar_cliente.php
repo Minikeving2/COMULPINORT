@@ -44,7 +44,7 @@
                 $cel_rp=$rw_busqueda['cel_rp'];
                 $email_rp=$rw_busqueda['email_rp'];
                 $dir_rp=$rw_busqueda['dir_rp'];
-				$id_municipio=$rw_busqueda['id_municipio'];
+				$id_municipio_db=$rw_busqueda['id_municipio'];
                 $cupo=$rw_busqueda['cupo'];
                 $fecha_act=$rw_busqueda['fecha_act'];
                 $usuario=$rw_busqueda['usuario'];
@@ -87,7 +87,7 @@
 			include("modal/registro_productos.php");
 			include("modal/buscar_cliente.php");*/
 		?>
-			<form class="form-horizontal" method="POST" id="nuevo_cliente" name="guardar_cliente">
+			<form class="form-horizontal" method="POST" id="editar_cliente" name="editar_cliente">
 				
 				<div class="form-group row">
 				   <label for="comprobante" class="col-md-1 ">NIT/C.C.</label>	
@@ -112,17 +112,26 @@
 					</div>
 
 				    <div class="col-md-1">
-						<select class="form-control" id="estado" name="estado" required>
+						<select class="form-control" id="estado" name="estado" id="estado" required>
 							<option value="">-- Selecciona Estado --</option>
 							<option value="1">Activo</option>
 							<option value="0">Inactivo</option>
 							<option value="2">Retirado</option>
-						</select> 
+						</select>
+						<script>
+							document.querySelector('#estado').value=<?php echo $estado; ?>;	
+						</script>
 					</div>	
 
 					<div class="col-md-2">
-						<select class="form-control input-sm" id="mun" name="mun">
-							
+						<select class="form-control input-sm" id="mun" name="mun" value="<?php echo $id_municipio;?>">
+							<script>
+								var select = document.getElementById('mun');
+								select.addEventListener('change',function(){
+									var selectedOption = this.options[select.selectedIndex];
+									console.log("aver");		
+								});
+							</script>
 							<?php
 							    mysqli_query($con,"SET NAMES 'utf8'");
 								$sql_municipio=mysqli_query($con,"select * from municipios order by nombre");
@@ -134,6 +143,9 @@
 							<?php
 											}
 							?>
+							<script>
+								document.querySelector('#mun').value=<?php echo $id_municipio_db; ?>;	
+							</script>
 						</select>
 					</div> 
 
@@ -143,11 +155,23 @@
 					
 					<div class="col-md-2">
 						<select class="form-control" id="tipo_tercero" name="tipo_tercero" required>
-							<option value="">-- Selecciona Tipo Tercero --</option>
+							<option value="4">-- Selecciona Tipo Tercero --</option>
 							<option value="2" selected>P - Proveedor</option>
 							<option value="1" selected>E - EDS</option>
 							<option value="0">A - Asociado</option>
 						</select>
+						<?php 
+							if ($tipo_tercero=="E"){
+								$tipo_tercero=1;
+							} elseif ($tipo_tercero=="P") {
+								$tipo_tercero=2;
+							} elseif ($tipoper=="A") {
+								$tipo_tercero=0;
+							}
+						?>
+						<script>
+							document.querySelector('#tipo_tercero').value=<?php echo $tipo_tercero; ?>;	
+						</script>
 				    </div>	
 				</div>
 
@@ -225,8 +249,8 @@
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#docCliente">
 							<span class="glyphicon glyphicon-floppy-disk"></span> Añadir doc.
 							</button>
-							<button type="submit" class="btn btn-success" id="guardar_datos">
-								<span class="glyphicon glyphicon-floppy-disk"></span>Guardar datos
+							<button type="submit" class="btn btn-success" id="actualizar_datos">
+								<span class="glyphicon glyphicon-floppy-disk"></span>Actualizar datos
 							</button>
 						</div>	
 					</div>

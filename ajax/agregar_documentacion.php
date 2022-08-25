@@ -85,10 +85,10 @@ $resultado.='
 			case 3:
 				$tipo_doc = "informacion legal 3";
 				break;
-			case 3:
+			case 4:
 				$tipo_doc = "informacion legal 4";
 				break;
-			case 3:
+			case 5:
 				$tipo_doc = "informacion legal 5";
 				break;
 

@@ -48,7 +48,9 @@ $("#documento_cliente").submit(function(event) {
 		method: 'POST',
 		body: datos
     })
-	.then( data => {
+	.then( (res) => res.json())
+	.then( (data) => {
+		$("#resultados_docs").html(data);
 		$.ajax({
 			type: "GET",
 			url: "./ajax/editar_documentacion.php",
@@ -65,3 +67,27 @@ $("#documento_cliente").submit(function(event) {
     event.preventDefault();
 })
 
+$("#editar_cliente" ).submit(function( event ) {
+	event.preventDefault();
+	
+	var parametros = $(this).serialize();
+	
+	const valores = window.location.search;
+    const urlParams = new URLSearchParams(valores);
+    var id_cliente = urlParams.get('id_cliente');
+	
+	var url = "ajax/editar_cliente.php?id_cliente="+id_cliente;
+   	
+	   $.ajax({
+			  type: "POST",
+			  url: url,
+			  data: parametros,
+			   beforeSend: function(objeto){
+				$("#resultados_ajax2").html("Mensaje: Cargando...");
+				},
+			  success: function(datos){
+				$("#resultados_ajax2").html(datos);
+			}
+	  });
+	
+  })

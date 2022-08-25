@@ -81,13 +81,13 @@
 					<div class="col-md-2">
 						<select class="form-control input-sm" id="mun" name="mun">
 							<script>
-								var select = document.getElementById('id');
+								var select = document.getElementById('mun');
 								select.addEventListener('change',
 								function(){
 									var selectedOption = this.options[select.selectedIndex];
 									var a =(selectedOption.value);
 									console.log(a);
-									document.querySelector('#id').value=a;
+									document.querySelector('#mun').value=a;
 								});
   							</script>
 							<?php
@@ -110,7 +110,7 @@
 					
 					<div class="col-md-2">
 						<select class="form-control" id="tipo_tercero" name="tipo_tercero" required>
-							<option value="">-- Selecciona Tipo Tercero --</option>
+							<option value="4">-- Selecciona Tipo Tercero --</option>
 							<option value="2" selected>P - Proveedor</option>
 							<option value="1" selected>E - EDS</option>
 							<option value="0">A - Asociado</option>

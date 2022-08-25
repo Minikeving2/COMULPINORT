@@ -111,6 +111,7 @@
 							<option value="1">Natural</option>
 							<option value="2">Jurídico</option>
 						</select>
+						
 						<script>
 							    document.querySelector('#tipo_per').value=<?php echo $tipo_contrato; ?>;	
 						</script>
