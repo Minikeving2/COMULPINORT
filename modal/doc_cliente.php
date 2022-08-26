@@ -9,7 +9,7 @@
                 <form class="form-horizontal" method="post" id="documento_cliente" name="documento_cliente" enctype="multipart/form-data"> 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar nuevo Tercero</h4>
+                        <h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar Documento</h4>
                     </div>
 
                     <div class="modal-body">
@@ -28,11 +28,13 @@
                             <div class="form-group">			
                                 <div class="col-sm-4">
                                     <select class="form-control" id="tipo_doc" name="tipo_doc" >
-                                        <option value="1"></option>
-                                        <option value="2"></option>
-                                        <option value="3"></option>
-                                        <option value="4"></option>
-                                        <option value="5"></option>
+                                        <option value="1">RUT</option>
+                                        <option value="2">Camara de Comercio</option>
+                                        <option value="3">Resolucion Dian</option>
+                                        <option value="4">Cedula Rp</option>
+                                        <option value="5">Poliza Sura</option>
+                                        <option value="6">Uso de Suelos</option>
+                                        <option value="7">Formulario Coomulpinort</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">

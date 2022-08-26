@@ -103,38 +103,43 @@ while ($row=mysqli_fetch_array($sql)){
 	$fecha_added=$row['fecha_added'];
 	switch ($tipo_doc) {
 		case 1:
-			$tipo_doc = "informacion legal 1";
+			$tipo_doc = "RUT";
 			break;
 		case 2:
-			$tipo_doc = "informacion legal 2";
+			$tipo_doc = "Camara de Comercio";
 			break;
 		case 3:
-			$tipo_doc = "informacion legal 3";
+			$tipo_doc = "Resolucion Dian";
 			break;
 		case 4:
-			$tipo_doc = "informacion legal 4";
+			$tipo_doc = "Cedula Rp";
 			break;
 		case 5:
-			$tipo_doc = "informacion legal 5";
+			$tipo_doc = "Poliza Sura";
+			break;
+		case 6:
+			$tipo_doc = "Uso de Suelos";
+			break;
+		case 7:
+			$tipo_doc = "Formulario Coomulpinort";
 			break;
 		}
-
 	$resultado.='
-		<tr>
-			<td class="text-center">'.$fecha_added.'</td>
-			<td class="text-center">'.$nombre.'</td>
-			<td class="text-center">'.$tipo_doc.'</td>
-			<td class="text-center">'.$fecha_inicio.'</td>
-			<td class="text-center">'.$fecha_final.'</td>
-			<td class="text-center">'.$ruta.'</td>';
+				<tr>
+					<td class="text-center">'.$fecha_added.'</td>
+					<td class="text-center">'.$nombre.'</td>
+					<td class="text-center">'.$tipo_doc.'</td>
+					<td class="text-center">'.$fecha_inicio.'</td>
+					<td class="text-center">'.$fecha_final.'</td>
+					<td class="text-center">'.$ruta.'</td>';
 
 	$ruta=str_replace("../", "",$row['ruta']);
 	$resultado.='
-			<td class="text-center">
-				<a href="'.$ruta.'" class="btn btn-default" title="Descargar contrato" download="doc'.$id_detalle.'"><i class="glyphicon glyphicon-download"></i></a> 
-				<a href="#" class="btn btn-default" onclick="eliminar('.$id_detalle.')"><i class="glyphicon glyphicon-trash"></i></a>
-			</td>
-		</tr>';	
+					<td class="text-center">
+						<a href="'.$ruta.'" class="btn btn-default" title="Descargar contrato" download="doc'.$id_detalle.'"><i class="glyphicon glyphicon-download"></i></a> 
+						<a href="#" class="btn btn-default" onclick="eliminar('.$id_detalle.')"><i class="glyphicon glyphicon-trash"></i></a>
+					</td>
+				</tr>';	
 }
 $resultado.='</table>';
 echo $resultado;

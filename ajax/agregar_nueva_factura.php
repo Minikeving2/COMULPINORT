@@ -53,7 +53,7 @@ if (str_replace('/','-',$_POST["fecha_fact"])==""){
 } else {
 	$fecha_factura="'".str_replace('/','-',$_POST["fecha_fact"])."'";
 }
-if ($_POST["id_proveedor"]){
+if ($_POST["id_proveedor"]==""){
 	$id_proveedor="null";
 } else {
 	$id_proveedor=$_POST["id_proveedor"];

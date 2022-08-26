@@ -77,22 +77,27 @@ $resultado.='
 		$fecha_added=$row['fecha_added'];
 		switch ($tipo_doc) {
 			case 1:
-				$tipo_doc = "informacion legal 1";
+				$tipo_doc = "RUT";
 				break;
 			case 2:
-				$tipo_doc = "informacion legal 2";
+				$tipo_doc = "Camara de Comercio";
 				break;
 			case 3:
-				$tipo_doc = "informacion legal 3";
+				$tipo_doc = "Resolucion Dian";
 				break;
 			case 4:
-				$tipo_doc = "informacion legal 4";
+				$tipo_doc = "Cedula Rp";
 				break;
 			case 5:
-				$tipo_doc = "informacion legal 5";
+				$tipo_doc = "Poliza Sura";
 				break;
-
-		}
+			case 6:
+				$tipo_doc = "Uso de Suelos";
+				break;
+			case 7:
+				$tipo_doc = "Formulario Coomulpinort";
+				break;
+			}
 
 		$resultado.='
 		<tr>
