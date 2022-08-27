@@ -114,9 +114,10 @@
 				    <div class="col-md-1">
 						<select class="form-control" id="estado" name="estado" id="estado" required>
 							<option value="">-- Selecciona Estado --</option>
-							<option value="1">Activo</option>
 							<option value="0">Inactivo</option>
+							<option value="1">Activo</option>
 							<option value="2">Retirado</option>
+							<option value="3">En Proceso</option>
 						</select>
 						<script>
 							document.querySelector('#estado').value=<?php echo $estado; ?>;	

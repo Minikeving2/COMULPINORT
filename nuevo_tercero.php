@@ -75,6 +75,7 @@
 							<option value="1" selected>Activo</option>
 							<option value="0">Inactivo</option>
 							<option value="2">Retirado</option>
+							<option value="3">En Proceso</option>
 						</select> 
 					</div>	
 

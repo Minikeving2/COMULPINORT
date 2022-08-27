@@ -100,8 +100,8 @@
 						<th>Teléfono</th>
 						<th>Email</th>
 						<th>cupo</th>
+						<th>Municipio</th>
 						<th>Estado</th>
-						<th>Agregado</th>
 						<th class='text-right'>Acciones</th>
 					</tr>
 				</thead>
@@ -128,10 +128,25 @@
 						$email_rp=$row["email_rp"];
 						$dir_rp=$row["dir_rp"];
 						
+						switch ($status_cliente) {
+							case 0:
+								$estado = "Inactivo";
+								break;
+							case 1:
+								$estado = "Activo";
+								break;
+							case 2:
+								$estado = "Retirado";
+								break;
+							case 3:
+								$estado = "En Proceso";
+								break;
+							}
+					
+						$sql_mun="SELECT NOMBRE FROM municipios WHERE id = $municipio";	
+						$municipio = mysqli_fetch_array(mysqli_query($con,$sql_mun));
 
-						if ($status_cliente==1){$estado="Activo";}
-						else {$estado="Inactivo";}
-						
+
 					?>
 					<input type="hidden" value="<?php echo $id_cliente;?>" id="id_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $codigo_sicom;?>" id="codigo_sicom<?php echo $id_cliente;?>">
@@ -146,7 +161,7 @@
 					<input type="hidden" value="<?php echo $telefono_cliente;?>" id="telefono_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $tipo_tercero;?>" id="tipo_tercero<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $date_added;?>" id="date_added<?php echo $id_cliente;?>">
-					<input type="hidden" value="<?php echo $municipio;?>" id="id_municipio<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $municipio[0];?>" id="id_municipio<?php echo $id_cliente;?>">
 					
 					<input type="hidden" value="<?php echo $cc_rp;?>" id="cc_rp<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $nombre_rp;?>" id="nombre_rp<?php echo $id_cliente;?>">
@@ -154,19 +169,15 @@
 					<input type="hidden" value="<?php echo $email_rp;?>" id="email_rp<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $dir_rp;?>" id="dir_rp<?php echo $id_cliente;?>">
 					
-					
-					
-
-
-
 					<tr>
 					    <td><?php echo $codigo_sicom; ?></td>
 						<td><?php echo $nombre_cliente; ?></td>
 						<td ><?php echo $telefono_cliente; ?></td>
 						<td><?php echo $email_cliente;?></td>
 						<td><?php echo $cupo;?></td>
+						<td><?php echo $municipio[0];?></td>
 						<td><?php echo $estado;?></td>
-						<td><?php echo $date_added;?></td>
+						
 						
 					<td ><span class="pull-right">
 					<a href="editar_cliente.php?id_cliente=<?php echo $id_cliente;?>" class='btn btn-default' title='Editar cliente'><i class="glyphicon glyphicon-edit"></i></a> 
@@ -191,8 +202,9 @@
 							<th>Teléfono</th>
 							<th>Email</th>
 							<th>cupo</th>
+							<th>Municipio</th>
 							<th>Estado</th>
-							<th>Agregado</th>
+							
 							<th class='text-right'>Acciones</th>
 						</tr>
 					</thead>

@@ -71,7 +71,7 @@
 					<th>#</th>
 					<th>Fecha</th>
 					<th>Cliente</th>
-					<th>Registrado por</th>
+					<th>Tipo de Movimineto</th>
 					<th>Estado</th>
 					<th class='text-right'>Total</th>
 					<th class='text-right'>Acciones</th>	
@@ -86,17 +86,82 @@
 						$nombre_cliente=$row['nombre_cliente'];
 						$telefono_cliente=$row['telefono_cliente'];
 						$email_cliente=$row['email_cliente'];
+						$tipo_mov=$row['tipo_mov'];
 						$nombre_vendedor=$row['firstname']." ".$row['lastname'];
 						$estado_factura=$row['estado_factura'];
-						if ($estado_factura==1){$text_estado="Pagado";$label_class='label-success';}
-						else{$text_estado="Pendiente";$label_class='label-warning';}
+						
 						$total_venta=$row['total_venta'];
+
+						$query_estado=mysqli_query($con,"SELECT id_detalle,duracion FROM detalle_factura WHERE id_factura = $id_factura");	
+						$cont_fechas=0;
+						while ($rows=mysqli_fetch_array($query_estado)){
+
+							$id_datalle=$rows['id_detalle'];
+							$fecha=$rows['duracion'];
+							if (empty($rows['duracion'])){
+								$cont_fechas=$cont_fechas+1;
+							}
+
+						}
+						
+						if ($cont_fechas==0){
+							$label_class='label-success';
+							$text_estado="Pagado";
+						} else {
+							$label_class='label-warning';
+							$text_estado="Pendiente";
+						}
+ 
+
+						switch ($tipo_mov) {
+							case 1:
+								$tipo_mov = "Equipos (Comodato)";
+								break;
+							case 2:
+								$tipo_mov = "Publicidad Canopy";
+								break;
+							case 3:
+								$tipo_mov = "Letrero de precios";
+								break;
+							case 4:
+								$tipo_mov = "Apoyo arreglos locativos";
+								break;
+							case 5:
+								$tipo_mov = "Apoyo Económico/Transacción";
+								break;
+							case 6:
+								$tipo_mov = "Apoyo Económico/Efectivo";
+								break;
+							case 7:
+								$tipo_mov = "Apoyo Económico/Cruce Cart.";
+								break;
+							case 8:
+								$tipo_mov = "Crédito/Transacción";
+								break;
+							case 9:
+								$tipo_mov = "Crédito/Cruce Cart.";
+								break;
+							case 10:
+								$tipo_mov = "Cupo Crédito Estaciones";
+								break;
+							case 11:
+								$tipo_mov = "Préstamos";
+								break;
+							case 12:
+								$tipo_mov = "Pólizas SURA";
+								break;
+							case 13:
+								$tipo_mov = "Descuentos Gasolina Nacional";
+								break;
+							}
+
+					
 					?>
 					<tr>
 						<td><?php echo $id_factura; ?></td>
 						<td><?php echo $fecha; ?></td>
 						<td><a href="#" data-toggle="tooltip" data-placement="top" title="<i class='glyphicon glyphicon-phone'></i> <?php echo $telefono_cliente;?><br><i class='glyphicon glyphicon-envelope'></i>  <?php echo $email_cliente;?>" ><?php echo $nombre_cliente;?></a></td>
-						<td><?php echo $nombre_vendedor; ?></td>
+						<td><?php echo $tipo_mov; ?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado; ?></span></td>
 						<td class='text-right'><?php echo number_format ($total_venta,2); ?></td>					
 					<td class="text-right">
@@ -123,7 +188,7 @@
 							<th>#</th>
 							<th>Fecha</th>
 							<th>Cliente</th>
-							<th>Registrado por</th>
+							<th>Tipo de Movimiento</th>
 							<th>Estado</th>
 							<th class='text-right'>Total</th>
 							<th class='text-right'>Acciones</th>	

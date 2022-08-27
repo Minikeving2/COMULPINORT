@@ -31,10 +31,18 @@
                                         <option value="1">RUT</option>
                                         <option value="2">Camara de Comercio</option>
                                         <option value="3">Resolucion Dian</option>
-                                        <option value="4">Cedula Rp</option>
+                                        <option value="4">Cedula Representante Legal</option>
                                         <option value="5">Poliza Sura</option>
                                         <option value="6">Uso de Suelos</option>
                                         <option value="7">Formulario Coomulpinort</option>
+                                        <option value="8">Autorizacion Tratamiento de Datos Personales</option>
+                                        <option value="9">Declaracion de Origien de Bien y Recursos</option>
+                                        <option value="10">Antecedentes Policia</option>
+                                        <option value="11">Antecedentes Procaduria</option>
+                                        <option value="12">Antecedentes Contaduria</option>  
+                                        <option value="13">Sarlaft</option> 
+                                        <option value="14">Tajeta Profesional del Contador</option>
+                                        <option value="15">Otros</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
