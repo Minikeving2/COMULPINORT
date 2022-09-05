@@ -82,7 +82,7 @@
 				while ($row=mysqli_fetch_array($query)){
 						$id_factura=$row['id_factura'];
 						$numero_factura=$row['numero_factura'];
-						$fecha=date("d/m/Y", strtotime($row['fecha_factura']));
+						$fecha_add=date("d/m/Y", strtotime($row['fecha_factura']));
 						$nombre_cliente=$row['nombre_cliente'];
 						$telefono_cliente=$row['telefono_cliente'];
 						$email_cliente=$row['email_cliente'];
@@ -92,24 +92,29 @@
 						
 						$total_venta=$row['total_venta'];
 
-						$query_estado=mysqli_query($con,"SELECT id_detalle,duracion FROM detalle_factura WHERE id_factura = $id_factura");	
-						$cont_fechas=0;
-						while ($rows=mysqli_fetch_array($query_estado)){
+						if ($tipo_mov<11 && $tipo_mov>4){
+							$query_estado=mysqli_query($con,"SELECT id_detalle,duracion FROM detalle_factura WHERE id_factura = $id_factura");	
+							$cont_fechas=0;
+							while ($rows=mysqli_fetch_array($query_estado)){
 
-							$id_datalle=$rows['id_detalle'];
-							$fecha=$rows['duracion'];
-							if (empty($rows['duracion'])){
-								$cont_fechas=$cont_fechas+1;
+								$id_datalle=$rows['id_detalle'];
+								$fecha=$rows['duracion'];
+								if (empty($rows['duracion'])){
+									$cont_fechas=$cont_fechas+1;
+								}
+
 							}
-
-						}
-						
-						if ($cont_fechas==0){
+							
+							if ($cont_fechas==0){
+								$label_class='label-success';
+								$text_estado="Pagado";
+							} else {
+								$label_class='label-warning';
+								$text_estado="Pendiente";
+							}
+						} else {
 							$label_class='label-success';
 							$text_estado="Pagado";
-						} else {
-							$label_class='label-warning';
-							$text_estado="Pendiente";
 						}
  
 
@@ -118,7 +123,7 @@
 								$tipo_mov = "Equipos (Comodato)";
 								break;
 							case 2:
-								$tipo_mov = "Publicidad Canopy";
+								$tipo_mov = "Publicidad";
 								break;
 							case 3:
 								$tipo_mov = "Letrero de precios";
@@ -153,13 +158,16 @@
 							case 13:
 								$tipo_mov = "Descuentos Gasolina Nacional";
 								break;
+							case 14:
+								$tipo_mov = "Mejoras E.D.S";
+								break;
 							}
 
 					
 					?>
 					<tr>
 						<td><?php echo $id_factura; ?></td>
-						<td><?php echo $fecha; ?></td>
+						<td><?php echo $fecha_add; ?></td>
 						<td><a href="#" data-toggle="tooltip" data-placement="top" title="<i class='glyphicon glyphicon-phone'></i> <?php echo $telefono_cliente;?><br><i class='glyphicon glyphicon-envelope'></i>  <?php echo $email_cliente;?>" ><?php echo $nombre_cliente;?></a></td>
 						<td><?php echo $tipo_mov; ?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado; ?></span></td>

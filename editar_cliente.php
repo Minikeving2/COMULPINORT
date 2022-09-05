@@ -14,7 +14,9 @@
 	$active_clientes="active";
 	$active_usuarios="";
     $active_contratos="";	
-	$active_mapa = "";	
+	$active_mapa = "";
+	$active_informes = "";
+	$active_ventas = "";	
 	$title=" Clientes | SistCoom V1.0";
 	
 	/* Connect To Database*/
@@ -114,8 +116,8 @@
 				    <div class="col-md-1">
 						<select class="form-control" id="estado" name="estado" id="estado" required>
 							<option value="">-- Selecciona Estado --</option>
-							<option value="0">Inactivo</option>
 							<option value="1">Activo</option>
+							<option value="0">Inactivo</option>
 							<option value="2">Retirado</option>
 							<option value="3">En Proceso</option>
 						</select>

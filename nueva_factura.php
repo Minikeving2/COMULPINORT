@@ -8,13 +8,15 @@
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: login.php");
 		exit;
-        }
+    }
 	$active_facturas="active";
 	$active_productos="";
 	$active_clientes="";
 	$active_usuarios="";
 	$active_contratos="";
 	$active_mapa = "";	
+	$active_informes = "";
+	$active_ventas = "";
 	$title="Nueva Factura | SistCoom V1.0";
 	
 	/* Connect To Database*/
@@ -114,7 +116,7 @@
 				    <div class="col-md-3">
 						<select class='form-control input-sm' id="tipomov">
 							<option value="1">Equipos (Comodato)</option>
-							<option value="2">Publicidad Canopy </option>
+							<option value="2">Publicidad</option>
 						    <option value="3">Letrero de precios</option>
 							<option value="4">Apoyo arreglos locativos</option>
 							<option value="5">Apoyo Económico/Transacción</option>
@@ -126,6 +128,7 @@
 							<option value="11">Préstamos</option>
 							<option value="12">Pólizas SURA</option>
 							<option value="13">Descuentos Gasolina Nacional</option>
+							<option value="14">Mejoras E.D.S</option>
 							<!--
 							<option value="4">Crédito Asociados/Aportes</option>
 							<option value="4">Crédito Asociados/Lib. Inv.</option>
@@ -139,6 +142,7 @@
 					</div>		
 				    <div class="col-md-3">
 						<select class="form-control input-sm" id="id_provedor">
+						    <option value="0">seleccione</option>
 						<?php
 							$sql_vendedor=mysqli_query($con,"select * from clientes where tipo_tercero = 'P' order by nombre_cliente");
 							while ($rw=mysqli_fetch_array($sql_vendedor)){
@@ -159,7 +163,7 @@
 				</div>
 				<div class="form-group row">
 				   <label for="observacion" class="col-md-9 ">Observación</label>	
-				   <label for="total" class="col-md-1 ">Contrapres.</label>
+				   <label for="total" class="col-md-1 ">Plazo/<br>Contrapres.</label>
 				   <label for="total" class="col-md-2 ">Total </label>
 				</div>
 				<div class="form-group row">

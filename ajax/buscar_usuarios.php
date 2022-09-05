@@ -126,11 +126,6 @@
 					<?php
 				}
 				?>
-				<tr>
-					<td colspan=9><span class="pull-right"><?
-					 echo paginate($reload, $page, $total_pages, $adjacents);
-					?></span></td>
-				</tr>
 				</tbody>
 			  </table>
 			</div>

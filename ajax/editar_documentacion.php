@@ -120,10 +120,8 @@ while ($row=mysqli_fetch_array($sql)){
 		case 6:
 			$tipo_doc = "Uso de Suelos";
 			break;
-		case 7:
-			$tipo_doc = "Formulario Coomulpinort";
-			break;
 		}
+
 	$resultado.='
 				<tr>
 					<td class="text-center">'.$fecha_added.'</td>

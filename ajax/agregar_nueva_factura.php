@@ -34,7 +34,7 @@ $id_cliente=$_POST['id_cliente'];
 if ($_POST["num_com"]==""){
 	$num_comprobante="null";
 } else {
-	$num_comprobante=$_POST["num_com"];
+	$num_comprobante="'".$_POST["num_com"]."'";
 }
 
 if ($_POST["fecha_com"]==""){
@@ -46,7 +46,7 @@ if ($_POST["fecha_com"]==""){
 if ($_POST["num_fact"]==""){
 	$num_factura="null";
 } else {
-	$num_factura=$_POST["num_fact"];
+	$num_factura="'".$_POST["num_fact"]."'";
 }
 if (str_replace('/','-',$_POST["fecha_fact"])==""){
 	$fecha_factura="null";

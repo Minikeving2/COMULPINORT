@@ -15,7 +15,9 @@
 	$active_clientes = "";
 	$active_usuarios = "";	
 	$active_contratos = "";	
-	$active_mapa = "";	
+	$active_mapa = "";
+	$active_informes = "";
+	$active_ventas = "";
 	
 	$title           = "Movimientos | SistCoom V1.0";
 ?>

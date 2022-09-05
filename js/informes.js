@@ -85,7 +85,7 @@ function generar() {
     
 
      // draws it.
-function drawChart() {
+function drawChart() { 
     var mes= $("#mes").val();
 	var año= $("#año").val();;
     const nombre_mes = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
@@ -365,7 +365,10 @@ function drawChart() {
     
     }
 }
-    function imprimir(){
+
+
+
+    function imprimir(){//informe con grafico
         var mes = $("#mes").val();
         var year = $("#año").val();
         if (mes<=12){
@@ -406,7 +409,21 @@ function drawChart() {
         }
     }
 
+function informe_utilidad(){
+    var datosss = "a";
+    openWindowWithPost("./pdf/documentos/utilidad.php", {
+        dato: datosss
+    });
+}
+
+function informe_entrega(){
+    var mun = document.getElementById('mun').value;;
+    openWindowWithPost("./pdf/documentos/entrega_excedente.php", {
+        mun: mun
+    });
+} 
     
+
     function openWindowWithPost(url, data) {
         var form = document.createElement("form");
         form.target = "_blank";

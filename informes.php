@@ -14,16 +14,20 @@
 	$active_productos= "";
 	$active_clientes = "";
     $active_informes = "active";
+	$active_ventas = "";
 	$active_usuarios = "";	
 	$active_contratos = "";	
 	$active_mapa = "";	
 	
+	require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
+	require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
 	$title           = "Movimientos | SistCoom V1.0";
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
 	<?php include("head.php");?>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	<link rel="stylesheet" href="css/tabla.css">
@@ -38,7 +42,7 @@
 		    	<div class="btn-group pull-right">
 					<a  href="" class="btn btn-info" onclick="imprimir_informe()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
 				</div>
-				<h4><i class='glyphicon glyphicon-search'></i> Buscar Informes</h4>
+				<h4><i class='glyphicon glyphicon-search'></i> Informe General</h4>
 			</div>
 			<div class="panel-body" >
 				<form class="form-horizontal" role="form" id="informe_datos">
@@ -78,8 +82,95 @@
 				</form>
 			</div>
 		</div>
-
-		<div class="panel panel-info" >
+		<div class="form-group row">
+			<div class="col-md-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4><i class='glyphicon glyphicon-stats'></i> Informe de Entrega vs Excedente</h4>
+					</div>
+					<div class="panel-body" >
+						<form class="form-horizontal" role="form" id="informe_entrega">
+							<div class="form-group row">
+								<label for="q" class="col-md-2 control-label">Municipio</label>
+								<div class="col-md-4">
+								<select class="form-control input-sm" id="mun" name="mun">
+							<script>
+								var select = document.getElementById('mun');
+								select.addEventListener('change',
+								function(){
+									var selectedOption = this.options[select.selectedIndex];
+									var a =(selectedOption.value);
+									console.log(a);
+									document.querySelector('#mun').value=a;
+								});
+  							</script>
+							<?php
+							    mysqli_query($con,"SET NAMES 'utf8'");
+								$sql_municipio=mysqli_query($con,"select * from municipios order by nombre");
+								while ($rw=mysqli_fetch_array($sql_municipio)){
+									$id_municipio=$rw["id"];
+									$nombre_municipio=$rw["nombre"];
+							?>
+								<option value="<?php echo $id_municipio?>"><?php echo $nombre_municipio?></option>
+							<?php
+											}
+							?>
+						</select>
+								</div>
+								<div class="col-md-6">
+									<a  href="" class="btn btn-info" onclick="informe_entrega()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
+								</div>
+							</div>			
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4><i class='glyphicon glyphicon-stats'></i> Informe de Utilidad</h4>
+					</div>
+					<div class="panel-body" >
+						<form class="form-horizontal" role="form" id="informe_datos">
+							<div class="form-group row">
+								<label for="q" class="col-md-1 control-label">Mes: </label>
+								<div class="col-md-3">
+									<select class="form-control" name="mes" id="mes">
+								        <option value="01">ENERO</option>
+								        <option value="02">FEBRERO</option>
+        								<option value="03">MARZO</option>
+        								<option value="04">ABRIL</option>
+        								<option value="05">MAYO</option>
+        								<option value="06">JUNIO</option>
+        								<option value="07">JULIO</option>
+        								<option value="08">AGOSTO</option>
+        								<option value="09">SEPTIEMBRE</option>
+        								<option value="10">OCTUBRE</option>
+        								<option value="11">NOVIEMBRE</option>
+        								<option value="12">DICIEMBRE</option>}
+        								<option value="13">TODOS LOS MESES</option>
+        							</select>
+								</div>
+								<label for="q" class="col-md-1 control-label">Año: </label>
+								<div class="col-md-3">
+									<select class="form-control" name="mes" id="mes">
+								        <option value="01">2018</option>
+								        <option value="02">2019</option>
+        								<option value="03">2020</option>
+        								<option value="04">2021</option>
+        								<option value="05">2022</option>
+        							</select>
+								</div>
+								<div class="col-md-4">
+									<a  href="" class="btn btn-info" onclick="informe_utilidad()"><!--<span class="glyphicon glyphicon-plus" ></span>-->Generar Informe</a>
+								</div>
+							</div>			
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h4><i class='glyphicon glyphicon-stats'></i> Analisis Ventas</h4>
 			</div>
@@ -141,6 +232,8 @@
 				</form>
 			</div>
 		</div>
+
+		
 	
 	</div>
 	<?php

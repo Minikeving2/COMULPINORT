@@ -14,7 +14,9 @@
 	$active_clientes="";
 	$active_usuarios="";
 	$active_contratos="";
-	$active_mapa = "active";	
+	$active_mapa = "active";
+	$active_informes = "";
+	$active_ventas = "";
 	$title="Nueva Factura | SistCoom V1.0";
 	
 	/* Connect To Database*/

@@ -14,7 +14,9 @@
 	$active_clientes="";
 	$active_usuarios="";
 	$active_mapa = "";	
-	$active_contratos="active";	
+	$active_contratos="active";
+	$active_informes = "";
+	$active_ventas = "";
 	$title="Editar Contrato | SISTCOOM V1.0";
 	
 	/* Connect To Database*/

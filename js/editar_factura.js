@@ -115,6 +115,7 @@
 	}
 
 	$("#datos_factura").submit(function(event){
+	    event.preventDefault();
 		var id_cliente = $("#id_cliente").val();
 		var num_fact=$("#num_factura").val();
 		var fecha_factura=$("#fecha_factura").val();
@@ -126,7 +127,7 @@
 		var total=$("#calculado").val();
 		var id_vendedor=$("#id_vendedor").val();
 		var contraprestacion = $("#contraprestacion").val();
-
+        var cant_des=0;
 		
 		$(".desembolso").each(function() {
 			cant_des++;
@@ -157,7 +158,7 @@
 					}
 			});
 
-		var cant_des = 0;
+		
 		
 		
 			$.ajax({
@@ -172,7 +173,7 @@
 				 }
 		});
 			
-			 event.preventDefault();
+			 
 	});
 		
 	$( "#guardar_cliente" ).submit(function( event ) {

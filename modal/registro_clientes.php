@@ -75,7 +75,7 @@
 									$id_municipio=$rw["id"];
 									$nombre_municipio=$rw["nombre"];
 							?>
-								<option value="<?php echo $id_municipio?>" <?php echo $selected;?>><?php echo $nombre_municipio?></option>
+								<option value="<?php echo $id_municipio?>"><?php echo $nombre_municipio?></option>
 							<?php
 											}
 							?>
