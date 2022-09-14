@@ -19,7 +19,6 @@ if ($archivo['name']==""){
 	echo json_encode("<script>alert('No hay ninguno archivo cargado')</script>");
 	exit;
 }
-	
 $name = $archivo['name'];
 $ruta = $_FILES['archivo']['tmp_name'];
 $destino = "../tmp/".$name;
@@ -29,62 +28,60 @@ if (copy(utf8_decode($ruta), $destino)) {
     $file = fopen($destino , "r+");
     $consultas="";
     $linea=0;
+    $id_cliente="";
     foreach(file($destino) as $line) {
-        if ($linea==0){
-    
-        } else {
             $lin = utf8_encode(substr($line, 0, -3));
             $partes = explode(",", $lin);
             $sql="INSERT INTO ventas VALUES (";
             $columna = count($partes);
             $aux=1;
+            
+            //al utilizar el explode dividiv el renglon delimitado por comas y lo recorro pedazo por peadzo con el foraech
             foreach ($partes as $partes => $value) {
+            //verifico si es la ultima columna para colocar el parentesis final con el punto y coma
                if ($aux==$columna){
+                //le quito los espacion en blanco de pedazo 
                     $value=trim($value);
+                    
+                    $cod=mysqli_query($con, "SELECT id_cliente FROM clientes WHERE codigo_sicom=$value'");
+                    $cod_cliente=mysqli_fetch_array($cod);
+                    if ($cod_cliente[0]==""){
+                        $id_cliente="null";
+                    } else {
+                        $id_cliente=$cod_cliente[0];
+                    }
+
                     if ($value!=""){
-                        $sql .= "'".$value."');";
+                        $sql .= $value."','$id_cliente');";
                     } else {
                         $value='null';
-                        $sql .= $value.");";
+                        $sql .= $value.",'$id_cliente');";
                     }
                     $datos[$aux]=$value;
                     
                } else {
                 if ($aux==2){;
-                    $fecha = explode("/", $value);
-                    $fecha= trim($fecha[1])."/".trim($fecha[0])."/".trim($fecha[2]);
-                    $fecha= trim($fecha);
-                    $value=date("Y-m-d", strtotime($fecha)); 
+                    $fecha = explode("/", rtrim(ltrim($value,"'"),"'"));
+                    $fecha= trim($fecha[2])."-".trim($fecha[1])."-".trim($fecha[0]);
+                    $value=$fecha; 
                     
-                 }
-                 if ($aux==3){
-                    $cod=mysqli_query($con, "SELECT id_cliente FROM clientes WHERE nit='$value'");
-                    $cod_cliente=mysqli_fetch_array($cod);
-                    if ($cod_cliente[0]==""){
-                        $value="null";
-                    } else {
-                        $value=$cod_cliente[0];
-                    }
                 }
-                if($aux==4){
-                } else {
-                $sql .= "'".$value."',";
-                }
+                $sql .= "".$value.",";
+                
                 $datos[$aux]=$value;
                 $aux++;
                }
             }
-            $comparacion=mysqli_query($con, "SELECT * FROM ventas WHERE CONCATENATION = '$datos[1]' AND FECHA = '".date("Y-m-d", strtotime($datos[2]))."' AND ID_CLIENTE = '$datos[3]' AND CODMAT = '$datos[5]'");        
-            $a= mysqli_fetch_array($comparacion);
-            if ($a){
+            $comparacion=mysqli_query($con, "SELECT * FROM ventas WHERE CONCATENATION = '$datos[1]' AND FECHA = '".date("Y-m-d", strtotime($datos[2]))."' AND NIT = '$datos[3]' AND CODMAT = '$datos[5]' AND CANLISTA = '$datos[7]' AND PARCTVTA = '$datos[8]' AND SICOM = '$datos[9]'");        
+            $a = mysqli_fetch_array($comparacion);
+            if ($a[0]){
             } else {
                 mysqli_query($con,$sql);
-               
             }
             $sql=""; 
         }
         $linea=$linea+1;
-    }
+    
     fclose($file);
     unlink("../tmp/$name");
     echo json_encode('<script>alert("archivo cargado correctamente") </script>');

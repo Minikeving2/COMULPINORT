@@ -6,7 +6,7 @@ require_once(dirname(__FILE__).'/../html2pdf.class.php');
 
 $mun=$_POST['mun'];
 ob_start();
-include(dirname('__FILE__').'/res/entrega_excedente.php');
+include(dirname('__FILE__').'/res/entrega_excedente_t1.php');
 $content = ob_get_clean();
 
 

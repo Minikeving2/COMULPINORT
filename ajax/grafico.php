@@ -12,6 +12,7 @@ $CO4= mysqli_fetch_array($gasolina);
 $B2=mysqli_query($con, "SELECT SUM(CANLISTA) FROM ventas WHERE FECHA LIKE '%".$año."-".$mes."%' AND CODMAT = 'C02'");        
 $CO2= mysqli_fetch_array($B2);
 
-echo $CO2[0]." ".$CO4[0];
-
+$A=$CO2[0];
+$B=$CO4[0];
+echo $A." ".$B;
 ?>

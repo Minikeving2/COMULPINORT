@@ -1,13 +1,41 @@
 $(document).ready(function(){
-    $("select[name=mes]").change(function(){ 
-        document.getElementById('impresion').disabled = true;
+    $("select[name=municipio_ventas_grafico]").change(function(){ 
+        document.getElementById('impresion_venta_municipio').disabled = true;
+    })
+    $("select[name=año_ventas_grafico]").change(function(){ 
+        document.getElementById('impresion_venta_municipio').disabled = true;
     })
 
-    $("select[name=año]").change(function(){ 
-        document.getElementById('impresion').disabled = true;
+    $("select[name=mes_ventas]").change(function(){ 
+        document.getElementById('impresion_').disabled = true;
     })
-    
+    $("select[name=año_ventas]").change(function(){ 
+        document.getElementById('impresion_').disabled = true;
+    })
 });
+
+function getValueAt(column, dataTable, row) {
+    return dataTable.getFormattedValue(row, column);
+}
+function openWindowWithPost(url, data) {
+var form = document.createElement("form");
+form.target = "_blank";
+form.method = "POST";
+form.action = url;
+form.style.display = "none";
+
+for (var key in data) {
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.name = key;
+    input.value = data[key];
+    form.appendChild(input);
+}
+document.body.appendChild(form);
+form.submit();
+document.body.removeChild(form);
+}
+
 
 function load(page){
     var q= $("#q").val();
@@ -32,7 +60,6 @@ function load(page){
         alert("La fecha final debe ser mayor a la fecha inicial");
     }
 }
-
 function eliminar (id)
 {
     var q= $("#q").val();
@@ -53,41 +80,20 @@ load(1);
 }
 
 
-
-function imprimir_informe(){
-    var q= $("#q").val();
-    if (q=="") {
-       alert("Debe ingresar un cliente");
-    } else {
-        console.log("aver");
-        var tipo = $("input[name=tipo_informe]:checked").val();
-        var date_start = document.getElementById("fecha_inicio").value;
-        var date_end = document.getElementById("fecha_fin").value;
-        VentanaCentrada('./pdf/documentos/ver_informe.php?q='+q+'&date_s='+date_start+'&date_e='+date_end+'&tipo='+tipo,'Factura','','1024','768','true');
-    }
-    event.preventDefault();
-    }
-
-function getValueAt(column, dataTable, row) {
-        return dataTable.getFormattedValue(row, column);
-      }
 function generar() {
         google.charts.load('current', {'packages':['corechart', 'bar']});
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(dibujar);
         setTimeout(function(){
-            document.getElementById('impresion').disabled = false;
+            document.getElementById('impresion_').disabled = false;
         },4000);
-        
-    }
-    
-     // Callback that creates and populates a data table,
+} // Callback that creates and populates a data table,
      // instantiates the pie chart, passes in the data and
     
 
      // draws it.
-function drawChart() { 
-    var mes= $("#mes").val();
-	var año= $("#año").val();;
+function dibujar() { 
+    var mes= $("#mes_ventas").val();
+	var año= $("#año_ventas").val();;
     const nombre_mes = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
     if (mes<=12){
         $.ajax({
@@ -97,7 +103,7 @@ function drawChart() {
             beforeSend: function(objeto){
             },
             success: function(datos){
-                const split = datos.split(' ') // (1) [ 'bearer', 'token' ]
+                const split = datos.split(' ')
                 const datos_query = [nombre_mes[parseInt(mes)-1], parseInt(split[0]), parseInt(split[1]), parseInt(split[0])+parseInt(split[1])];
                 var data = google.visualization.arrayToDataTable([
                     ['MES', 'B2', 'GASOLINA', 'TOTAL'],
@@ -132,13 +138,13 @@ function drawChart() {
                 };
                 // Instantiate and draw our chart, passing in some options.
                 
-                var chart_divs = document.getElementById("cap_grafico");
+                var chart_divs = document.getElementById("cap_grafico_");
                 var charts = new google.visualization.ColumnChart(chart_divs);
                 
                 google.visualization.events.addListener(charts, 'ready', function () {
                 chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
                 //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
-                $("#grafico").val(chart_divs.innerHTML);
+                $("#grafico_").val(chart_divs.innerHTML);
                 });
                 charts.draw(view, options);
                 
@@ -208,13 +214,13 @@ function drawChart() {
                     colors: ['#94D509', '#007936', '#F89C0E']
                 };
                 // Instantiate and draw our chart, passing in some options.
-                var chart_divs = document.getElementById("cap_grafico");
+                var chart_divs = document.getElementById("cap_grafico_");
                 var charts = new google.visualization.ColumnChart(chart_divs);
                 
                 google.visualization.events.addListener(charts, 'ready', function () {
                 chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
                 //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
-                $("#grafico").val(chart_divs.innerHTML);
+                $("#grafico_").val(chart_divs.innerHTML);
                 });
                 charts.draw(view, options);
                 
@@ -253,13 +259,13 @@ function drawChart() {
                 // Instantiate and draw our chart, passing in some options.
                
 
-                var chart_divs = document.getElementById("cap_grafico2");
+                var chart_divs = document.getElementById("cap_grafico2_");
                 var charts = new google.visualization.ColumnChart(chart_divs);
                 
                 google.visualization.events.addListener(charts, 'ready', function () {
                     chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
                 //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
-                $("#grafico2").val(chart_divs.innerHTML);
+                $("#grafico2_").val(chart_divs.innerHTML);
                 });
                 charts.draw(view, options);
                 
@@ -300,13 +306,13 @@ function drawChart() {
                 // Instantiate and draw our chart, passing in some options.
                 
 
-                var chart_divs = document.getElementById("cap_grafico3");
+                var chart_divs = document.getElementById("cap_grafico3_");
                 var charts = new google.visualization.ColumnChart(chart_divs);
                 
                 google.visualization.events.addListener(charts, 'ready', function () {
                     chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
                 //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
-                $("#grafico3").val(chart_divs.innerHTML);
+                $("#grafico3_").val(chart_divs.innerHTML);
                 });
                 charts.draw(view, options);
 
@@ -348,13 +354,13 @@ function drawChart() {
                 // Instantiate and draw our chart, passing in some options.
                 
 
-                var chart_divs = document.getElementById("cap_grafico4");
+                var chart_divs = document.getElementById("cap_grafico4_");
                 var charts = new google.visualization.ColumnChart(chart_divs);
                 
                 google.visualization.events.addListener(charts, 'ready', function () {
                     chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
                 //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
-                $("#grafico4").val(chart_divs.innerHTML);
+                $("#grafico4_").val(chart_divs.innerHTML);
                 });
                 charts.draw(view, options);
                 
@@ -366,79 +372,543 @@ function drawChart() {
     }
 }
 
-
-
-    function imprimir(){//informe con grafico
-        var mes = $("#mes").val();
-        var year = $("#año").val();
-        if (mes<=12){
-            var q= $("#grafico").val();
-            if (q=="") {
-            alert("Debe generar el grafico");
-            } else {
-                q = q.substring(10, q.length-2);
-                openWindowWithPost("./pdf/documentos/grafico.php", {
-                    imagen_1: q, year: year
-                    //:
-                });
-
-
+function generar_venta_municipio() {
+    google.charts.load('current', {'packages':['corechart', 'bar']});
+    google.charts.setOnLoadCallback(dibujar_venta_municipio);
+    setTimeout(function(){
+        document.getElementById('impresion_venta_municipio').disabled = false;
+    },4000);
+}
+function dibujar_venta_municipio() { 
+var mun= $("#municipio_ventas_grafico").val();
+var año= $("#año_ventas_grafico").val();
+    $.ajax({
+        type: "POST",
+        url: "./ajax/grafico_municipio.php",
+        data: "mun="+mun+"&year="+año,
+        beforeSend: function(objeto){
+        },
+        success: function(cadenas){
+            const cadena = cadenas.split(',');
+            //agregar funcion para la imagen segun los datos que me traigo de la base de datos el primer valor es la cantidad de municipios
+            //lo que significa que por cada x municipos exiten 3 valores todo eso seria un mes 
+            //ejemplo si son 4 municipios y se sabe que cada municpios tiene 3 valores los cuales son c_mes c_zf y c_nal
+            //en todo el mes se manejarian 12 valores 4 municipios con 3 columnas
+            var umm = (cadena[0]*3);
+            for (let i = 0; i < umm; i++) {
+                  cadena.push(0);  
             }
+            var aux = 0;
+            var aux1 = 0;
+            var aux2=0;
+            var datos = [];
+            var datos1 = [];
+            var datos2 = [];
+            cadena.forEach(element => {
+              if (aux==0) {
+                cant_mun = element;
+              }
+              else{
+                if (aux1<=(cant_mun*4)-1) {
+
+                    
+                  if (aux2<=3) {
+                    if (isNaN(element)){
+                    } else {
+                        element = parseInt(element);
+                    }
+                    datos2[aux2]=element;
+                    aux2=aux2+1;
+                  }
+                  else {
+                    if (isNaN(element)){
+                    } else {
+                        element = parseInt(element);
+                    }
+                    datos1.push(datos2);
+                    aux2=0;
+                    datos2=[];
+                    datos2[aux2]=element;
+                    aux2=aux2+1;
+                  }
+                  aux1=aux1+1;
+                }
+                else{
+                  if (aux2<=3) {
+                    if (isNaN(element)){
+                    } else {
+                        element = parseInt(element);
+                    }
+                    datos2[aux2]=element;
+                    aux2=aux2+1;
+                  }
+                  else {
+                    if (isNaN(element)){
+                    } else {
+                        element = parseInt(element);
+                    }
+                    datos1.push(datos2);
+                    datos.push(datos1);
+                    datos1=[];
+                    datos2=[];
+                    aux2=0;
+                    aux1=3;
+                    datos2[aux2]=element;
+                    aux2=aux2+1;
+                  }
+                }
+              }
+              aux=aux+1;
+            });
+            const titulos = [['ESTACIONES','CUPO ASIGNADO', 'CUPO CONSUMIDO', 'CUPO EXTRA CONSUMIDO']];
+
+
+            const nuevo = datos[0];
+            var a = titulos.concat(nuevo);
+            var data = google.visualization.arrayToDataTable(a);
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'ENERO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+
+
+            const nuevo1 = datos[1];
+            var a = titulos.concat(nuevo1);
+            var data = google.visualization.arrayToDataTable(a);
+    
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'FEBRERO',
+                        subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico2");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico2").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+
+
+            const nuevo2 = datos[2];
+            var a = titulos.concat(nuevo2);
+            var data = google.visualization.arrayToDataTable(a);
+        
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MARZO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico3");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico3").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+                
+                        
+            
+            const nuevo3 = datos[3];
+            var a = titulos.concat(nuevo3);
+            var data = google.visualization.arrayToDataTable(a);
+            
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'ABRIL',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico4");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico4").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+                        
+
+            const nuevo4 = datos[4];
+            var a = titulos.concat(nuevo4);
+            var data = google.visualization.arrayToDataTable(a);
+                
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico5");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico5").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+
+            const nuevo5 = datos[5];
+            var a = titulos.concat(nuevo5);
+            var data = google.visualization.arrayToDataTable(a);
+
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico6");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico6").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+                                
+
+            const nuevo6 = datos[6];
+            var a = titulos.concat(nuevo6);
+            var data = google.visualization.arrayToDataTable(a);
+
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico7");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico7").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);                                    
+
+                                        
+            const nuevo7 = datos[7];
+            var a = titulos.concat(nuevo7);
+            var data = google.visualization.arrayToDataTable(a);
+
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico8");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico8").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+        
+            
+            const nuevo8 = datos[8];
+            var a = titulos.concat(nuevo8);
+            var data = google.visualization.arrayToDataTable(a);
+
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico9");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico9").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+
+
+            const nuevo9 = datos[9];
+            var a = titulos.concat(nuevo9);
+            var data = google.visualization.arrayToDataTable(a);
+
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico10");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico10").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+
+
+            const nuevo10 = datos[10];
+            var a = titulos.concat(nuevo10);
+            var data = google.visualization.arrayToDataTable(a);
+
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico11");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico11").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+
+
+            const nuevo11 = datos[11];
+            var a = titulos.concat(nuevo11);
+            var data = google.visualization.arrayToDataTable(a);
+
+            var view = new google.visualization.DataView(data);
+            var options = {
+                chart: {
+                    title: 'MAYO',
+                    subtitle: '',
+                },
+                bars: 'VERTICAL',
+                vAxis: {format: 'decimal'},
+                height: 600,
+                bar: {groupWidth: "80%"},
+                colors: ['#94D509', '#007936', '#F89C0E']
+            };
+            var chart_divs = document.getElementById("cap_grafico12");
+            var charts = new google.visualization.ColumnChart(chart_divs);
+            google.visualization.events.addListener(charts, 'ready', function () {
+                chart_divs.innerHTML = '<img src="' + charts.getImageURI() + '">';
+                //insertar el codigo de la imagen en un input para asi poderlo mandar al boton que genere el pdf 
+                $("#grafico12").val(chart_divs.innerHTML);
+            });
+            charts.draw(view, options);
+        }
+    })
+}
+
+
+function imprimir(){//informe con grafico
+
+    var mes = $("#mes_ventas").val();
+    console.log(mes);
+    var year = $("#año_ventas").val();
+    if (mes<=12){
+        var q= $("#grafico_").val();
+        if (q=="") {
+        alert("Debe generar el grafico");
         } else {
-            var year = $("#año").val();
-            var a= $("#grafico").val();
-            var b= $("#grafico2").val();
-            var c= $("#grafico3").val();
-            var d= $("#grafico4").val();
-            if (a=="" && b=="" && c=="" && d=="") {
-            alert("Debe generar el grafico");
-            } else {
-                a = a.substring(10, a.length-2);
-                b = b.substring(10, b.length-2);
-                c = c.substring(10, c.length-2);
-                d = d.substring(10, d.length-2);
-                openWindowWithPost("./pdf/documentos/grafico.php", {
-                    imagen_1: a, imagen_2: b, imagen_3: c, imagen_4: d, year:year
-                    //:
-                });
-
-
-            }
+            q = q.substring(10, q.length-2);
+            openWindowWithPost("./pdf/documentos/grafico.php", {
+                imagen_1: q, year: year
+                //:
+            });
 
 
         }
-    }
+    } else {
+        var year = $("#año_Ventas").val();
+        var a= $("#grafico_").val();
+        var b= $("#grafico2_").val();
+        var c= $("#grafico3_").val();
+        var d= $("#grafico4_").val();
+        if (a=="" && b=="" && c=="" && d=="") {
+        alert("Debe generar el grafico");
+        } else {
+            a = a.substring(10, a.length-2);
+            b = b.substring(10, b.length-2);
+            c = c.substring(10, c.length-2);
+            d = d.substring(10, d.length-2);
+            openWindowWithPost("./pdf/documentos/grafico.php", {
+                imagen_1: a, imagen_2: b, imagen_3: c, imagen_4: d, year:year
+                //:
+            });
 
+
+        }
+
+
+    }
+}
+function imprimir_informe(){
+    var q= $("#q").val();
+    if (q=="") {
+       alert("Debe ingresar un cliente");
+    } else {
+        console.log("aver");
+        var tipo = $("input[name=tipo_informe]:checked").val();
+        var date_start = document.getElementById("fecha_inicio").value;
+        var date_end = document.getElementById("fecha_fin").value;
+        VentanaCentrada('./pdf/documentos/ver_informe.php?q='+q+'&date_s='+date_start+'&date_e='+date_end+'&tipo='+tipo,'Factura','','1024','768','true');
+    }
+    event.preventDefault();
+}    
 function informe_utilidad(){
     var datosss = "a";
     openWindowWithPost("./pdf/documentos/utilidad.php", {
         dato: datosss
     });
 }
-
-function informe_entrega(){
-    var mun = document.getElementById('mun').value;;
-    openWindowWithPost("./pdf/documentos/entrega_excedente.php", {
+function informe_entrega1(){
+    var mun = document.getElementById('mun').value;
+    openWindowWithPost("./pdf/documentos/entrega_excedente_t1.php", {
         mun: mun
     });
-} 
-    
+}
 
-    function openWindowWithPost(url, data) {
-        var form = document.createElement("form");
-        form.target = "_blank";
-        form.method = "POST";
-        form.action = url;
-        form.style.display = "none";
-    
-        for (var key in data) {
-            var input = document.createElement("input");
-            input.type = "hidden";
-            input.name = key;
-            input.value = data[key];
-            form.appendChild(input);
-        }
-        document.body.appendChild(form);
-        form.submit();
-        document.body.removeChild(form);
+function informe_entrega2(){
+    var mun = document.getElementById('mun').value;
+    openWindowWithPost("./pdf/documentos/entrega_excedente_t2.php", {
+        mun: mun
+    });
+}
+function informe_consumo_general(){
+    var mun = document.getElementById('mun_consumo').value;
+    var year = document.getElementById('year_consumo').value;
+    openWindowWithPost("./pdf/documentos/resumen_cupo.php", {
+        id_mun: mun, year: year
+    });
+}
+
+function imprimir_venta_municipio(){//informe con grafico
+
+    var mun = $("#municipio_ventas_grafico").val();
+    var year = $("#año_ventas_grafico").val();
+
+    var a = $("#grafico").val();
+    if (a=="") {
+    alert("Debe generar el grafico");
+    } else {
+        var a= $("#grafico").val();
+        var b= $("#grafico2").val();
+        var c= $("#grafico3").val();
+        var d= $("#grafico4").val();
+        var e= $("#grafico5").val();
+        var f= $("#grafico6").val();
+        var g= $("#grafico7").val();
+        var h= $("#grafico8").val(); 
+        var i= $("#grafico9").val();
+        var j= $("#grafico10").val();
+        var k= $("#grafico11").val();
+        var m= $("#grafico12").val();
+
+        a = a.substring(10, a.length-2);
+        b = b.substring(10, b.length-2);
+        c = c.substring(10, c.length-2);
+        d = d.substring(10, d.length-2);
+        e = e.substring(10, e.length-2);
+        f = f.substring(10, f.length-2);
+        g = g.substring(10, g.length-2);
+        h = h.substring(10, h.length-2);
+        i = i.substring(10, i.length-2);
+        j = j.substring(10, j.length-2);
+        k = k.substring(10, k.length-2);
+        m = m.substring(10, m.length-2);
+
+        openWindowWithPost("./pdf/documentos/grafico_municipio.php", {
+        imagen_1: a,
+        imagen_2: b,
+        imagen_3: c,
+        imagen_4: d,
+        imagen_5: e,
+        imagen_6: f,
+        imagen_7: g,
+        imagen_8: h,
+        imagen_9: i,
+        imagen_10: j,
+        imagen_11: k,
+        imagen_12: m,
+        year: year,
+        mun: mun
+        });
     }
+}

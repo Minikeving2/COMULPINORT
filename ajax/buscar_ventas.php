@@ -63,14 +63,15 @@
 				</thead>
 				<tbody>
 				<?php
+				echo $sql;
 				while ($row=mysqli_fetch_array($query)){
 					
 					$concatenacion=$row['CONCATENATION'];
 					$fecha=$row['FECHA'];
 					$nit=$row['NIT'];
-					$nombre_cliente=$row['nombre_cliente'];
+					$nombre_cliente=$row['NOMBRE'];
 					$codmad=$row['CODMAT'];
-					$nom_combustible=$row['NOM_COMBUSTIBLE'];
+					$nom_combustible=$row['DESCRIPCION'];
 					$canlista=$row['CANLISTA'];
 					$PARCVTA=$row['PARCVTA'];
 					?>
