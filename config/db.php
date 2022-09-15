@@ -20,5 +20,4 @@ Los datos de inicio de sesion podran ser modificados
 desde el panel de control del sistema
 ---------------------------------------------------*/
 
-
 ?>

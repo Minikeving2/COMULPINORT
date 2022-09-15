@@ -220,11 +220,21 @@
                         $acum_cupo_nal=$acum_cupo_nal+intval($sql_datos[7]);
                     }
             
-                    $a = number_format($sql_datos[5]);
-                    $b = number_format($sql_datos[6]);
-                    $c = number_format($cupo_sal);
-                    $d = number_format($sql_datos[7]);
-                    $e = number_format($cupo_exc);
+                    if(isset($sql_datos[5])){
+                        $a = number_format($sql_datos[5]);
+                        
+                    } else {
+                        $a = "0";
+                    }
+                    if(isset($sql_datos[6])){
+                        $b = number_format($sql_datos[6]);
+                        
+                    } else {
+                        $b = "0";
+                    }
+                    $c = number_format(floatval($cupo_sal),0);
+                    $d = number_format(floatval($sql_datos[7]),0);
+                    $e = number_format(floatval($cupo_exc),0);
             
             
             ?>
@@ -251,7 +261,24 @@
                             <?php echo $e;?>
                         </td>
                     </tr>
-                    <?php } ?>
+                    <?php } 
+                    
+                    if($acum_cupo_mes == 0 && $acum_cupo_zf == 0){
+                        $porcentaje_total = "0%";
+                    } 
+                    else {
+                        $porcentaje_total = round(($acum_cupo_zf/$acum_cupo_mes)*100)."%";
+                    }
+
+                    $acum_cupo_mes = number_format($acum_cupo_mes);
+                    $acum_cupo_nal = number_format($acum_cupo_nal);
+                    $acum_cupo_sal = number_format($acum_cupo_sal);
+                    $acum_cupo_zf = number_format($acum_cupo_zf);
+                    $acum_exc = number_format($acum_exc);
+                    
+                    
+                    
+                    ?>
         </table>
         <table cellspacing="0" style="width: 100%; text-align: center; font-size: 11px;" class="">
             <tr>
@@ -259,22 +286,22 @@
                     TOTAL
                 </td>
                 <td style="width:12%;" class='campos_fn'>
-                    <?php echo number_format($acum_cupo_mes);?>
+                    <?php echo $acum_cupo_mes;?>
                 </td>
                 <td style="width:12%;" class='campos_fn'>
-                    <?php echo number_format($acum_cupo_zf); ?>
+                    <?php echo $acum_cupo_zf; ?>
                 </td>
                 <td style="width:12%;" class='campos_fn'>
-                    <?php if($acum_cupo_mes == 0 && $acum_cupo_zf == 0){} else {echo round(($acum_cupo_zf/$acum_cupo_mes)*100)."%";}?>
+                    <?php echo $porcentaje_total;?>
                 </td>
                 <td style="width:12%;" class='campos_fn'>
-                    <?php echo number_format($acum_cupo_sal);?>
+                    <?php echo $acum_cupo_sal;?>
                 </td>
                 <td style="width:12%;" class='campos_fn'>
-                    <?php echo number_format($acum_cupo_nal);?>
+                    <?php echo $acum_cupo_nal;?>
                 </td>
                 <td style="width:13%;" class='campos_fn'>
-                    <?php echo number_format($acum_exc);?>
+                    <?php echo $acum_exc;?>
                 </td>
             </tr>
         </table>
@@ -282,5 +309,6 @@
         <img height="400" width="750" src="<?php echo $imagenes[$i];?>" alt="">
         </div>
         <br>
-<?php } ?>
+<?php 
+} ?>
 </page>

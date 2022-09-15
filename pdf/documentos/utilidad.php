@@ -4,7 +4,6 @@ include("../../config/conexion.php");
 //importacion de la libreria de html2pdf
 require_once(dirname(__FILE__).'/../html2pdf.class.php');
 
-$nose=$_POST['datosss'];
 $titulo="VENTAS POR CUPO CRÉDITO - VENTAS - UTILIDAD";
 $mes= "Julio";
 $año = "2022";

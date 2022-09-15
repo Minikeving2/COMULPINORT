@@ -99,7 +99,7 @@ function dibujar() {
         $.ajax({
             type: "POST",
             url: "./ajax/grafico.php",
-            data: "mes="+mes+"&año="+año,
+            data: "mes="+mes+"&YEAR="+año,
             beforeSend: function(objeto){
             },
             success: function(datos){
@@ -156,7 +156,7 @@ function dibujar() {
         $.ajax({
             type: "POST",
             url: "./ajax/grafico_anual.php",
-            data: "año="+año,
+            data: "YEAR="+año,
             beforeSend: function(objeto){
             },
             success: function(datos){

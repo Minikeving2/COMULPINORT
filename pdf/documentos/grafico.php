@@ -4,13 +4,14 @@ include("../../config/db.php");
 require_once(dirname(__FILE__).'/../html2pdf.class.php');
 $imagen1=$_POST['imagen_1'];
 $year=$_POST['year'];
-if ($_POST['imagen_2']=="" || $_POST['imagen_3']=="" || $_POST['imagen_4']=="") { 
-    $titulo="ANALISIS DE VENTAS DEL MES EN EL AÑO ".$year;
-} else {
+if (isset($_POST['imagen_2']) || isset($_POST['imagen_3']) || isset($_POST['imagen_4'])) { 
     $imagen2=$_POST['imagen_2'];
     $imagen3=$_POST['imagen_3'];
     $imagen4=$_POST['imagen_4'];
     $titulo="ANALISIS DE VENTAS DE TODO EL AÑO ".$year;
+    
+} else {
+    $titulo="ANALISIS DE VENTAS DEL MES EN EL AÑO ".$year;
 }
 ob_start();
 include(dirname('__FILE__').'/res/ver_grafico_html.php');

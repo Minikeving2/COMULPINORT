@@ -1,11 +1,11 @@
 <?php 
-$año=$_POST["año"];
+$year=$_POST["YEAR"];
 
 
 require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
-$mes=["01","02","03","04","05","06","07","08","10","11","12"];
+$mes=["01","02","03","04","05","06","07","08","09","10","11","12"];
 
 $datos = "";
 

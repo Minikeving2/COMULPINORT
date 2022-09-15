@@ -81,15 +81,15 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         </tr>
     </table>
     <img height="400" width="700" src="<?php echo $imagen1;?>" alt="">
-    <?php if ($imagen2){  ?>
+    <?php if (isset($imagen2)){  ?>
     <img height="400" width="700" src="<?php echo $imagen2;?>" alt="">
     <?php }?>
 
-    <?php if ($imagen3){  ?>
+    <?php if (isset($imagen3)){  ?>
     <img height="400" width="700" src="<?php echo $imagen3;?>" alt="">
     <?php }?>
 
-    <?php if ($imagen4){  ?>
+    <?php if (isset($imagen4)){  ?>
     <img height="400" width="700" src="<?php echo $imagen4;?>" alt="">
     <?php }?>
 	</page>

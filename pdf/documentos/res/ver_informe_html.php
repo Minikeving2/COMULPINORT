@@ -302,7 +302,7 @@ while ($row=mysqli_fetch_array($sql)){
 	$concatenacion=$row['CONCATENATION'];
 	$fecha=$row['FECHA'];
 	$codmad=$row['CODMAT'];
-	$nom_combustible=$row['NOM_COMBUSTIBLE'];
+	$nom_combustible=$row['NOMBRE'];
 	$canlista=$row['CANLISTA'];
 	$PARCVTA=$row['PARCVTA'];
 

@@ -73,7 +73,6 @@
 		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
 		$row= mysqli_fetch_array($count_query);
 		$numrows = $row['numrows'];
-		$total_pages = ceil($numrows/$per_page);
 		$reload = './usuarios.php';
 		//main query to fetch the data
 		$sql="SELECT * FROM  $sTable $sWhere";
