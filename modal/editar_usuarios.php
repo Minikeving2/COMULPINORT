@@ -38,6 +38,19 @@
 				  <input type="email" class="form-control" id="user_email2" name="user_email2" placeholder="Correo electrónico" required>
 				</div>
 			  </div>
+			  <div class="form-group">
+				<label for="user_name" class="col-sm-3 control-label">Nivel de Acceso</label>
+				<div class="col-sm-8">
+				  <select class="form-control" name="user_level2" id="user_level2">
+					<option value="1">Nivel 1</option>
+					<option value="2">Nivel 2</option>
+					<option value="3">Nivel 3</option>
+					<option value="4">Nivel 4</option>
+					<option value="5">Nivel 5</option>
+					<option value="6">Nivel 6</option>
+				  </select>
+				</div>
+			  </div>
 						 	 
 			
 		  </div>

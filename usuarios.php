@@ -9,7 +9,11 @@
         header("location: login.php");
 		exit;
         }
-
+	$a = $_SESSION['user_level'];
+	if ($a != 6) {
+        header("location: login.php");
+		exit;
+    }
 	/* Connect To Database*/
 	require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
@@ -38,7 +42,7 @@
 		<div class="panel panel-info" id="borde">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
-				<button type='button' class="btn btn-info" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus" ></span> Nuevo Usuario</button>
+				<button type='button' class="btn btn-info" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus" ></span>Nuevo Usuario</button>
 			</div>
 			<h4><i class='glyphicon glyphicon-search'></i> Buscar Usuarios</h4>
 		</div>			
@@ -77,11 +81,10 @@
 							});
   						</script>				
 				
-				
 			</form>
 				<div id="resultados"></div><!-- Carga los datos ajax -->
 				<div class='outer_div' id="contenido"></div><!-- Carga los datos ajax -->
-						
+
 			</div>
 		</div>
 
@@ -155,21 +158,39 @@ $( "#editar_password" ).submit(function( event ) {
 	});
   event.preventDefault();
 })
-	function get_user_id(id){
-		$("#user_id_mod").val(id);
-	}
+function get_user_id(id){
+	$("#user_id_mod").val(id);
+}
 
-	function obtener_datos(id){
-			var nombres = $("#nombres"+id).val();
-			var apellidos = $("#apellidos"+id).val();
-			var usuario = $("#usuario"+id).val();
-			var email = $("#email"+id).val();
-			
-			$("#mod_id").val(id);
-			$("#firstname2").val(nombres);
-			$("#lastname2").val(apellidos);
-			$("#user_name2").val(usuario);
-			$("#user_email2").val(email);
-			
-		}
+function obtener_datos(id){
+		
+	var nombres = $("#nombres"+id).val();
+	var apellidos = $("#apellidos"+id).val();
+	var usuario = $("#usuario"+id).val();
+	var email = $("#email"+id).val();
+	var nivel = $("#acceso_c"+id).val();
+
+	$("#mod_id").val(id);
+	$("#firstname2").val(nombres);
+	$("#lastname2").val(apellidos);
+	$("#user_name2").val(usuario);
+	$("#user_email2").val(email);
+	$("#user_level2").val(nivel);	
+}
+
+function eliminar(id){
+	
+	 $.ajax({
+		type: "POST",
+		url: "ajax/eliminar_usuario.php",
+		data: "id="+id,
+		beforeSend: function(objeto){
+			$("#resultados_ajax").html("Mensaje: Cargando...");
+		},
+		success: function(datos){
+			$("#resultados").html(datos);
+			load(1);
+	  	}
+	});
+}
 </script>

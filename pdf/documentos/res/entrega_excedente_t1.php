@@ -188,8 +188,10 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         $acum7=0;
         $acum8=0;
         $acum5=0;
+        $acum_exc=0;
+        $acum_diferencia=0;
         
-        $sql_umm=mysqli_query($con,"SELECT c.nombre_cliente, c.id_municipio, sum(if(tipo_mov = 1, total_venta, 0)) Equipos, sum(if(tipo_mov = 2, total_venta, 0)) Publicidad, sum(if(tipo_mov = 3, total_venta, 0)) Letreroprecios, sum(if(tipo_mov = 4, total_venta, 0)) AE_arreglos_locativos, sum(if(tipo_mov = 5, total_venta, 0)) AE_Transaccion, sum(if(tipo_mov = 6, total_venta, 0)) AE_Efectivo, sum(if(tipo_mov = 7, total_venta, 0)) AE_Crucecart, sum(if(tipo_mov = 8, total_venta, 0)) CR_Transaccion, sum(if(tipo_mov = 9, total_venta, 0)) CR_CruceCart, sum(if(tipo_mov = 10, total_venta, 0)) Cupo_Credito, sum(if(tipo_mov = 11, total_venta, 0)) Prestamos, sum(if(tipo_mov = 12, total_venta, 0)) Poliza_SURA, sum(if(tipo_mov = 13, total_venta, 0)) Descuentos_Gasol, sum(if(tipo_mov = 14, total_venta, 0)) Mejoras_EDS, sum(total_venta) total FROM clientes c LEFT JOIN facturas f on(f.id_cliente = c.id_cliente) group by c.nombre_cliente");
+        $sql_umm=mysqli_query($con,"SELECT c.id_cliente, c.nombre_cliente, c.id_municipio, sum(if(tipo_mov = 1, total_venta, 0)) Equipos, sum(if(tipo_mov = 2, total_venta, 0)) Publicidad, sum(if(tipo_mov = 3, total_venta, 0)) Letreroprecios, sum(if(tipo_mov = 4, total_venta, 0)) AE_arreglos_locativos, sum(if(tipo_mov = 5, total_venta, 0)) AE_Transaccion, sum(if(tipo_mov = 6, total_venta, 0)) AE_Efectivo, sum(if(tipo_mov = 7, total_venta, 0)) AE_Crucecart, sum(if(tipo_mov = 8, total_venta, 0)) CR_Transaccion, sum(if(tipo_mov = 9, total_venta, 0)) CR_CruceCart, sum(if(tipo_mov = 10, total_venta, 0)) Cupo_Credito, sum(if(tipo_mov = 11, total_venta, 0)) Prestamos, sum(if(tipo_mov = 12, total_venta, 0)) Poliza_SURA, sum(if(tipo_mov = 13, total_venta, 0)) Descuentos_Gasol, sum(if(tipo_mov = 14, total_venta, 0)) Mejoras_EDS, sum(total_venta) total FROM clientes c LEFT JOIN facturas f on(f.id_cliente = c.id_cliente) group by c.nombre_cliente");
         while ($row=mysqli_fetch_array($sql_umm)){
             $db_mun=$row["id_municipio"];
             if ($mun==$db_mun){
@@ -209,6 +211,34 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 $descuento=intval($row["Descuentos_Gasol"]);
                 $mejoras=intval($row["Mejoras_EDS"]);
                 $total=intval($row["total"]);
+                $nombre_cliente=$row["nombre_cliente"];
+                $id_cliente = $row["id_cliente"];
+
+                $acum_exc_mun=0;
+                for ($i=1; $i < 13 ; $i++) {
+                    $sql_datos = mysqli_fetch_array(mysqli_query($con, "SELECT CUPO_ZF, CUPO_NAL FROM cupo WHERE  ID_TERCERO = $id_cliente AND YEAR = 2022 AND MES = $i"));
+                    if(isset($sql_datos[0])){
+                        $consumido = intval($sql_datos[0]);
+                        
+                    } else {
+                        $consumido = 0;
+                    }
+                    if(isset($sql_datos[1])){
+                        $extra = intval($sql_datos[1]);
+                        
+                    } else {
+                        $extra = 0;
+                    }
+                    
+                    if ($i>=6){
+                        $valor=244.171;
+                    }else{
+                        $valor=223.5381;
+                    }
+                    $cupo_exc=round(($consumido+$extra)*$valor);
+                    $acum_exc_mun=$acum_exc_mun+intval($cupo_exc);
+                }
+                
                 //realizao las operaciones de acumunlacion de datos numericos
                 $acum1=$acum1+$Equipos;
                 $acum2=$acum2+($credito1+$credito2+$prestamo);
@@ -218,10 +248,14 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 $acum6=$acum6+$Letreroprecios;
                 $acum7=$acum7+($mejoras+$descuento+$sura+$apoyo1);
                 $acum8=$acum8+$total;
+                $acum_exc = $acum_exc + $acum_exc_mun;
+                $diferencia = $acum_exc_mun - $total;
+                $acum_diferencia = $acum_diferencia + $diferencia;
                 
-                $nombre_cliente=$row["nombre_cliente"];
 
 
+
+                
                 //los muestro con un formato decimal para asi poder visualizarlos mejor ya que añade las comas y puntos
                 $Equipos=number_format($row["Equipos"],2);
                 $Publicidad=number_format($row['Publicidad'],2);
@@ -231,11 +265,18 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 $apoyo3=number_format($row["AE_Efectivo"],2);
                 $apoyo4=number_format($row["AE_Crucecart"],2);
                 $cupo=number_format($row["Cupo_Credito"],2);
-    
                 $otros=number_format(($mejoras+$descuento+$sura+$apoyo1),2);
                 $creditos=number_format(($credito1+$credito2+$prestamo),2);
                 $total=number_format($row["total"],2);
-            
+                $acum_exc_mun=number_format($acum_exc_mun,2);
+                if($diferencia<0){
+                    $diferencia="(".number_format(abs($diferencia),2).")";
+                } else {
+                    $diferencia=number_format($diferencia,2);
+                }
+                
+
+               
         ?>
         <tr>
             <td style="width: 10%; text-align:center" class="celdas">
@@ -263,9 +304,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 ?>
             </td>
 			<td style="width: 7%; text-align:center" class="celdas">
-                <?php echo $apoyo4;
-                
-                ?>
+                <?php echo $apoyo4;?>
 			</td>
             <td style="width: 7%; text-align:center" class="celdas">
                 <?php echo $Publicidad;?>
@@ -280,14 +319,15 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <?php echo $total; ?>
 			</td>
             <td style="width: 8%; text-align:center" class="celdas">
-                
+                <?php echo $acum_exc_mun;?>
 			</td>
             <td style="width: 8%; text-align:center" class="celdas">
-                
+                <?php echo $diferencia;?>
 			</td>
         </tr>
         <?php }
         } 
+        $diferencia = $acum_exc - $acum8;
         $acum1=number_format($acum1,2);
         $acum2=number_format($acum2,2);
         $acum3=number_format($acum3,2);
@@ -296,8 +336,8 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         $acum6=number_format($acum6,2);
         $acum7=number_format($acum7,2);
         $acum8=number_format($acum8,2);
-        
-        
+        $acum_exc=number_format($acum_exc,2);
+        $diferencia = number_format($diferencia,2);
         ?>
         
         <tr >
@@ -335,10 +375,10 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <?php echo $acum8;?>
 			</td>
             <td style="width: 8%; text-align:center; background:#FFFF00" class="celdas">
-                
+                <?php echo $acum_exc;?>
 			</td>
             <td style="width: 8%; text-align:center; background:#FFFF00" class="celdas">
-                
+                <?php echo $diferencia;?>
 			</td>
         </tr>
     </table>

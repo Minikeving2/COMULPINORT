@@ -89,6 +89,7 @@
 					<th>Nombres</th>
 					<th>Usuario</th>
 					<th>Email</th>
+					<th>Nivel de acceso</th>
 					<th>Agregado</th>
 					<th><span class="pull-right">Acciones</span></th>
 				</tr>
@@ -101,6 +102,7 @@
 						$user_name=$row['user_name'];
 						$user_email=$row['user_email'];
 						$date_added= date('d/m/Y', strtotime($row['date_added']));
+						$level = $row["user_level"];
 						
 					?>
 					
@@ -108,18 +110,19 @@
 					<input type="hidden" value="<?php echo $row['lastname'];?>" id="apellidos<?php echo $user_id;?>">
 					<input type="hidden" value="<?php echo $user_name;?>" id="usuario<?php echo $user_id;?>">
 					<input type="hidden" value="<?php echo $user_email;?>" id="email<?php echo $user_id;?>">
-				
+					<input type="hidden" value="<?php echo $level;?>" id="acceso_c<?php echo $user_id;?>">
 					<tr>
 						<td><?php echo $user_id; ?></td>
 						<td><?php echo $fullname; ?></td>
 						<td ><?php echo $user_name; ?></td>
 						<td ><?php echo $user_email; ?></td>
+						<td ><?php echo $level; ?></td>
 						<td><?php echo $date_added;?></td>
 						
 					<td ><span class="pull-right">
 					<a href="#" class='btn btn-default' title='Editar usuario' onclick="obtener_datos('<?php echo $user_id;?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
 					<a href="#" class='btn btn-default' title='Cambiar contraseña' onclick="get_user_id('<?php echo $user_id;?>');" data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-cog"></i></a>
-					<a href="#" class='btn btn-default' title='Borrar usuario' onclick="eliminar('<? echo $user_id; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
+					<a href="#" class='btn btn-default' title='Borrar usuario' onclick="eliminar('<?php echo $user_id; ?>');"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
 						
 					</tr>
 					<?php

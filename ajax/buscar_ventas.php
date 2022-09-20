@@ -63,7 +63,6 @@
 				</thead>
 				<tbody>
 				<?php
-				echo $sql;
 				while ($row=mysqli_fetch_array($query)){
 					
 					$concatenacion=$row['CONCATENATION'];

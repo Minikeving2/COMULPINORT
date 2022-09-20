@@ -22,12 +22,15 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             $errors[] = "El correo electrónico no puede estar vacío";
         } elseif (strlen($_POST['user_email2']) > 64) {
             $errors[] = "El correo electrónico no puede ser superior a 64 caracteres";
+		} elseif (empty($_POST['user_level2'])) {
+            $errors[] = "El correo electrónico no puede ser superior a 64 caracteres";
         } elseif (!filter_var($_POST['user_email2'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = "Su dirección de correo electrónico no está en un formato de correo electrónico válida";
         } elseif (
 			!empty($_POST['user_name2'])
 			&& !empty($_POST['firstname2'])
 			&& !empty($_POST['lastname2'])
+			&& !empty($_POST['user_level2'])
             && strlen($_POST['user_name2']) <= 64
             && strlen($_POST['user_name2']) >= 2
             && preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name2'])
@@ -45,12 +48,12 @@ mysqli_query($con,"SET NAMES 'utf8'");
 				$lastname = mysqli_real_escape_string($con,(strip_tags($_POST["lastname2"],ENT_QUOTES)));
 				$user_name = mysqli_real_escape_string($con,(strip_tags($_POST["user_name2"],ENT_QUOTES)));
                 $user_email = mysqli_real_escape_string($con,(strip_tags($_POST["user_email2"],ENT_QUOTES)));
-				
+				$nivel = mysqli_real_escape_string($con,(strip_tags($_POST["user_level2"],ENT_QUOTES)));
 				$user_id=intval($_POST['mod_id']);
 					
                
 					// write new user's data into database
-                    $sql = "UPDATE users SET firstname='".$firstname."', lastname='".$lastname."', user_name='".$user_name."', user_email='".$user_email."'
+                    $sql = "UPDATE users SET firstname='".$firstname."', lastname='".$lastname."', user_name='".$user_name."', user_email='".$user_email."', user_level='".$nivel."'
                             WHERE user_id='".$user_id."';";
                     $query_update = mysqli_query($con,$sql);
 

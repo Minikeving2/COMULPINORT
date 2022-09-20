@@ -18,6 +18,8 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             $errors[] = "Contraseña vacía";
         } elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
             $errors[] = "la contraseña y la repetición de la contraseña no son lo mismo";
+        } elseif (empty($_POST['user_level'])) {
+            $errors[] = "Deben seleccionar un nivel de acceso";
         } elseif (strlen($_POST['user_password_new']) < 6) {
             $errors[] = "La contraseña debe tener como mínimo 6 caracteres";
         } elseif (strlen($_POST['user_name']) > 64 || strlen($_POST['user_name']) < 2) {
@@ -34,6 +36,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 			!empty($_POST['user_name'])
 			&& !empty($_POST['firstname'])
 			&& !empty($_POST['lastname'])
+            && !empty($_POST['user_level'])
             && strlen($_POST['user_name']) <= 64
             && strlen($_POST['user_name']) >= 2
             && preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])
@@ -53,6 +56,7 @@ mysqli_query($con,"SET NAMES 'utf8'");
 				$lastname = mysqli_real_escape_string($con,(strip_tags($_POST["lastname"],ENT_QUOTES)));
 				$user_name = mysqli_real_escape_string($con,(strip_tags($_POST["user_name"],ENT_QUOTES)));
                 $user_email = mysqli_real_escape_string($con,(strip_tags($_POST["user_email"],ENT_QUOTES)));
+                $nivel =  mysqli_real_escape_string($con,(strip_tags($_POST["user_level"],ENT_QUOTES)));
 				$user_password = $_POST['user_password_new'];
 				$date_added=date("Y-m-d H:i:s");
                 // crypt the user's password with PHP 5.5's password_hash() function, results in a 60 character
@@ -68,8 +72,8 @@ mysqli_query($con,"SET NAMES 'utf8'");
                     $errors[] = "Lo sentimos , el nombre de usuario ó la dirección de correo electrónico ya está en uso.";
                 } else {
 					// write new user's data into database
-                    $sql = "INSERT INTO users (firstname, lastname, user_name, user_password_hash, user_email, date_added)
-                            VALUES('".$firstname."','".$lastname."','" . $user_name . "', '" . $user_password_hash . "', '" . $user_email . "','".$date_added."');";
+                    $sql = "INSERT INTO users (firstname, lastname, user_name, user_password_hash, user_level, user_email, date_added)
+                            VALUES('".$firstname."','".$lastname."','" . $user_name . "', '" . $user_password_hash . "', '" . $nivel . "','". $user_email . "','".$date_added."');";
                     $query_new_user_insert = mysqli_query($con,$sql);
 
                     // if user has been added successfully
