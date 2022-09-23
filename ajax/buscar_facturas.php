@@ -1,10 +1,4 @@
 <?php
-
-	/*-------------------------
-	Autor: Obed Alvarado
-	Web: obedalvarado.pw
-	Mail: info@obedalvarado.pw
-	---------------------------*/
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -14,12 +8,9 @@
 	if (isset($_GET['id'])){
 		$id_factura=intval($_GET['id']);
 		$desc_mov = mysqli_query($con, "SELECT tipo_mov FROM factura WHERE id_factura = $id_factura");
-
-
 		$del1="delete from facturas where id_factura='".$id_factura."'";
 		$del2="delete from detalle_factura where id_factura='".$id_factura."'";
 		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
-
 			switch ($desc_mov) {
 				case 1:
 					$mov = "Equipos (Comodato)";
@@ -64,14 +55,11 @@
 					$mov = "Mejoras E.D.S";
 					break;
 			}
-
-
 			$proceso = "ELIMINAR";
 			$descripcion = "MOVIMIENTO - ".$mov;
 			$id_usuario = $_SESSION['user_id'];
 			$nombre = $_SESSION['user_name'];
 			include ("nueva_auditoria.php");
-
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -85,21 +73,17 @@
 			  <strong>Error!</strong> No se puedo eliminar los datos
 			</div>
 			<?php
-			
 		}
 	}
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		  $sTable = "facturas, clientes, users";
+		 $sTable = "facturas, clientes, users";
 		 $sWhere = "";
 		 $sWhere.=" WHERE facturas.id_cliente=clientes.id_cliente and facturas.id_vendedor=users.user_id";
-		if ( $_GET['q'] != "" )
-		{
-		$sWhere.= " and  (clientes.nombre_cliente like '%$q%' or facturas.numero_factura like '%$q%')";
-			
+		if ( $_GET['q'] != "" ){
+			$sWhere.= " and  (clientes.nombre_cliente like '%$q%' or facturas.numero_factura like '%$q%')";
 		}
-		
 		$sWhere.=" order by facturas.id_factura desc";
 		//include 'pagination.php'; //include pagination file
 		//pagination variables
@@ -145,22 +129,17 @@
 						$tipo_mov=$row['tipo_mov'];
 						$nombre_vendedor=$row['firstname']." ".$row['lastname'];
 						$estado_factura=$row['estado_factura'];
-						
 						$total_venta=$row['total_venta'];
-
 						if ($tipo_mov<11 && $tipo_mov>4){
 							$query_estado=mysqli_query($con,"SELECT id_detalle,duracion FROM detalle_factura WHERE id_factura = $id_factura");	
 							$cont_fechas=0;
 							while ($rows=mysqli_fetch_array($query_estado)){
-
 								$id_datalle=$rows['id_detalle'];
 								$fecha=$rows['duracion'];
 								if (empty($rows['duracion'])){
 									$cont_fechas=$cont_fechas+1;
 								}
-
 							}
-							
 							if ($cont_fechas==0){
 								$label_class='label-success';
 								$text_estado="Pagado";
@@ -172,8 +151,6 @@
 							$label_class='label-success';
 							$text_estado="Pagado";
 						}
- 
-
 						switch ($tipo_mov) {
 							case 1:
 								$tipo_mov = "Equipos (Comodato)";
@@ -218,8 +195,6 @@
 								$tipo_mov = "Mejoras E.D.S";
 								break;
 							}
-
-					
 					?>
 					<tr>
 						<td><?php echo $id_factura; ?></td>
@@ -228,12 +203,11 @@
 						<td><?php echo $tipo_mov; ?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado; ?></span></td>
 						<td class='text-right'><?php echo number_format ($total_venta,2); ?></td>					
-					<td class="text-right">
-						<a href="editar_factura.php?id_factura=<?php echo $id_factura;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
-						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
+						<td class="text-right">
+							<a href="editar_factura.php?id_factura=<?php echo $id_factura;?>" class='btn btn-default' title='Editar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
+							<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
 						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $id_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
-					</td>
-						
+						</td>
 					</tr>
 					<?php
 				}
@@ -264,9 +238,6 @@
 					</div>
 				  </div>
 				  <?php
-				
-	
 		}
-		
 	}
 ?>

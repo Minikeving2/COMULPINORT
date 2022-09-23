@@ -42,7 +42,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 			require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		
-mysqli_query($con,"SET NAMES 'utf8'");	
+				mysqli_query($con,"SET NAMES 'utf8'");			
 				// escaping, additionally removing everything that could be (html/javascript-) code
                 $firstname = mysqli_real_escape_string($con,(strip_tags($_POST["firstname2"],ENT_QUOTES)));
 				$lastname = mysqli_real_escape_string($con,(strip_tags($_POST["lastname2"],ENT_QUOTES)));
@@ -50,25 +50,25 @@ mysqli_query($con,"SET NAMES 'utf8'");
                 $user_email = mysqli_real_escape_string($con,(strip_tags($_POST["user_email2"],ENT_QUOTES)));
 				$nivel = mysqli_real_escape_string($con,(strip_tags($_POST["user_level2"],ENT_QUOTES)));
 				$user_id=intval($_POST['mod_id']);
-					
-               
 					// write new user's data into database
                     $sql = "UPDATE users SET firstname='".$firstname."', lastname='".$lastname."', user_name='".$user_name."', user_email='".$user_email."', user_level='".$nivel."'
                             WHERE user_id='".$user_id."';";
                     $query_update = mysqli_query($con,$sql);
-
                     // if user has been added successfully
                     if ($query_update) {
+						$proceso = "ACTUALIZAR";
+						$descripcion = "USUARIO";
+						$id_usuario = $_SESSION['user_id'];
+						$nombre = $_SESSION['user_name'];
+						include ("nueva_auditoria.php");
+
                         $messages[] = "La cuenta ha sido modificada con éxito.";
                     } else {
-                        $errors[] = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.";
+                        $errors[] = "Lo sentimos , no se ha modificado correctamente.";
                     }
-                
-            
         } else {
             $errors[] = "Un error desconocido ocurrió.";
         }
-		
 		if (isset($errors)){
 			
 			?>

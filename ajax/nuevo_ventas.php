@@ -1,19 +1,10 @@
 <?php
-	/*-------------------------
-	Autor: Obed Alvarado
-	Web: obedalvarado.pw
-	Mail: info@obedalvarado.pw
-	---------------------------*/
 include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 $session_id= session_id();
-
-
 /* Connect To Database*/
 require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-
 mysqli_query($con,"SET NAMES 'utf8'");
-
 $archivo = $_FILES['archivo'];
 if ($archivo['name']==""){
 	echo json_encode("<script>alert('No hay ninguno archivo cargado')</script>");
@@ -21,10 +12,8 @@ if ($archivo['name']==""){
 }
 $name = $archivo['name'];
 $ruta = $_FILES['archivo']['tmp_name'];
-$destino = "../tmp/".$name;
-		
+$destino = "../tmp/".$name;	
 if (copy(utf8_decode($ruta), $destino)) {
- 	
     $file = fopen($destino , "r+");
     $consultas="";
     $linea=0;
@@ -35,14 +24,12 @@ if (copy(utf8_decode($ruta), $destino)) {
             $sql="INSERT INTO ventas VALUES (";
             $columna = count($partes);
             $aux=1;
-            
             //al utilizar el explode dividiv el renglon delimitado por comas y lo recorro pedazo por peadzo con el foraech
             foreach ($partes as $partes => $value) {
             //verifico si es la ultima columna para colocar el parentesis final con el punto y coma
                if ($aux==$columna){
                 //le quito los espacion en blanco de pedazo 
                     $value=trim($value);
-                    
                     $cod=mysqli_query($con, "SELECT id_cliente FROM clientes WHERE codigo_sicom=$value'");
                     $cod_cliente=mysqli_fetch_array($cod);
                     if ($cod_cliente[0]==""){
@@ -50,7 +37,6 @@ if (copy(utf8_decode($ruta), $destino)) {
                     } else {
                         $id_cliente=$cod_cliente[0];
                     }
-
                     if ($value!=""){
                         $sql .= $value."','$id_cliente');";
                     } else {
@@ -58,7 +44,6 @@ if (copy(utf8_decode($ruta), $destino)) {
                         $sql .= $value.",'$id_cliente');";
                     }
                     $datos[$aux]=$value;
-                    
                } else {
                 if ($aux==2){;
                     $fecha = explode("/", rtrim(ltrim($value,"'"),"'"));
@@ -79,20 +64,16 @@ if (copy(utf8_decode($ruta), $destino)) {
                 mysqli_query($con,$sql);
             }
             $sql=""; 
-        }
-        $linea=$linea+1;
-    
+    }
+    $linea=$linea+1;
     fclose($file);
     unlink("../tmp/$name");
-
     $proceso = "INSERTAR";
     $descripcion = "PLANO";
     $id_usuario = $_SESSION['user_id'];
     $nombre = $_SESSION['user_name'];
     include ("nueva_auditoria.php");
-    
-    echo json_encode('<script>alert("archivo cargado correctamente") </script>');
-    
+    echo json_encode('<script>alert("archivo cargado correctamente") </script>'); 
 } else {
 	echo json_encode('<script>alert("El tipo de archivo no es valido") </script>');
 	exit;

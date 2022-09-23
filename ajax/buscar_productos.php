@@ -1,10 +1,4 @@
 <?php
-
-	/*-------------------------
-	Autor: 
-	Web: 
-	Mail:
-	---------------------------*/
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -13,26 +7,32 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$id_producto=intval($_GET['id']);
-		$query=mysqli_query($con, "select * from detalle_cotizacion_demo where id_producto='".$id_producto."'");
-		$count=mysqli_num_rows($query);
+		$querys1=mysqli_query($con, "select * from detalle_factura WHERE id_producto='".$id_producto."'");
+		$querys2=mysqli_query($con, "select * from detalle_contrato WHERE id_producto='".$id_producto."'");
+		$count=(mysqli_num_rows($querys1))+(mysqli_num_rows($querys2));
 		if ($count==0){
 			if ($delete1=mysqli_query($con,"DELETE FROM products WHERE id_producto='".$id_producto."'")){
+
+				$proceso = "ELIMINAR";
+				$descripcion = "PRODUCTO";
+				$id_usuario = $_SESSION['user_id'];
+				$nombre = $_SESSION['user_name'];
+				include ("nueva_auditoria.php");
+
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			  <strong>Aviso!</strong> Datos eliminados exitosamente.
 			</div>
 			<?php 
-		}else {
-			?>
-			<div class="alert alert-danger alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
-			</div>
-			<?php
-			
-		}
-			
+			}else {
+				?>
+				<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
+				</div>
+				<?php
+			}
 		} else {
 			?>
 			<div class="alert alert-danger alert-dismissible" role="alert">
@@ -41,9 +41,6 @@
 			</div>
 			<?php
 		}
-		
-		
-		
 	}
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
@@ -51,11 +48,9 @@
 		 $aColumns = array('codigo_producto', 'nombre_producto');//Columnas de busqueda
 		 $sTable = "products";
 		 $sWhere = "";
-		if ( $_GET['q'] != "" )
-		{
+		if ( $_GET['q'] != "" ){
 			$sWhere = "WHERE (";
-			for ( $i=0 ; $i<count($aColumns) ; $i++ )
-			{
+			for ( $i=0 ; $i<count($aColumns) ; $i++ ){
 				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );
