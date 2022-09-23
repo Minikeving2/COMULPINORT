@@ -51,6 +51,13 @@
 		$query_update = mysqli_query($con,$sql);
 		
 		if ($query_update){
+
+				$proceso = "ACTUALIZAR";
+				$descripcion = "MOVIMIENTO";
+				$id_usuario = $_SESSION['user_id'];
+				$nombre = $_SESSION['user_name'];
+				include ("nueva_auditoria.php");
+			
 				$messages[] = "Factura ha sido actualizada satisfactoriamente.";
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);

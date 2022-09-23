@@ -21,10 +21,10 @@
 	$active_productos="";
 	$active_clientes="";
 	$active_usuarios="active";
-	$active_contratos = "";
-	$active_informes = "";
-	$active_mapa = "";
-    $active_ventas = "";	
+	$active_contratos="";
+	$active_informes="";
+	$active_mapa="";
+    $active_ventas="";	
 		
 	$title="Usuarios | SistCoom V1.0";
 ?>
@@ -59,15 +59,11 @@
 							<div class="col-md-5">
 								<input type="text" class="form-control" id="q" placeholder="Nombre">
 							</div>
-							
-							
-							
 							<div class="col-md-3">
 								<button type="button" class="btn btn-default" onclick='load(1);'>
 									<span class="glyphicon glyphicon-search" ></span> Buscar</button>
 								<span id="loader"></span>
 							</div>
-							
 						</div>
 						<!--script  para evitar la funcion de enter en el formulario de busqueda-->
 						<script> 

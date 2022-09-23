@@ -84,6 +84,13 @@ if (copy(utf8_decode($ruta), $destino)) {
     
     fclose($file);
     unlink("../tmp/$name");
+
+    $proceso = "INSERTAR";
+    $descripcion = "PLANO";
+    $id_usuario = $_SESSION['user_id'];
+    $nombre = $_SESSION['user_name'];
+    include ("nueva_auditoria.php");
+    
     echo json_encode('<script>alert("archivo cargado correctamente") </script>');
     
 } else {

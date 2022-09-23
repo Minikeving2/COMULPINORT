@@ -9,7 +9,11 @@
         header("location: login.php");
 		exit;
         }
-	
+	$a = $_SESSION['user_level'];
+	if ($a < 0) {
+        header("location: login.php");
+		exit;
+    }
 	$active_facturas = "";
 	$active_productos= "";
 	$active_clientes = "";

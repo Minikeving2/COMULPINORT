@@ -105,6 +105,58 @@ $sql="SELECT * FROM tmp";
 
 $sql=mysqli_query($con,"DELETE FROM tmp");
 
+
+
+switch ($tipo_mov) {
+	case 1:
+		$mov = "Equipos (Comodato)";
+		break;
+	case 2:
+		$mov = "Publicidad";
+		break;
+	case 3:
+		$mov = "Letrero de precios";
+		break;
+	case 4:
+		$mov = "Apoyo arreglos locativos";
+		break;
+	case 5:
+		$mov = "Apoyo Económico/Transacción";
+		break;
+	case 6:
+		$mov = "Apoyo Económico/Efectivo";
+		break;
+	case 7:
+		$mov = "Apoyo Económico/Cruce Cart.";
+		break;
+	case 8:
+		$mov = "Crédito/Transacción";
+		break;
+	case 9:
+		$mov = "Crédito/Cruce Cart.";
+		break;
+	case 10:
+		$mov = "Cupo Crédito Estaciones";
+		break;
+	case 11:
+		$mov = "Préstamos";
+		break;
+	case 12:
+		$mov = "Pólizas SURA";
+		break;
+	case 13:
+		$mov = "Descuentos Gasolina Nacional";
+		break;
+	case 14:
+		$mov = "Mejoras E.D.S";
+		break;
+}
+$proceso = "INSERTAR";
+$descripcion = "MOVIMIENTO - ".$mov;
+$id_usuario = $_SESSION['user_id'];
+$nombre = $_SESSION['user_name'];
+include ("nueva_auditoria.php");
+
 echo "<script>var opcion = alert ('Factura registrada correctamente')</script>";
 
 ?>

@@ -77,7 +77,12 @@
 								$fecha_fin=$row['fecha_final'];
 								$fecha_added=date('Y-m-d');
 								$insert=mysqli_query($con, "INSERT INTO detalle_cliente (cod_cliente,nombre,ruta,archivo,tipo_doc,fecha_documento,fecha_vencimiento,fecha_added) VALUES ('$id_cliente','".$nombre_doc."','".$ruta."','".$archivo."','".$tipo_doc."','".$fecha_inicio."','".$fecha_fin."','".$fecha_added."')");
-								$aux .= "INSERT INTO detalle_cliente (cod_cliente,nombre,ruta,archivo,tipo_doc,fecha_documento,fecha_vencimineto,fecha_added) VALUES ('$id_cliente','".$nombre_doc."','".$ruta."','".$archivo."','".$tipo_doc."','".$fecha_inicio."','".$fecha_fin."','".$fecha_added."')";
+								
+								$proceso = "INSERTAR";
+								$descripcion = "ARCHIVO - ESTACION";
+								$id_usuario = $_SESSION['user_id'];
+								$nombre = $_SESSION['user_name'];
+								include ("nueva_auditoria.php");
 							}
 						}
 				
@@ -87,6 +92,12 @@
 				
 
 				$messages[] = "Tercero ha sido ingresado satisfactoriamente.";
+
+				$proceso = "INSERTAR";
+				$descripcion = "ESTACION";
+				$id_usuario = $_SESSION['user_id'];
+				$nombre = $_SESSION['user_name'];
+				include ("nueva_auditoria.php");
 
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
@@ -130,5 +141,12 @@
 				$resultado.='</div>';
 				
 			}
+
+			
+			$proceso = "INSERTAR";
+			$descripcion = "CLIENTE";
+			$id_usuario = $_SESSION['user_id'];
+			$nombre = $_SESSION['user_name'];
+			include ("nueva_auditoria.php");
 			echo json_encode($resultado);
 ?>

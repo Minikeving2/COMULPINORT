@@ -15,7 +15,7 @@
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
 	
-mysqli_query($con,"SET NAMES 'utf8'");
+		mysqli_query($con,"SET NAMES 'utf8'");
 		$id_cliente=intval($_GET['id_cliente']);
 		$nit=$_POST["nit"];
 		$nombre_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["nombre_tercero"],ENT_QUOTES)));
@@ -46,6 +46,13 @@ mysqli_query($con,"SET NAMES 'utf8'");
 		$sql= "UPDATE clientes SET nombre_cliente='".$nombre_cliente."', telefono_cliente='".$telefono_cliente."', email_cliente='".$email_cliente."', direccion_cliente='".$direccion_cliente."', status_cliente='".$estado."', codigo_sicom='".$codigo_sicom."', nit='".$nit."', cc_rp='".$cc_rp."', nombre_rp='".$nombre_rp."', tipo_tercero='".$tipo_tercero."', tel_rp='".$telefono_rp."', email_rp='".$email_rp."', dir_rp='".$direccion_rp."', id_municipio='".$id_municipio."', cupo='".$cupo."', fecha_act='". date('Y-m-d', time())."' where id_cliente= '".$id_cliente."';";
 		$query_update = mysqli_query($con,$sql);
 			if ($query_update){
+
+				$proceso = "ACTUALIZAR";
+				$descripcion = "ESTACION";
+				$id_usuario = $_SESSION['user_id'];
+				$nombre = $_SESSION['user_name'];
+				include ("nueva_auditoria.php");
+
 				$messages[] = "Cliente ha sido actualizado satisfactoriamente.";
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);

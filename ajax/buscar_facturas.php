@@ -13,9 +13,65 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$id_factura=intval($_GET['id']);
+		$desc_mov = mysqli_query($con, "SELECT tipo_mov FROM factura WHERE id_factura = $id_factura");
+
+
 		$del1="delete from facturas where id_factura='".$id_factura."'";
 		$del2="delete from detalle_factura where id_factura='".$id_factura."'";
 		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
+
+			switch ($desc_mov) {
+				case 1:
+					$mov = "Equipos (Comodato)";
+					break;
+				case 2:
+					$mov = "Publicidad";
+					break;
+				case 3:
+					$mov = "Letrero de precios";
+					break;
+				case 4:
+					$mov = "Apoyo arreglos locativos";
+					break;
+				case 5:
+					$mov = "Apoyo Económico/Transacción";
+					break;
+				case 6:
+					$mov = "Apoyo Económico/Efectivo";
+					break;
+				case 7:
+					$mov = "Apoyo Económico/Cruce Cart.";
+					break;
+				case 8:
+					$mov = "Crédito/Transacción";
+					break;
+				case 9:
+					$mov = "Crédito/Cruce Cart.";
+					break;
+				case 10:
+					$mov = "Cupo Crédito Estaciones";
+					break;
+				case 11:
+					$mov = "Préstamos";
+					break;
+				case 12:
+					$mov = "Pólizas SURA";
+					break;
+				case 13:
+					$mov = "Descuentos Gasolina Nacional";
+					break;
+				case 14:
+					$mov = "Mejoras E.D.S";
+					break;
+			}
+
+
+			$proceso = "ELIMINAR";
+			$descripcion = "MOVIMIENTO - ".$mov;
+			$id_usuario = $_SESSION['user_id'];
+			$nombre = $_SESSION['user_name'];
+			include ("nueva_auditoria.php");
+
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

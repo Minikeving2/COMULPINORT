@@ -18,6 +18,12 @@
 		if ($count==0){
 			if ($delete1=mysqli_query($con,"DELETE FROM clientes WHERE id_cliente='".$id_cliente."'")){
 
+				$proceso = "ELIMINAR";
+				$descripcion = "ESTACION";
+				$id_usuario = $_SESSION['user_id'];
+				$nombre = $_SESSION['user_name'];
+				include ("nueva_auditoria.php");
+				
 				$query = mysqli_query($con, "SELECT ruta FROM detalle_cliente WHERE cod_cliente='$id_cliente'");
 				while ($row=mysqli_fetch_array($query)){
 
