@@ -260,7 +260,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                     CUENTAS POR COBRAR
                 </td>
                 <td style="width: 25%; padding: 4px 4px 4px;" class=titulos">
-                    BONOS
+                    ABONOS
                 </td>
                 <td style="width: 50%;" class=celdas">
 
@@ -420,7 +420,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                     CUENTAS POR COBRAR
                 </td>
                 <td style="width: 25%; padding: 4px 4px 4px;" class=titulos">
-                    BONOS
+                    ABONOS
                 </td>
                 <td style="width: 50%;" class=celdas">
 

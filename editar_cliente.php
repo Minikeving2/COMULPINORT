@@ -8,12 +8,7 @@
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: login.php");
 		exit;
-    }
-	$a = $_SESSION['user_level'];
-	if ($a < 0) {
-        header("location: login.php");
-		exit;
-    }
+        }
 	$active_facturas="";
 	$active_productos="";
 	$active_clientes="active";
@@ -55,6 +50,11 @@
                 $cupo=$rw_busqueda['cupo'];
                 $fecha_act=$rw_busqueda['fecha_act'];
                 $usuario=$rw_busqueda['usuario'];
+				if(isset($rw_busqueda["cod_knime"])){
+					$sarlaft=$rw_busqueda["cod_knime"];
+				} else {
+					$sarlaft = null;
+				}
 
 				
 		}	
@@ -89,10 +89,6 @@
 		<div class="panel-body" >
 		<?php 
 			include("modal/doc_cliente.php");
-			/*include("modal/buscar_productos.php");
-			include("modal/registro_clientes.php");
-			include("modal/registro_productos.php");
-			include("modal/buscar_cliente.php");*/
 		?>
 			<form class="form-horizontal" method="POST" id="editar_cliente" name="editar_cliente">
 				
@@ -132,12 +128,11 @@
 					</div>	
 
 					<div class="col-md-2">
-						<select class="form-control input-sm" id="mun" name="mun" value="<?php echo $id_municipio;?>">
+						<select class="form-control input-sm" id="mun" name="mun" value="<?php echo $id_municipio_db;?>">
 							<script>
 								var select = document.getElementById('mun');
 								select.addEventListener('change',function(){
 									var selectedOption = this.options[select.selectedIndex];
-									console.log("aver");		
 								});
 							</script>
 							<?php
@@ -147,7 +142,7 @@
 									$id_municipio=$rw["id"];
 									$nombre_municipio=$rw["nombre"];
 							?>
-								<option value="<?php echo $id_municipio?>"><?php echo $nombre_municipio?></option>
+								<option value="<?php echo $id_municipio;?>"><?php echo $nombre_municipio;?></option>
 							<?php
 											}
 							?>
@@ -228,6 +223,7 @@
 				  	<label for="nombre" class="col-md-2 ">Teléf. RepLegal</label>
 				  	<label for="estado" class="col-md-3  ">Email RepLegal</label>
 				  	<label for="nombre_rl" class="col-md-3 ">Dir. RepLegal</label>
+					<label for="sarlaft" class="col-md-1 ">Sarlaft</label>
 				</div>
 				<div class="form-group row">
 				    <!--    
@@ -248,6 +244,10 @@
 				    <div class="col-md-3">
 						<input type="text" class="form-control" id="email_rp" name="direccion_rp" value="<?php echo $dir_rp;?>">
 				    </div>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="sarlaft" name="sarlaft" value="<?php echo $sarlaft;?>" readonly>
+				    </div>
+
 				</div>
 
 				

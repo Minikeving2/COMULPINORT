@@ -17,8 +17,8 @@
 		$count=mysqli_num_rows($query);
 		if ($count==0){
 			if ($delete1=mysqli_query($con,"DELETE FROM clientes WHERE id_cliente='".$id_cliente."'")){
-
-				$proceso = "ELIMINAR";
+                
+                $proceso = "ELIMINAR";
 				$descripcion = "ESTACION";
 				$id_usuario = $_SESSION['user_id'];
 				$nombre = $_SESSION['user_name'];
@@ -103,9 +103,8 @@
 					<tr  class="info">
 						<th>Cod.Sicom</th>	
 						<th>Nombre</th>
-						<th>Teléfono</th>
-						<th>Email</th>
-						<th>cupo</th>
+						<th>Nombre Representante</th>
+						<th>Nit</th>
 						<th>Municipio</th>
 						<th>Estado</th>
 						<th class='text-right'>Acciones</th>
@@ -178,9 +177,8 @@
 					<tr>
 					    <td><?php echo $codigo_sicom; ?></td>
 						<td><?php echo $nombre_cliente; ?></td>
-						<td ><?php echo $telefono_cliente; ?></td>
-						<td><?php echo $email_cliente;?></td>
-						<td><?php echo $cupo;?></td>
+						<td ><?php echo $nombre_rp; ?></td>
+						<td><?php echo $nit;?></td>
 						<td><?php echo $municipio[0];?></td>
 						<td><?php echo $estado;?></td>
 						
@@ -205,12 +203,10 @@
 						<tr  class="info">
 							<th>Cod.Sicom</th>	
 							<th>Nombre</th>
-							<th>Teléfono</th>
-							<th>Email</th>
-							<th>cupo</th>
+							<th>Nombre Representante</th>
+							<th>Nit</th>
 							<th>Municipio</th>
 							<th>Estado</th>
-							
 							<th class='text-right'>Acciones</th>
 						</tr>
 					</thead>

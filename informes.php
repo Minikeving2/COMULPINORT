@@ -8,12 +8,8 @@
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: login.php");
 		exit;
-    }
-	$a = $_SESSION['user_level'];
-	if ($a < 0) {
-        header("location: login.php");
-		exit;
-    }
+        }
+	
 	$active_facturas = "";
 	$active_productos= "";
 	$active_clientes = "";
@@ -104,7 +100,6 @@
 								function(){
 									var selectedOption = this.options[select.selectedIndex];
 									var a =(selectedOption.value);
-									console.log(a);
 									document.querySelector('#mun').value=a;
 								});
   							</script>
@@ -136,34 +131,42 @@
 						<h4><i class='glyphicon glyphicon-stats'></i> Informe de Utilidad</h4>
 					</div>
 					<div class="panel-body" >
-						<form class="form-horizontal" role="form" id="informe_datos">
+						<form class="form-horizontal" role="form" id="informe_datos_utilidad">
 							<div class="form-group row">
 								<label for="q" class="col-md-1 control-label">Mes: </label>
 								<div class="col-md-3">
-									<select class="form-control" name="mes" id="mes">
-								        <option value="01">ENERO</option>
-								        <option value="02">FEBRERO</option>
-        								<option value="03">MARZO</option>
-        								<option value="04">ABRIL</option>
-        								<option value="05">MAYO</option>
-        								<option value="06">JUNIO</option>
-        								<option value="07">JULIO</option>
-        								<option value="08">AGOSTO</option>
-        								<option value="09">SEPTIEMBRE</option>
+									<select class="form-control" name="mes_utilidad" id="mes_utilidad">
+								        <option value="1">ENERO</option>
+								        <option value="2">FEBRERO</option>
+        								<option value="3">MARZO</option>
+        								<option value="4">ABRIL</option>
+        								<option value="5">MAYO</option>
+        								<option value="6">JUNIO</option>
+        								<option value="7">JULIO</option>
+        								<option value="8">AGOSTO</option>
+        								<option value="9">SEPTIEMBRE</option>
         								<option value="10">OCTUBRE</option>
         								<option value="11">NOVIEMBRE</option>
         								<option value="12">DICIEMBRE</option>
-        								<option value="13">TODOS LOS MESES</option>
         							</select>
 								</div>
 								<label for="q" class="col-md-1 control-label">Año: </label>
 								<div class="col-md-3">
-									<select class="form-control" name="mes" id="mes">
-								        <option value="01">2018</option>
-								        <option value="02">2019</option>
-        								<option value="03">2020</option>
-        								<option value="04">2021</option>
-        								<option value="05">2022</option>
+									<select class="form-control" name="year_utilidad" id="year_utilidad">
+										<script>
+											var select = document.getElementById('year_utilidad');
+											select.addEventListener('change',
+											function(){
+												var selectedOption = this.options[select.selectedIndex];
+												var a =(selectedOption.value);
+												document.querySelector('#year_utilidad').value=a;
+											});
+										</script>
+										<option value="2018">2018</option>
+								        <option value="2019">2019</option>
+        								<option value="2020">2020</option>
+        								<option value="2021">2021</option>
+        								<option value="2022">2022</option>
         							</select>
 								</div>
 								<div class="col-md-4">
@@ -214,7 +217,7 @@
 									<select class="form-control" name="year_consumo" id="year_consumo">
 								        <option value="2018">2018</option>
 								        <option value="2019">2019</option>
-        								<option value="202">2020</option>
+        								<option value="2020">2020</option>
         								<option value="2021">2021</option>
         								<option value="2022">2022</option>
         							</select>

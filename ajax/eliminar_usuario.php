@@ -1,14 +1,14 @@
 <?php
-
-include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+include('is_logged.php');
 // checking for minimum PHP version
+		
 		if (empty($_POST['id'])){
 			$errors[] = "Nombres vacíos";
 		} elseif(!empty($_POST['id'])){
             require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 			require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		
-				mysqli_query($con,"SET NAMES 'utf8'");	
+mysqli_query($con,"SET NAMES 'utf8'");	
 				// escaping, additionally removing everything that could be (html/javascript-) code
 				$user_id=intval($_POST['id']);
 					
@@ -19,13 +19,13 @@ include('is_logged.php');//Archivo verifica que el usario que intenta acceder a 
 
                     // if user has been added successfully
                     if ($query_delete) {
-
-						$proceso = "ELIMINAR";
+                        
+                        $proceso = "ELIMINAR";
 						$descripcion = "USUARIO";
 						$id_usuario = $_SESSION['user_id'];
 						$nombre = $_SESSION['user_name'];
 						include ("nueva_auditoria.php");
-
+						
                         $messages[] = "La cuenta ha sido eliminada con éxito.";
                     } else {
                         $errors[] = "Lo sentimos , no se ha podido eliminar.";
@@ -35,6 +35,7 @@ include('is_logged.php');//Archivo verifica que el usario que intenta acceder a 
         } else {
             $errors[] = "Un error desconocido ocurrió.";
         }
+		
 		if (isset($errors)){
 			
 			?>

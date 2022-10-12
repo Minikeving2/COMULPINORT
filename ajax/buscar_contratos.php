@@ -9,7 +9,7 @@
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
-	
+	mysqli_query($con,"SET NAMES 'utf8'");
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$numero_contrato=$_GET['id'];
@@ -23,6 +23,13 @@
 		$del1="delete from contrato where id_contrato='".$numero_contrato."'";
 		$del2="delete from detalle_contrato where id_contrato='".$numero_contrato."'";
 		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
+		    
+		    $proceso = "ELIMINAR";
+			$descripcion = "CONTRATO";
+			$id_usuario = $_SESSION['user_id'];
+			$nombre = $_SESSION['user_name'];
+			include ("nueva_auditoria.php");
+			
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

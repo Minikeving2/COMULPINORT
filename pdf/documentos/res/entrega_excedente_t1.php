@@ -95,7 +95,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             </td>
 			<td style="width: 50%; color: #000 ;font-size:12px;text-align:center">
                 <span style="color: #000;font-size:14px;font-weight:bold">
-                    ENTREGA A E.D.S VS EXCEDENTES
+                    ENTREGA A E.D.S VS EXCEDENTES DEL AÑO
 				</span>
             </td>
 			<td style="width: 25%;text-align:right">

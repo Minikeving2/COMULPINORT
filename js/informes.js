@@ -79,7 +79,6 @@ load(1);
 }
 }
 
-
 function generar() {
         google.charts.load('current', {'packages':['corechart', 'bar']});
         google.charts.setOnLoadCallback(dibujar);
@@ -103,28 +102,59 @@ function dibujar() {
             beforeSend: function(objeto){
             },
             success: function(datos){
-                const split = datos.split(' ')
-                const datos_query = [nombre_mes[parseInt(mes)-1], parseInt(split[0]), parseInt(split[1]), parseInt(split[0])+parseInt(split[1])];
+                console.log("aver: "+datos);
+                const split = datos.split(' ');
+                const datos_query = [nombre_mes[parseInt(mes)-1], parseInt(split[0]), parseInt(split[1]), parseInt(split[2]), parseInt(split[3]), parseInt(split[4]), parseInt(split[5]), parseInt(split[6]), parseInt(split[7])];
                 var data = google.visualization.arrayToDataTable([
-                    ['MES', 'B2', 'GASOLINA', 'TOTAL'],
+                    ['MES', 'C02', 'B5', 'C04', 'C07', 'C09', 'EX', 'EX4', 'EX2'],
                     datos_query
                 ]);
 
                 var view = new google.visualization.DataView(data);
 
-                    view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation"},
-                       2, {calc: "stringify",
-                       sourceColumn: 2,
-                       type: "string",
-                       role: "annotation" },
-                    3, {calc: "stringify",
-                    sourceColumn: 3,
-                    type: "string",
-                    role: "annotation" }]);
+                    view.setColumns([
+                    0, 
+                    1,
+                        { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation"},
+                    2, 
+                        {calc: "stringify",
+                        sourceColumn: 2,
+                        type: "string",
+                        role: "annotation" },
+                    3, 
+                        {calc: "stringify",
+                        sourceColumn: 3,
+                        type: "string",
+                        role: "annotation" },
+                    4,
+                        { calc: "stringify",
+                        sourceColumn: 4,
+                        type: "string",
+                        role: "annotation"},
+                    5,
+                        { calc: "stringify",
+                        sourceColumn: 5,
+                        type: "string",
+                        role: "annotation"},
+                    6,
+                        { calc: "stringify",
+                        sourceColumn: 6,
+                        type: "string",
+                        role: "annotation"},
+                    7,
+                        { calc: "stringify",
+                        sourceColumn: 7,
+                        type: "string",
+                        role: "annotation"},
+                    8,
+                        { calc: "stringify",
+                        sourceColumn: 8,
+                        type: "string",
+                        role: "annotation"},
+                    ]);
                 // Set chart options
                 var options = {
                     chart: {
@@ -134,6 +164,7 @@ function dibujar() {
                     bars: 'vertical',
                     vAxis: {format: 'decimal'},
                     height: 600,
+                    //linea de colores por orden toca agregar los demas campos
                     colors: ['#94D509', '#007936', '#F89C0E']
                 };
                 // Instantiate and draw our chart, passing in some options.
@@ -162,25 +193,23 @@ function dibujar() {
             success: function(datos){
                 const split = datos.split(' ') // (1) [ 'bearer', 'token' ]
 
-                    
+                const ENERO =[nombre_mes[0],parseInt(split[0]), parseInt(split[1]), parseInt(split[2]), parseInt(split[3]), parseInt(split[4]), parseInt(split[5]), parseInt(split[6]), parseInt(split[7])];
+                const FEBRERO =[nombre_mes[1],parseInt(split[8]), parseInt(split[9]), parseInt(split[10]), parseInt(split[11]), parseInt(split[12]), parseInt(split[13]), parseInt(split[14]), parseInt(split[15])];
+                const MARZO =[nombre_mes[2],parseInt(split[16]), parseInt(split[17]), parseInt(split[18]), parseInt(split[19]), parseInt(split[20]), parseInt(split[21]), parseInt(split[22]), parseInt(split[23])];
+                const ABRIL =[nombre_mes[3],parseInt(split[24]), parseInt(split[25]), parseInt(split[26]), parseInt(split[27]), parseInt(split[28]), parseInt(split[29]), parseInt(split[30]), parseInt(split[31])];
+                const MAYO =[nombre_mes[4],parseInt(split[32]), parseInt(split[33]), parseInt(split[34]), parseInt(split[35]), parseInt(split[36]), parseInt(split[37]), parseInt(split[38]), parseInt(split[39])];
+                const JUNIO =[nombre_mes[5],parseInt(split[40]), parseInt(split[41]), parseInt(split[42]), parseInt(split[43]), parseInt(split[44]), parseInt(split[45]), parseInt(split[46]), parseInt(split[47])];
+                const JULIO =[nombre_mes[6],parseInt(split[48]), parseInt(split[49]), parseInt(split[50]), parseInt(split[51]), parseInt(split[52]), parseInt(split[53]), parseInt(split[54]), parseInt(split[55])];
+                const AGOSTO =[nombre_mes[7],parseInt(split[56]), parseInt(split[57]), parseInt(split[58]), parseInt(split[59]), parseInt(split[60]), parseInt(split[61]), parseInt(split[62]), parseInt(split[63])];
+                const SEPTIEMBRE =[nombre_mes[8],parseInt(split[64]), parseInt(split[65]), parseInt(split[66]), parseInt(split[67]), parseInt(split[68]), parseInt(split[69]), parseInt(split[70]), parseInt(split[71])];
+                const OCTUBRE =[nombre_mes[9],parseInt(split[72]), parseInt(split[73]), parseInt(split[74]), parseInt(split[75]), parseInt(split[76]), parseInt(split[77]), parseInt(split[78]), parseInt(split[79])];
+                const NOVIEMBRE =[nombre_mes[10],parseInt(split[80]), parseInt(split[81]), parseInt(split[82]), parseInt(split[83]), parseInt(split[84]), parseInt(split[85]), parseInt(split[86]), parseInt(split[87])];
+                const DICIEMBRE =[nombre_mes[11],parseInt(split[88]), parseInt(split[89]), parseInt(split[90]), parseInt(split[91]), parseInt(split[92]), parseInt(split[93]), parseInt(split[94]), parseInt(split[95])];
+
                 
-
-                const ENERO =[nombre_mes[0],parseInt(split[0]), parseInt(split[1]), parseInt(split[0])+parseInt(split[1])];
-                const FEBRERO =[nombre_mes[1],parseInt(split[2]), parseInt(split[3]), parseInt(split[2])+parseInt(split[3])];
-                const MARZO =[nombre_mes[2],parseInt(split[4]), parseInt(split[5]), parseInt(split[4])+parseInt(split[5])];
-                const ABRIL =[nombre_mes[3],parseInt(split[6]), parseInt(split[7]), parseInt(split[6])+parseInt(split[7])];
-                const MAYO =[nombre_mes[4],parseInt(split[8]), parseInt(split[9]), parseInt(split[8])+parseInt(split[9])];
-                const JUNIO =[nombre_mes[5],parseInt(split[10]), parseInt(split[11]), parseInt(split[10])+parseInt(split[11])];
-                const JULIO =[nombre_mes[6],parseInt(split[12]), parseInt(split[13]), parseInt(split[12])+parseInt(split[13])];
-                const AGOSTO =[nombre_mes[7],parseInt(split[14]), parseInt(split[15]), parseInt(split[14])+parseInt(split[15])];
-                const SEPTIEMBRE =[nombre_mes[8],parseInt(split[16]), parseInt(split[17]), parseInt(split[16])+parseInt(split[17])];
-                const OCTUBRE =[nombre_mes[9],parseInt(split[18]), parseInt(split[19]), parseInt(split[18])+parseInt(split[19])];
-                const NOVIEMBRE =[nombre_mes[10],parseInt(split[20]), parseInt(split[21]), parseInt(split[20])+parseInt(split[21])];
-                const DICIEMBRE =[nombre_mes[11],parseInt(split[22]), parseInt(split[23]), parseInt(split[22])+parseInt(split[23])];
-
                
                 var data = google.visualization.arrayToDataTable([
-                    ['MES', 'B2', 'GASOLINA', 'TOTAL'],
+                    ['MES', 'C02', 'B5', 'C04', 'C07', 'C09', 'EX', 'EX4', 'EX2'],
                     ENERO,
                     FEBRERO,
                     MARZO
@@ -200,7 +229,28 @@ function dibujar() {
                     3, {calc: getValueAt.bind(undefined, 3),
                     sourceColumn: 3,
                     type: "string",
-                    role: "annotation" }]);
+                    role: "annotation" },
+                    4, {calc: getValueAt.bind(undefined, 4),
+                    sourceColumn: 4,
+                    type: "string",
+                    role: "annotation"},
+                    5, {calc: getValueAt.bind(undefined, 5),
+                    sourceColumn: 5,
+                    type: "string",
+                    role: "annotation" },
+                    6, {calc: getValueAt.bind(undefined, 6),
+                    sourceColumn: 6,
+                    type: "string",
+                    role: "annotation" },
+                    7, {calc: getValueAt.bind(undefined, 7),
+                    sourceColumn: 7,
+                    type: "string",
+                    role: "annotation"},
+                    8, {calc: getValueAt.bind(undefined, 8),
+                    sourceColumn: 8,
+                    type: "string",
+                    role: "annotation"}
+                ]);
                 // Set chart options
                 var options = {
                     chart: {
@@ -211,7 +261,7 @@ function dibujar() {
                     vAxis: {format: 'decimal'},
                     height: 600,
                     bar: {groupWidth: "80%"},
-                    colors: ['#94D509', '#007936', '#F89C0E']
+                    colors: ['#B2190B', '#89ACC0', '#CE8303', '#5C354B', '#99E0CE', '#FF4238', '#F3CF1E', '#D49F91']
                 };
                 // Instantiate and draw our chart, passing in some options.
                 var chart_divs = document.getElementById("cap_grafico_");
@@ -225,7 +275,7 @@ function dibujar() {
                 charts.draw(view, options);
                 
                 var data = google.visualization.arrayToDataTable([
-                    ['MES', 'B2', 'GASOLINA', 'TOTAL'],
+                    ['MES', 'C02', 'B5', 'C04', 'C07', 'C09', 'EX', 'EX4', 'EX2'],
                     ABRIL,MAYO,JUNIO
                 ]);
 
@@ -239,11 +289,33 @@ function dibujar() {
                     2, {calc: getValueAt.bind(undefined, 2),
                     sourceColumn: 2,
                     type: "string",
-                    role: "annotation" },
+                    role: "annotation"},
                     3, {calc: getValueAt.bind(undefined, 3),
                     sourceColumn: 3,
                     type: "string",
-                    role: "annotation" }]);
+                    role: "annotation"}, 
+                    4, {calc: getValueAt.bind(undefined, 4),
+                    sourceColumn: 4,
+                    type: "string",
+                    role: "annotation"},
+                    5, {calc: getValueAt.bind(undefined, 5),
+                    sourceColumn: 5,
+                    type: "string",
+                    role: "annotation"},
+                    6, {calc: getValueAt.bind(undefined, 6),
+                    sourceColumn: 6,
+                    type: "string",
+                    role: "annotation"}, 
+                    7, {calc: getValueAt.bind(undefined, 7),
+                    sourceColumn: 7,
+                    type: "string",
+                    role: "annotation"},
+                    8, {calc: getValueAt.bind(undefined, 8),
+                    sourceColumn: 8,
+                    type: "string",
+                    role: "annotation"}
+                
+                ]);
                 // Set chart options
                 var options = {
                     chart: {
@@ -254,7 +326,7 @@ function dibujar() {
                     vAxis: {format: 'decimal'},
                     height: 600,
                     bar: {groupWidth: "80%"},
-                    colors: ['#94D509', '#007936', '#F89C0E']
+                    colors: ['#B2190B', '#89ACC0', '#CE8303', '#5C354B', '#99E0CE', '#FF4238', '#F3CF1E', '#D49F91']
                 };
                 // Instantiate and draw our chart, passing in some options.
                
@@ -270,7 +342,7 @@ function dibujar() {
                 charts.draw(view, options);
                 
                 var data = google.visualization.arrayToDataTable([
-                    ['MES', 'B2', 'GASOLINA', 'TOTAL'],
+                    ['MES', 'C02', 'B5', 'C04', 'C07', 'C09', 'EX', 'EX4', 'EX2'],
                     JULIO,
                     AGOSTO,
                     SEPTIEMBRE
@@ -278,7 +350,7 @@ function dibujar() {
 
                 var view = new google.visualization.DataView(data);
 
-                    view.setColumns([0, 
+                view.setColumns([0, 
                     1, {calc: getValueAt.bind(undefined, 1),
                     sourceColumn: 1,
                     type: "string",
@@ -286,11 +358,33 @@ function dibujar() {
                     2, {calc: getValueAt.bind(undefined, 2),
                     sourceColumn: 2,
                     type: "string",
-                    role: "annotation" },
+                    role: "annotation"},
                     3, {calc: getValueAt.bind(undefined, 3),
                     sourceColumn: 3,
                     type: "string",
-                    role: "annotation" }]);
+                    role: "annotation"}, 
+                    4, {calc: getValueAt.bind(undefined, 4),
+                    sourceColumn: 4,
+                    type: "string",
+                    role: "annotation"},
+                    5, {calc: getValueAt.bind(undefined, 5),
+                    sourceColumn: 5,
+                    type: "string",
+                    role: "annotation"},
+                    6, {calc: getValueAt.bind(undefined, 6),
+                    sourceColumn: 6,
+                    type: "string",
+                    role: "annotation"}, 
+                    7, {calc: getValueAt.bind(undefined, 7),
+                    sourceColumn: 7,
+                    type: "string",
+                    role: "annotation"},
+                    8, {calc: getValueAt.bind(undefined, 8),
+                    sourceColumn: 8,
+                    type: "string",
+                    role: "annotation"}
+                
+                ]);
                 // Set chart options
                 var options = {
                     chart: {
@@ -301,7 +395,7 @@ function dibujar() {
                     vAxis: {format: 'decimal'},
                     height: 600,
                     bar: {groupWidth: "80%"},
-                    colors: ['#94D509', '#007936', '#F89C0E']
+                    colors: ['#B2190B', '#89ACC0', '#CE8303', '#5C354B', '#99E0CE', '#FF4238', '#F3CF1E', '#D49F91']
                 };
                 // Instantiate and draw our chart, passing in some options.
                 
@@ -318,7 +412,7 @@ function dibujar() {
 
 
                 var data = google.visualization.arrayToDataTable([
-                    ['MES', 'B2', 'GASOLINA', 'TOTAL'],
+                    ['MES', 'C02', 'B5', 'C04', 'C07', 'C09', 'EX', 'EX4', 'EX2'],
                     OCTUBRE,
                     NOVIEMBRE,
                     DICIEMBRE
@@ -326,7 +420,7 @@ function dibujar() {
 
                 var view = new google.visualization.DataView(data);
 
-                    view.setColumns([0, 
+                view.setColumns([0, 
                     1, {calc: getValueAt.bind(undefined, 1),
                     sourceColumn: 1,
                     type: "string",
@@ -334,11 +428,33 @@ function dibujar() {
                     2, {calc: getValueAt.bind(undefined, 2),
                     sourceColumn: 2,
                     type: "string",
-                    role: "annotation" },
+                    role: "annotation"},
                     3, {calc: getValueAt.bind(undefined, 3),
                     sourceColumn: 3,
                     type: "string",
-                    role: "annotation" }]);
+                    role: "annotation"}, 
+                    4, {calc: getValueAt.bind(undefined, 4),
+                    sourceColumn: 4,
+                    type: "string",
+                    role: "annotation"},
+                    5, {calc: getValueAt.bind(undefined, 5),
+                    sourceColumn: 5,
+                    type: "string",
+                    role: "annotation"},
+                    6, {calc: getValueAt.bind(undefined, 6),
+                    sourceColumn: 6,
+                    type: "string",
+                    role: "annotation"}, 
+                    7, {calc: getValueAt.bind(undefined, 7),
+                    sourceColumn: 7,
+                    type: "string",
+                    role: "annotation"},
+                    8, {calc: getValueAt.bind(undefined, 8),
+                    sourceColumn: 8,
+                    type: "string",
+                    role: "annotation"}
+                
+                ]);
                 // Set chart options
                 var options = {
                     chart: {
@@ -349,7 +465,7 @@ function dibujar() {
                     vAxis: {format: 'decimal'},
                     height: 600,
                     bar: {groupWidth: "80%"},
-                    colors: ['#94D509', '#007936', '#F89C0E']
+                    colors: ['#B2190B', '#89ACC0', '#CE8303', '#5C354B', '#99E0CE', '#FF4238', '#F3CF1E', '#D49F91']
                 };
                 // Instantiate and draw our chart, passing in some options.
                 
@@ -365,7 +481,7 @@ function dibujar() {
                 charts.draw(view, options);
                 
                 // Create the data table.}
-        
+            
             }
         });
     
@@ -824,7 +940,6 @@ function imprimir_informe(){
     if (q=="") {
        alert("Debe ingresar un cliente");
     } else {
-        console.log("aver");
         var tipo = $("input[name=tipo_informe]:checked").val();
         var date_start = document.getElementById("fecha_inicio").value;
         var date_end = document.getElementById("fecha_fin").value;
@@ -833,9 +948,11 @@ function imprimir_informe(){
     event.preventDefault();
 }    
 function informe_utilidad(){
-    var datosss = "a";
+    
+    var mes_utilidad = document.getElementById("mes_utilidad").value;
+    var year_utilidad = document.getElementById("year_utilidad").value;
     openWindowWithPost("./pdf/documentos/utilidad.php", {
-        dato: datosss
+        mes: mes_utilidad, year: year_utilidad
     });
 }
 function informe_entrega1(){

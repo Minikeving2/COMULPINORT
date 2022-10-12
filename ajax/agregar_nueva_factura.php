@@ -107,6 +107,8 @@ $sql=mysqli_query($con,"DELETE FROM tmp");
 
 
 
+
+
 switch ($tipo_mov) {
 	case 1:
 		$mov = "Equipos (Comodato)";

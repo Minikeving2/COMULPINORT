@@ -10,7 +10,7 @@ require_once ("../config/conexion.php");//Contiene funcion que conecta a la base
 
 
 $id_cliente=$_GET['id_cliente'];
-
+$resultado="";
 
 if (isset($_POST['nombre_doc'])){$nombre=$_POST['nombre_doc'];}
 if (isset($_FILES['archivo'])){$archivo = $_FILES['archivo'];}
@@ -39,16 +39,16 @@ if (!empty($nombre) and !empty($archivo['name']) and !empty($tipo_doc)){
 	$ruta = $_FILES['archivo']['tmp_name'];
 	$destino = "../tercero_documentacion/".$nit."_".$name;
 	$fecha_added=date('Y-m-d');
-
 	if (copy($ruta, $destino)) {
 		$sql_doc_nuevo="INSERT INTO detalle_cliente (cod_cliente,nombre,ruta,archivo,tipo_doc,fecha_documento,fecha_vencimiento,fecha_added) VALUES ('$id_cliente','$nombre','$destino','$name','$tipo_doc',$fecha_inicio,$fecha_final,'$fecha_added')";
 		$insert_tmp=mysqli_query($con,$sql_doc_nuevo);
+		
 		$proceso = "INSERTAR";
-		$descripcion = "ARCHIVO - ESTACION";
-		$id_usuario = $_SESSION['user_id'];
-		$nombre = $_SESSION['user_name'];
-		include ("nueva_auditoria.php");
-
+        $descripcion = "ARCHIVO - ESTACION";
+        $id_usuario = $_SESSION['user_id'];
+        $nombre = $_SESSION['user_name'];
+        include ("nueva_auditoria.php");
+		
 		echo json_encode($resultado);
 		exit;
 	} else {
@@ -64,7 +64,32 @@ if (isset($_POST['id_del'])){//codigo elimina un elemento del array
 	//el unlink me elimina el fichero segun la ubicacion y su nombre
 	unlink($datos[0]);
 	$delete=mysqli_query($con, "DELETE FROM detalle_cliente WHERE id='".$id_detalle."'");
+	
+	$proceso = "ELIMINAR";
+    $descripcion = "ARCHIVO - ESTACION";
+    $id_usuario = $_SESSION['user_id'];
+    $nombre = $_SESSION['user_name'];
+    include ("nueva_auditoria.php");
 }
+/*
+if (isset($_POST["fechas_desembolso"])){
+	$fechas_desembolsos=$_POST["fechas_desembolso"];
+	$total_fechas = explode(",", $fechas_desembolsos);
+	$cant_fechas = count($total_fechas);
+
+	$sql=mysqli_query($con, "select * from detalle_cliente where cod_cliente='$id_factura'");
+	$i=0;
+	while ($row=mysqli_fetch_array($sql)){
+		if ($total_fechas[$i]==""){
+			$total_fechas[$i]="null";
+		} else {
+			$total_fechas[$i]="'".$total_fechas[$i]."'";
+		}
+		mysqli_query($con, "UPDATE detalle_factura SET duracion=".$total_fechas[$i]." WHERE id_detalle='".$row["id_detalle"]."';");
+		$i++;	
+	}
+
+}*/
 
 $resultado.='<table class="table">
 <tr>

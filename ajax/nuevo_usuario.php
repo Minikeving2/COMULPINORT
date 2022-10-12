@@ -78,13 +78,13 @@ mysqli_query($con,"SET NAMES 'utf8'");
 
                     // if user has been added successfully
                     if ($query_new_user_insert) {
-
+                        
                         $proceso = "INSERTAR";
                         $descripcion = "USUARIO";
                         $id_usuario = $_SESSION['user_id'];
                         $nombre = $_SESSION['user_name'];
                         include ("nueva_auditoria.php");
-
+                        
                         $messages[] = "La cuenta ha sido creada con éxito.";
                     } else {
                         $errors[] = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.";

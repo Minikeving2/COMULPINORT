@@ -1,4 +1,10 @@
 <?php
+
+	/*-------------------------
+	Autor: Obed Alvarado
+	Web: obedalvarado.pw
+	Mail: info@obedalvarado.pw
+	---------------------------*/
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -25,7 +31,9 @@ mysqli_query($con,"SET NAMES 'utf8'");
 			  <strong>Error!</strong> Tercero ya tiene movimientos
 			</div>
 			<?php
+			
 		    }
+			
 		} else {
 			?>
 			<div class="alert alert-danger alert-dismissible" role="alert">
@@ -34,6 +42,9 @@ mysqli_query($con,"SET NAMES 'utf8'");
 			</div>
 			<?php
 		}
+		
+		
+		
 	}
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
@@ -41,9 +52,11 @@ mysqli_query($con,"SET NAMES 'utf8'");
 		 $aColumns = array('nombre_cliente','nit');//Columnas de busqueda
 		 $sTable = "clientes";
 		 $sWhere = "";
-		if ( $_GET['q'] != "" ){
+		if ( $_GET['q'] != "" )
+		{
 			$sWhere = "WHERE (";
-			for ( $i=0 ; $i<count($aColumns) ; $i++ ){
+			for ( $i=0 ; $i<count($aColumns) ; $i++ )
+			{
 				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );

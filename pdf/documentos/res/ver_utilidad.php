@@ -171,7 +171,7 @@
                     P&aacute;gina [[page_cu]]/[[page_nb]]
                 </td>
                 <td style="width: 50%; text-align: right">
-                    &copy; <?php echo  "2022"; ?>
+                    &copy; <?php echo  $year; ?>
                 </td>
             </tr>
         </table>
@@ -206,7 +206,7 @@
                 <span style="color: #000;font-size:14px;font-weight:bold">
                     VENTAS POR CUPO CRÉDITO - VENTAS - UTILIDAD
 				</span>
-				<br>Analisis del Mes : <?php echo $mes." - ".$año; ?><br>
+				<br>ANALISIS DEL MEST: <?php echo $meses[$mes]." - ".$year; ?><br>
 				
                 
             </td>

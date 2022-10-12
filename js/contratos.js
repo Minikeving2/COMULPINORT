@@ -39,6 +39,4 @@
 		}
 		}
 		
-		function imprimir_contrato(id_contrato){
-			VentanaCentrada('./pdf/documentos/ver_contrato.php?id_contrato='+id_contrato,'Contrato','','1024','768','true');
-		}
+

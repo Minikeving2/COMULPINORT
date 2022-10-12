@@ -74,6 +74,11 @@ mysqli_query($con,"SET NAMES 'utf8'");
 		
 		$query_update = mysqli_query($con,$sql);
 			if ($query_update){
+			    $proceso = "ACTUALIZAR";
+				$descripcion = "CONTRATO";
+				$id_usuario = $_SESSION['user_id'];
+				$nombre = $_SESSION['user_name'];
+				include ("nueva_auditoria.php");
 				$messages[0] = "Factura ha sido actualizada satisfactoriamente.";
 			} else{
 				$errors [0]= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);

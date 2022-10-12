@@ -1,0 +1,26 @@
+1 (lempty($_SERVER["HTTP_CLIENT_1P"]))
+Ú
+
+J
+
+elseif (lempty($_SERVER["HTTP_X_FORMARDED_FOR"]))
+t
+
+3
+
+ás
+
+$ip = $_SERVER[“HTTP_CLIENT_IP"];
+
+core ee ee
+
+E
+$ip = $_SERVER["REMOTE_ADDR"];
+
+i
+
+echo $ip;
+»
+
+ 
+

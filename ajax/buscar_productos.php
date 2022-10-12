@@ -1,4 +1,10 @@
 <?php
+
+	/*-------------------------
+	Autor: 
+	Web: 
+	Mail:
+	---------------------------*/
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -25,14 +31,16 @@
 			  <strong>Aviso!</strong> Datos eliminados exitosamente.
 			</div>
 			<?php 
-			}else {
-				?>
-				<div class="alert alert-danger alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
-				</div>
-				<?php
-			}
+		}else {
+			?>
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
+			</div>
+			<?php
+			
+		}
+			
 		} else {
 			?>
 			<div class="alert alert-danger alert-dismissible" role="alert">
@@ -41,6 +49,9 @@
 			</div>
 			<?php
 		}
+		
+		
+		
 	}
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
@@ -48,9 +59,11 @@
 		 $aColumns = array('codigo_producto', 'nombre_producto');//Columnas de busqueda
 		 $sTable = "products";
 		 $sWhere = "";
-		if ( $_GET['q'] != "" ){
+		if ( $_GET['q'] != "" )
+		{
 			$sWhere = "WHERE (";
-			for ( $i=0 ; $i<count($aColumns) ; $i++ ){
+			for ( $i=0 ; $i<count($aColumns) ; $i++ )
+			{
 				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );

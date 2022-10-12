@@ -83,3 +83,4 @@ if ($tipo_informe==1){
     }
 
 }
+?>

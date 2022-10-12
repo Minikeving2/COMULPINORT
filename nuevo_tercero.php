@@ -8,12 +8,7 @@
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: login.php");
 		exit;
-	}
-	$a = $_SESSION['user_level'];
-	if ($a < 0) {
-        header("location: login.php");
-		exit;
-    }
+        }
 	$active_facturas="";
 	$active_productos="";
 	$active_clientes="active";
@@ -47,10 +42,7 @@
 		<div class="panel-body" >
 		<?php 
 			include("modal/doc_cliente.php");
-			/*include("modal/buscar_productos.php");
-			include("modal/registro_clientes.php");
-			include("modal/registro_productos.php");
-			include("modal/buscar_cliente.php");*/
+			include("modal/sarlaft.php");
 		?>
 			<form class="form-horizontal" method="POST" id="nuevo_cliente" name="guardar_cliente">
 				
@@ -105,7 +97,7 @@
 									$id_municipio=$rw["id"];
 									$nombre_municipio=$rw["nombre"];
 							?>
-								<option value="<?php echo $id_municipio?>" <?php echo $selected;?>><?php echo $nombre_municipio?></option>
+								<option value="<?php echo $id_municipio?>"><?php echo $nombre_municipio?></option>
 							<?php
 											}
 							?>
@@ -171,6 +163,7 @@
 				  	<label for="nombre" class="col-md-2 ">Teléf. RepLegal</label>
 				  	<label for="estado" class="col-md-3  ">Email RepLegal</label>
 				  	<label for="nombre_rl" class="col-md-3 ">Dir. RepLegal</label>
+					<label for="sarlaft" class="col-md-1 ">Sarlaft</label>
 				</div>
 				<div class="form-group row">
 				    <!--    
@@ -191,14 +184,20 @@
 				    <div class="col-md-3">
 						<input type="text" class="form-control" id="email_cliente" name="direccion_rp" >
 				    </div>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="sarlaft" name="sarlaft" >
+				    </div>
 				</div>
 
 				
 				<div class="form-group row">
 					<div class="col-md-12">
 						<div class="pull-right">
+						    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SARLAFT">
+								<span class="glyphicon glyphicon-list-alt"></span> SARLAFT
+							</button>
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#docCliente">
-							<span class="glyphicon glyphicon-floppy-disk"></span> Añadir doc.
+							    <span class="glyphicon glyphicon-floppy-disk"></span> Añadir doc.
 							</button>
 							<button type="submit" class="btn btn-success" id="guardar_datos">
 								<span class="glyphicon glyphicon-floppy-disk"></span>Guardar datos

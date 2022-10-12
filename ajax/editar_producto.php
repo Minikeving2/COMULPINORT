@@ -28,6 +28,7 @@
 	
 mysqli_query($con,"SET NAMES 'utf8'");
 
+
 		$id_producto = $_POST["mod_id"];
 		$codigo=mysqli_real_escape_string($con,(strip_tags($_POST["mod_cod_producto"],ENT_QUOTES)));
 		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["mod_nombre_producto"],ENT_QUOTES)));
@@ -42,11 +43,13 @@ mysqli_query($con,"SET NAMES 'utf8'");
 		$sql= "UPDATE products SET codigo_producto='".$codigo."', nombre_producto='".$nombre."', status_producto='".$estado."', precio_producto='".$precio_venta."', descripcion='".$descripcion1."', descripcion2='".$descripcion2."', tipo_prod='".$tipo."', tipo_categoria='".$categoria."' WHERE id_producto='".$id_producto."'";
 		$query_update = mysqli_query($con,$sql);
 			if ($query_update){
-				$proceso = "ACTUALIZAR";
+			    
+			    $proceso = "ACTUALIZAR";
 				$descripcion = "PRODUCTO";
 				$id_usuario = $_SESSION['user_id'];
 				$nombre = $_SESSION['user_name'];
 				include ("nueva_auditoria.php");
+				
 				$messages[] = "Producto ha sido actualizado satisfactoriamente.";
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);

@@ -7,17 +7,16 @@
 include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 $id_factura= $_SESSION['id_factura'];
 $numero_factura= $_SESSION['numero_factura'];
-if (isset($_POST['id'])){$id=intval($_POST['id']);}
-if (isset($_POST['cantidad'])){$cantidad=intval($_POST['cantidad']);}
-if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']);}
+if (isset($_POST['id'])){$id=intval($_POST['id']);}else{$id="";}
+if (isset($_POST['cantidad'])){$cantidad=intval($_POST['cantidad']);}else{$cantidad="";}
+if (isset($_POST['precio_venta'])){$precio_venta=floatval($_POST['precio_venta']);}else{$precio_Venta="";}
 
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
 mysqli_query($con,"SET NAMES 'utf8'");	
-if ($id!="" and $cantidad!="" and $precio_venta!="")
-{
+if ($id!="" and $cantidad!="" and $precio_venta!=""){
 	$aux=$cantidad*$precio_venta;
 $insert_tmp=mysqli_query($con, "INSERT INTO detalle_factura (id_factura, id_producto,cantidad,precio_venta,total) VALUES ('$id_factura','$id','$cantidad','$precio_venta','$aux')");
 

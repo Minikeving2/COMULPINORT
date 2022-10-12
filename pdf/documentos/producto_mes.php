@@ -3,12 +3,11 @@ include("../../config/db.php");
 include("../../config/conexion.php");
 //importacion de la libreria de html2pdf
 require_once(dirname(__FILE__).'/../html2pdf.class.php');
-$meses=["","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
-$titulo="VENTAS POR CUPO CRÉDITO - VENTAS - UTILIDAD";
-$mes= $_POST["mes"];
-$year = $_POST["year"];
+$year="2022";
+$mes="08";
+$titulo="INFORME PRODCUTO MES DE X DE ".$year;
 ob_start();
-include(dirname('__FILE__').'/res/ver_utilidad.php');
+include(dirname('__FILE__').'/res/producto_mes.php');
 $content = ob_get_clean();
 
 
