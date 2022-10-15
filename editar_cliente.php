@@ -223,7 +223,7 @@
 				  	<label for="nombre" class="col-md-2 ">Teléf. RepLegal</label>
 				  	<label for="estado" class="col-md-3  ">Email RepLegal</label>
 				  	<label for="nombre_rl" class="col-md-3 ">Dir. RepLegal</label>
-					<label for="sarlaft" class="col-md-1 ">Sarlaft</label>
+					<label for="sarlaft" class="col-md-1 ">Knime</label>
 				</div>
 				<div class="form-group row">
 				    <!--    

@@ -43,8 +43,14 @@ if (copy(utf8_decode($ruta), $destino)) {
                if ($aux==$columna){
                 //le quito los espacion en blanco de pedazo 
                     $value=trim($value);
-                    
-                    $cod=mysqli_query($con, "SELECT id_cliente FROM clientes WHERE codigo_sicom=$value'");
+                    if($value=="'"){
+                        $umm .= $nit_aux."---";
+                        $cod=mysqli_query($con, "SELECT id_cliente FROM clientes WHERE nit=$nit_aux");
+                    }else {
+                         $cod=mysqli_query($con, "SELECT id_cliente FROM clientes WHERE codigo_sicom=$value'");
+                    }
+                   
+                   
                     $cod_cliente=mysqli_fetch_array($cod);
                     if ($cod_cliente[0]==""){
                         $id_cliente="null";
@@ -65,6 +71,10 @@ if (copy(utf8_decode($ruta), $destino)) {
                     $fecha = explode("/", rtrim(ltrim($value,"'"),"'"));
                     $fecha= trim($fecha[2])."-".trim($fecha[1])."-".trim($fecha[0]);
                     $value="'".$fecha."'"; 
+                    
+                }
+                if ($aux==3){;
+                    $nit_aux=$value;
                     
                 }
                 $sql .= "".$value.",";
@@ -94,7 +104,7 @@ if (copy(utf8_decode($ruta), $destino)) {
     $nombre = $_SESSION['user_name'];
     include ("nueva_auditoria.php");
     
-    echo json_encode('<script>alert("Archivo cargado correctamente")</script>');
+    echo json_encode('<script>console.log("'.$umm.'")</script>');
     
 } else {
 	echo json_encode('<script>alert("El tipo de archivo no es valido") </script>');

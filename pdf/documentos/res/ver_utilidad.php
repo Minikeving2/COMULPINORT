@@ -206,7 +206,7 @@
                 <span style="color: #000;font-size:14px;font-weight:bold">
                     VENTAS POR CUPO CRÉDITO - VENTAS - UTILIDAD
 				</span>
-				<br>ANALISIS DEL MEST: <?php echo $meses[$mes]." - ".$year; ?><br>
+				<br>ANALISIS DEL MES: <?php echo $meses[$mes]." - ".$year; ?><br>
 				
                 
             </td>

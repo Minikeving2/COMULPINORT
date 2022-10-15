@@ -1,7 +1,6 @@
 <?php
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
-	
 	if (empty($_POST['nombre_tercero']) or empty($_POST['nit'])) {
 		if (empty($_POST['nombre_tercero'])) {
 			$errors[] = "Nombre de la EDS/Asociado está vacío";
@@ -108,6 +107,17 @@
 
 		//pasar los archivos qeu se introduciran en una carpta temporal
 		//y pasar la informacion de la tabla tmp a la tabla detalle_cliente
+		
+
+
+
+
+
+		
+
+
+
+
 
 		$resultado="";
 		if (isset($errors)){

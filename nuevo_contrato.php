@@ -211,7 +211,6 @@
 						<button type="submit" class="btn btn-success" id="#guardarcontrato" >
 						 <span class="glyphicon glyphicon-floppy-disk"></span> Guardar
 						</button>
-						
 					   </div>	
 				    </div>
 					
