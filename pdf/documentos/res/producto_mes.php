@@ -91,7 +91,14 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         $limite=mysqli_num_rows($search_knime);
 
         while ($aux<=$limite){
-           
+            $acum_bioacem = 0;
+            $acum_gasolina = 0;
+            
+            $gal_bioacem = 0;
+            $gal_gasolina = 0;
+            
+            $pc_bioacem = 0;
+            $pc_gasolina = 0;
 
             $search_id = mysqli_query($con,"SELECT id_cliente FROM clientes WHERE cod_knime = $aux");
             while ($row=mysqli_fetch_array($search_id)){
@@ -99,50 +106,66 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 		        $acum_bioacem = $acum_bioacem + $search_fact_bioacem['CANT'];
                 $search_fact_gasolina = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(*) AS CANT  FROM `ventas` WHERE ID_CLIENTE = '".$row["id_cliente"]."' AND FECHA LIKE '".$year."-".$mes."-%' AND DESCRIPCION LIKE 'GASOLINA CORRIENTE%'"));
                 $acum_gasolina = $acum_gasolina + $search_fact_gasolina['CANT'];
-
                 
-                $search_gal_bioacem = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(CANLISTA) FROM ventas WHERE ID_CLIENTE = '".$row["id_cliente"]."' AND FECHA LIKE '".$year."-".$mes."-%' AND DESCRIPCION LIKE 'BIOACEM%'"));
-		        $gal_bioacem = $gal_bioacem + $search_gal_bioacem['0'];
-                $search_gal_gasolina = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(CANLISTA) FROM ventas WHERE ID_CLIENTE = '".$row["id_cliente"]."' AND FECHA LIKE '".$year."-".$mes."-%' AND DESCRIPCION LIKE 'GASOLINA CORRIENTE%'"));
-                $gal_gasolina = $gal_gasolina + $search_gal_gasolina['0'];
-
-               
+                
+                $search_gal_bioacem = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(CANLISTA) AS GL FROM ventas WHERE ID_CLIENTE = '".$row["id_cliente"]."' AND FECHA LIKE '".$year."-".$mes."-%' AND DESCRIPCION LIKE 'BIOACEM%'"));
+		        $gal_bioacem += intval($search_gal_bioacem['GL']);
+                $search_gal_gasolina = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(CANLISTA) AS GL FROM ventas WHERE ID_CLIENTE = '".$row["id_cliente"]."' AND FECHA LIKE '".$year."-".$mes."-%' AND DESCRIPCION LIKE 'GASOLINA CORRIENTE%'"));
+                $gal_gasolina += intval($search_gal_gasolina['GL']);
+                
+                
+                $search_pc_bioacem = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(PARCVTA) AS PC FROM ventas WHERE ID_CLIENTE = '".$row["id_cliente"]."' AND FECHA LIKE '".$year."-".$mes."-%' AND DESCRIPCION LIKE 'BIOACEM%'"));
+		        $pc_bioacem = $pc_bioacem + $search_pc_bioacem['PC'];
+                $search_pc_gasolina = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(PARCVTA) AS PC FROM ventas WHERE ID_CLIENTE = '".$row["id_cliente"]."' AND FECHA LIKE '".$year."-".$mes."-%' AND DESCRIPCION LIKE 'GASOLINA CORRIENTE%'"));
+                $pc_gasolina = $pc_gasolina + $search_pc_gasolina['PC'];
+            
+                
+                $gal_bioacemm = number_format($gal_bioacem);
+                $gal_gasolinaa = number_format($gal_gasolina);
+                
+                $pc_bioacemm = number_format($pc_bioacem);
+                $pc_gasolinaa = number_format($pc_gasolina);
             }
             echo "<br>";
         ?>
     <div>
     <table cellspacing="0" style="width: 100%; padding: 0px;" border="1">
         <tr>
-            <td rowspan="2" style="width:10%">
+            <td rowspan="2" style="width:10%; text-align:center; padding-top:9px;">
                 <?php echo $aux;?>
             </td>
-            <td style="width:16%">
-                <?php echo "B5 ".$acum_bioacem;?>
+            <td style="width:15%">
+                <?php echo "B5";?>
             </td>
-            <td style="width:37%">
-                6887 
+            <td style="width:5%; text-align:center">
+                <?php echo $acum_bioacem;?>
             </td>
-            <td style="width:37%">
-                45.135.010,11
+            <td style="width:35%; text-align:center">
+                <?php echo $gal_bioacemm;?>
+            </td>
+            <td style="width:35%; text-align:center">
+                <?php echo $pc_bioacemm;?>
             </td>
         </tr>
         <tr>
-            <td style="width:16%">
-                <?php echo "GASOLINA ".$acum_gasolina;?>
+            <td style="width:15%">
+                <?php echo "GASOLINA";?>
             </td>
-            <td style="width:37%">
-                18056
+            <td style="width:5%; text-align:center">
+                <?php echo $acum_gasolina;?>
             </td>
-            <td style="width:37%">
-                120.803.668
+            <td style="width:35%; text-align:center">
+                <?php echo $gal_gasolinaa;?>
+            </td>
+            <td style="width:35%; text-align:center">
+                <?php echo $pc_gasolinaa;?>
             </td>
         </tr>
     </table>
     </div>
     <br>
     <?php
-            $acum_bioacem = 0;
-            $acum_gasolina = 0;
+            
             $aux=$aux+1;
         }
     ?>
